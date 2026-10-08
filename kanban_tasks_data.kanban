@@ -17,6 +17,7 @@
 				"2c6d742b-5671-48d7-b7b5-269c3b3147cf",
 				"f4e0b9cd-232b-4f0b-b20e-3b8b5b8bf03b",
 				"5b5e7b42-797a-4a8d-a255-bb5ab69287f3",
+				"5fb1b8f5-fa03-49be-bc49-7227d9c21e8e",
 				"7158a0e7-4dd9-42a3-a9bf-f846664a3e36",
 				"e2e69fd4-cf68-4c53-95bf-6e7aa2eab3d3",
 				"36d024b2-8636-4038-97a4-df2f5b81ab7b",
@@ -160,7 +161,27 @@
 		{
 			"uuid": "4c215ee9-dec3-4378-acde-aa9fd4a6db4f",
 			"title": "XR - Tools",
-			"description": "Le lancer das le casque \nTester les différentes foctionnalités qu'on veut utiliser",
+			"description": "Le lancer dans le casque \nTester les différentes foctionnalités qu'on veut utiliser",
+			"category": "f2f695b0-f5d6-41c9-87df-94dbe47b78df",
+			"steps": [
+				{
+					"details": "Le lancer dans le casque ",
+					"done": false
+				},
+				{
+					"details": "Exporter au format APK",
+					"done": true
+				},
+				{
+					"details": "Tester les fonctionnalités",
+					"done": false
+				}
+			]
+		},
+		{
+			"uuid": "5fb1b8f5-fa03-49be-bc49-7227d9c21e8e",
+			"title": "Premiere maps level design",
+			"description": "Pour le 15/10\nAvoir un parcours interessant et \"agréable\" pour le joueur pour utiliser tous les controllers",
 			"category": "f2f695b0-f5d6-41c9-87df-94dbe47b78df",
 			"steps": []
 		}
