@@ -1,0 +1,181 @@
+{
+	"categories": [
+		{
+			"uuid": "f2f695b0-f5d6-41c9-87df-94dbe47b78df",
+			"title": "Task",
+			"color": "569eff"
+		}
+	],
+	"stages": [
+		{
+			"uuid": "333bb708-83e6-41ac-aa81-66bda5b429bc",
+			"title": "Todo",
+			"tasks": [
+				"6e3f4946-844f-418d-a8b0-8e72a81aa387",
+				"423eed39-f009-4749-98e5-5eb13123f781",
+				"da1d2a61-de1b-4499-be8c-6b5065709635",
+				"2c6d742b-5671-48d7-b7b5-269c3b3147cf",
+				"f4e0b9cd-232b-4f0b-b20e-3b8b5b8bf03b",
+				"5b5e7b42-797a-4a8d-a255-bb5ab69287f3",
+				"7158a0e7-4dd9-42a3-a9bf-f846664a3e36",
+				"e2e69fd4-cf68-4c53-95bf-6e7aa2eab3d3",
+				"36d024b2-8636-4038-97a4-df2f5b81ab7b",
+				"0b3b1e8f-07e5-43b6-828d-06376ad84541"
+			]
+		},
+		{
+			"uuid": "2966463f-c6c6-47ae-902e-551c0b5c5e5d",
+			"title": "Doing",
+			"tasks": [
+				"4c215ee9-dec3-4378-acde-aa9fd4a6db4f",
+				"8c6083f2-f401-4917-91b6-4c4d1e6f4780",
+				"6d0ec8c2-40f9-43bd-b5cd-41bed85f68e2",
+				"60fceda6-5523-46d1-9ca6-9add8ef25d5e"
+			]
+		},
+		{
+			"uuid": "61a86983-4ced-4a69-9e11-f954d9ebac0f",
+			"title": "Done",
+			"tasks": [
+				"0af48e3d-d52b-4e85-8775-04576e16d01e",
+				"2f7567f4-06d6-4414-9ff1-66e65d00fb63"
+			]
+		}
+	],
+	"tasks": [
+		{
+			"uuid": "0af48e3d-d52b-4e85-8775-04576e16d01e",
+			"title": "Créer un git LFS",
+			"description": "",
+			"category": "f2f695b0-f5d6-41c9-87df-94dbe47b78df",
+			"steps": []
+		},
+		{
+			"uuid": "6d0ec8c2-40f9-43bd-b5cd-41bed85f68e2",
+			"title": "Brainstorming Game concept",
+			"description": "",
+			"category": "f2f695b0-f5d6-41c9-87df-94dbe47b78df",
+			"steps": [
+				{
+					"details": "Fiche du game concept",
+					"done": false
+				},
+				{
+					"details": "trouver le concept du jeu",
+					"done": true
+				}
+			]
+		},
+		{
+			"uuid": "da1d2a61-de1b-4499-be8c-6b5065709635",
+			"title": "Créer une scéne de test minimale (Araignée)",
+			"description": "Pour le 8/10\nune pièce pour tester chaque fonction de l'animal (saut, escalade...)\n",
+			"category": "f2f695b0-f5d6-41c9-87df-94dbe47b78df",
+			"steps": []
+		},
+		{
+			"uuid": "2f7567f4-06d6-4414-9ff1-66e65d00fb63",
+			"title": "Répartition des Controller",
+			"description": "Gorille : Solène (Sauter + Casser)\nPoule : Florent (Pondre + Planner)\nAraignée : Romain (Spiderman + Grimper) \n\nD'abord faire les controller PC\n\n",
+			"category": "f2f695b0-f5d6-41c9-87df-94dbe47b78df",
+			"steps": []
+		},
+		{
+			"uuid": "5b5e7b42-797a-4a8d-a255-bb5ab69287f3",
+			"title": "Coder les fonctions de base du controller (Araignée)",
+			"description": "Pour le 8/10 (avoir un animal qui se déplace)\n",
+			"category": "f2f695b0-f5d6-41c9-87df-94dbe47b78df",
+			"steps": []
+		},
+		{
+			"uuid": "423eed39-f009-4749-98e5-5eb13123f781",
+			"title": "Créer une scéne de test minimale (Gorille)",
+			"description": "Pour le 8/10\nune pièce pour tester chaque fonction de l'animal (saut, escalade...)\n",
+			"category": "f2f695b0-f5d6-41c9-87df-94dbe47b78df",
+			"steps": []
+		},
+		{
+			"uuid": "6e3f4946-844f-418d-a8b0-8e72a81aa387",
+			"title": "Créer une scéne de test minimale (Poule)",
+			"description": "Pour le 8/10\nune pièce pour tester chaque fonction de l'animal (saut, escalade...)\nchaque element de la salle sera repris pour le game design des épreuves finales",
+			"category": "f2f695b0-f5d6-41c9-87df-94dbe47b78df",
+			"steps": []
+		},
+		{
+			"uuid": "2c6d742b-5671-48d7-b7b5-269c3b3147cf",
+			"title": "Coder les fonctions de base du controller (poule)",
+			"description": "Pour le 8/10 (avoir un animal qui se déplace)\n",
+			"category": "f2f695b0-f5d6-41c9-87df-94dbe47b78df",
+			"steps": []
+		},
+		{
+			"uuid": "f4e0b9cd-232b-4f0b-b20e-3b8b5b8bf03b",
+			"title": "Coder les fonctions de base du controller (Gorille)",
+			"description": "Pour le 8/10 (avoir un animal qui se déplace)\n",
+			"category": "f2f695b0-f5d6-41c9-87df-94dbe47b78df",
+			"steps": []
+		},
+		{
+			"uuid": "8c6083f2-f401-4917-91b6-4c4d1e6f4780",
+			"title": "Se mettre d'accord sur une DA",
+			"description": "Trouver des assets\nA faire une fois que les fonctions de base fonctionne bien",
+			"category": "f2f695b0-f5d6-41c9-87df-94dbe47b78df",
+			"steps": []
+		},
+		{
+			"uuid": "e2e69fd4-cf68-4c53-95bf-6e7aa2eab3d3",
+			"title": "Changement d'animal",
+			"description": "",
+			"category": "f2f695b0-f5d6-41c9-87df-94dbe47b78df",
+			"steps": []
+		},
+		{
+			"uuid": "36d024b2-8636-4038-97a4-df2f5b81ab7b",
+			"title": "Créer des épreuves ",
+			"description": "Un mur, Un saut, des enigmes (une pièce toute noir avec juste un petit trou noir où il faut forcément l'raignée)\nDu game design (a voir à la fin)\n",
+			"category": "f2f695b0-f5d6-41c9-87df-94dbe47b78df",
+			"steps": []
+		},
+		{
+			"uuid": "7158a0e7-4dd9-42a3-a9bf-f846664a3e36",
+			"title": "Coder le parcours procédural",
+			"description": "créer la logique : 3 scènes différentes basique qui change d'ordre quand on relance une game\n",
+			"category": "f2f695b0-f5d6-41c9-87df-94dbe47b78df",
+			"steps": []
+		},
+		{
+			"uuid": "60fceda6-5523-46d1-9ca6-9add8ef25d5e",
+			"title": "Se mettre d'acccord sur un type d'archi",
+			"description": "Normer les noms de variables\nOù on range quel fichier ... \n",
+			"category": "f2f695b0-f5d6-41c9-87df-94dbe47b78df",
+			"steps": []
+		},
+		{
+			"uuid": "0b3b1e8f-07e5-43b6-828d-06376ad84541",
+			"title": "Mettre un easter egg (optionnel)",
+			"description": "",
+			"category": "f2f695b0-f5d6-41c9-87df-94dbe47b78df",
+			"steps": []
+		},
+		{
+			"uuid": "4c215ee9-dec3-4378-acde-aa9fd4a6db4f",
+			"title": "XR - Tools",
+			"description": "Le lancer das le casque \nTester les différentes foctionnalités qu'on veut utiliser",
+			"category": "f2f695b0-f5d6-41c9-87df-94dbe47b78df",
+			"steps": []
+		}
+	],
+	"layout": {
+		"columns": [
+			[
+				"333bb708-83e6-41ac-aa81-66bda5b429bc"
+			],
+			[
+				"2966463f-c6c6-47ae-902e-551c0b5c5e5d"
+			],
+			[
+				"61a86983-4ced-4a69-9e11-f954d9ebac0f"
+			]
+		]
+	}
+}
