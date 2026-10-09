@@ -12,7 +12,6 @@
 			"title": "Todo",
 			"tasks": [
 				"6e3f4946-844f-418d-a8b0-8e72a81aa387",
-				"423eed39-f009-4749-98e5-5eb13123f781",
 				"da1d2a61-de1b-4499-be8c-6b5065709635",
 				"2c6d742b-5671-48d7-b7b5-269c3b3147cf",
 				"f4e0b9cd-232b-4f0b-b20e-3b8b5b8bf03b",
@@ -28,10 +27,9 @@
 			"uuid": "2966463f-c6c6-47ae-902e-551c0b5c5e5d",
 			"title": "Doing",
 			"tasks": [
-				"4c215ee9-dec3-4378-acde-aa9fd4a6db4f",
 				"8c6083f2-f401-4917-91b6-4c4d1e6f4780",
-				"6d0ec8c2-40f9-43bd-b5cd-41bed85f68e2",
-				"60fceda6-5523-46d1-9ca6-9add8ef25d5e"
+				"60fceda6-5523-46d1-9ca6-9add8ef25d5e",
+				"423eed39-f009-4749-98e5-5eb13123f781"
 			]
 		},
 		{
@@ -39,7 +37,9 @@
 			"title": "Done",
 			"tasks": [
 				"0af48e3d-d52b-4e85-8775-04576e16d01e",
-				"2f7567f4-06d6-4414-9ff1-66e65d00fb63"
+				"2f7567f4-06d6-4414-9ff1-66e65d00fb63",
+				"4c215ee9-dec3-4378-acde-aa9fd4a6db4f",
+				"6d0ec8c2-40f9-43bd-b5cd-41bed85f68e2"
 			]
 		}
 	],
@@ -59,7 +59,7 @@
 			"steps": [
 				{
 					"details": "Fiche du game concept",
-					"done": false
+					"done": true
 				},
 				{
 					"details": "trouver le concept du jeu",
@@ -166,7 +166,7 @@
 			"steps": [
 				{
 					"details": "Le lancer dans le casque ",
-					"done": false
+					"done": true
 				},
 				{
 					"details": "Exporter au format APK",
@@ -174,7 +174,7 @@
 				},
 				{
 					"details": "Tester les fonctionnalités",
-					"done": false
+					"done": true
 				}
 			]
 		},

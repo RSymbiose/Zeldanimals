@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://dfn7wk31fpmmx"]
+
+[ext_resource type="PackedScene" uid="uid://bkmwmffxaq0om" path="res://assets/animals/gorilla (1).glb" id="1_383j2"]
+[ext_resource type="Script" uid="uid://ch3pb2dyqerai" path="res://scripts/players/gorilla.gd" id="1_w02uj"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_y82et"]
+height = 0.29858398
+radius = 0.099121094
+
+[node name="Gorilla" type="CharacterBody3D" unique_id=53839019]
+script = ExtResource("1_w02uj")
+
+[node name="Model" type="Node3D" parent="." unique_id=1716928279]
+
+[node name="Sketchfab_Scene" parent="Model" unique_id=761021294 instance=ExtResource("1_383j2")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1422819791]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10974121, 0)
+shape = SubResource("CylinderShape3D_y82et")
+
+[node name="Head" type="Node3D" parent="." unique_id=1137711142]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15677387, 0.032119483)
+
+[node name="Camera3D" type="Camera3D" parent="Head" unique_id=905418532]
+transform = Transform3D(-0.9998144, 0, 0.019264624, 0, 1, 0, -0.019264624, 0, -0.9998144, 0, 0, 0.0013626814)
+fov = 90.0
+
+[node name="SmashRay" type="RayCast3D" parent="Head/Camera3D" unique_id=389443462]

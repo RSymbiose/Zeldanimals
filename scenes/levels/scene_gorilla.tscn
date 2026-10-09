@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://bo3cabjnfwbcj"]
+
+[ext_resource type="PackedScene" uid="uid://dfn7wk31fpmmx" path="res://scenes/players/gorilla.tscn" id="1_7un6l"]
+[ext_resource type="Script" uid="uid://dgcn2h7yulih5" path="res://scripts/levels/wall.gd" id="1_v12n4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y82et"]
+size = Vector3(60.399, 0.627, 60)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2tjjv"]
+albedo_color = Color(0.39477575, 0.1887773, 0.081422105, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1alcl"]
+material = SubResource("StandardMaterial3D_2tjjv")
+size = Vector3(60, 0.6, 60)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1alcl"]
+size = Vector3(10, 0.6, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2tjjv"]
+size = Vector3(10, 0.6, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2tjjv"]
+size = Vector3(10, 10, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v12n4"]
+transparency = 1
+albedo_color = Color(0.49552402, 0.8340522, 0.9998151, 1)
+metallic_specular = 0.8
+roughness = 0.1
+refraction_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_bmmc0"]
+material = SubResource("StandardMaterial3D_v12n4")
+size = Vector3(10, 10, 1)
+
+[node name="SceneGorille" type="Node3D" unique_id=1843105508]
+
+[node name="Ground" type="StaticBody3D" parent="." unique_id=1306634405]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground" unique_id=1778116703]
+shape = SubResource("BoxShape3D_y82et")
+debug_color = Color(0.08066394, 0.58342427, 0.77573824, 0.41960785)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground" unique_id=1385203765]
+mesh = SubResource("BoxMesh_1alcl")
+
+[node name="Platform1" type="StaticBody3D" parent="." unique_id=358573858]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.195656, 2.0772943, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform1" unique_id=745017946]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.454506, 0.52025795, 14.663507)
+shape = SubResource("BoxShape3D_1alcl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Platform1" unique_id=1075197578]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.429718, 0.5125408, 14.719644)
+mesh = SubResource("BoxMesh_2tjjv")
+
+[node name="Platform2" type="StaticBody3D" parent="." unique_id=470683894]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0772943, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform2" unique_id=1090892915]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.74, 0.5, 14.702427)
+shape = SubResource("BoxShape3D_1alcl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Platform2" unique_id=687824750]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.7810593, 0.5125408, 14.719644)
+mesh = SubResource("BoxMesh_2tjjv")
+
+[node name="Wall" type="StaticBody3D" parent="." unique_id=539411904]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -15.096)
+script = ExtResource("1_v12n4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall" unique_id=2141961615]
+shape = SubResource("BoxShape3D_2tjjv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall" unique_id=1205467338]
+mesh = SubResource("BoxMesh_bmmc0")
+
+[node name="Gorilla" parent="." unique_id=53839019 instance=ExtResource("1_7un6l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.845828, 2.2523327, 3.9286385)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1097065648]
+transform = Transform3D(1, 0, 0, 0, 0.4107186, 0.9117622, 0, -0.9117622, 0.4107186, 0, 14.22003, 0)
