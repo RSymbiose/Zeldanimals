@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://b5vgm04yject1"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gb1te"]
+radius = 0.1
+height = 0.5
+
+[node name="Chiken" type="CharacterBody3D" unique_id=394487220]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26047462, 0)
+
+[node name="Head" type="XROrigin3D" parent="." unique_id=2004741138]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.14574891, 0)
+
+[node name="XRCamera3D" type="XRCamera3D" parent="Head" unique_id=322724491]
+fov = 50.293312
+
+[node name="Node3D" type="Node3D" parent="Head/XRCamera3D" unique_id=1581836494]
+
+[node name="Left_hend" type="OpenXRHand" parent="Head/XRCamera3D/Node3D" unique_id=119251702]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20871669, -0.12471545, -0.19454187)
+
+[node name="Right_hend" type="OpenXRHand" parent="Head/XRCamera3D/Node3D" unique_id=1225209473]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20570695, -0.12471545, -0.19454187)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=862225554]
+shape = SubResource("CapsuleShape3D_gb1te")
