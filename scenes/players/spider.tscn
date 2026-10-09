@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bpo8apv7i1v7f"]
+
+[ext_resource type="Script" uid="uid://cqowyxd7wmjh8" path="res://scripts/levels/scene_spider.gd" id="1_g4i1d"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dlmp8"]
+radius = 0.3
+height = 0.8
+
+[node name="Spider" type="CharacterBody3D" unique_id=2021904531]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_g4i1d")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=668210912]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+shape = SubResource("CapsuleShape3D_dlmp8")
+
+[node name="Head" type="Node3D" parent="." unique_id=1567859189]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head" unique_id=1301031008]
+fov = 110.0
+
+[node name="WallRay" type="RayCast3D" parent="Head/Camera3D" unique_id=747317278]
+target_position = Vector3(0, 0, -1)
+
+[node name="WebRay" type="RayCast3D" parent="Head/Camera3D" unique_id=521453034]
+target_position = Vector3(0, 0, 20)

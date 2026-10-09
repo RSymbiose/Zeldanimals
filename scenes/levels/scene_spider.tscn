@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://jx5fffaiqrwb"]
+
+[ext_resource type="PackedScene" uid="uid://bpo8apv7i1v7f" path="res://scenes/players/spider.tscn" id="1_dlmp8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_orhdx"]
+albedo_color = Color(0.39613184, 0.37280795, 0.13764325, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_usmub"]
+material = SubResource("StandardMaterial3D_orhdx")
+size = Vector3(30, 1, 30)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dlmp8"]
+size = Vector3(30, 1, 30)
+
+[sub_resource type="BoxMesh" id="BoxMesh_j3iya"]
+size = Vector3(10, 10, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_orhdx"]
+size = Vector3(10, 10, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x2a2s"]
+albedo_color = Color(0.4145042, 0.99208325, 0.8902018, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8il4v"]
+material = SubResource("StandardMaterial3D_x2a2s")
+size = Vector3(5, 1, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x2a2s"]
+size = Vector3(5, 1, 5)
+
+[node name="SceneSpider" type="Node3D" unique_id=870335425]
+
+[node name="floor" type="StaticBody3D" parent="." unique_id=221112466]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.0359, -3.1638594, -23.823467)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="floor" unique_id=98346356]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 1, 30)
+mesh = SubResource("BoxMesh_usmub")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor" unique_id=759799601]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 1, 30)
+shape = SubResource("BoxShape3D_dlmp8")
+
+[node name="wall" type="StaticBody3D" parent="." unique_id=168407443 groups=["climbable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.313734, 6.61675)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="wall" unique_id=1724140490]
+mesh = SubResource("BoxMesh_j3iya")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="wall" unique_id=1565216064]
+shape = SubResource("BoxShape3D_orhdx")
+
+[node name="Platform" type="StaticBody3D" parent="." unique_id=568746120]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, -10)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Platform" unique_id=293670910]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, 5)
+mesh = SubResource("BoxMesh_8il4v")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform" unique_id=1205938239]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, 5)
+shape = SubResource("BoxShape3D_x2a2s")
+
+[node name="Platform2" type="StaticBody3D" parent="." unique_id=1185223520]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.290028, 8, -10)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Platform2" unique_id=291135121]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, 5)
+mesh = SubResource("BoxMesh_8il4v")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform2" unique_id=1134092771]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, 5)
+shape = SubResource("BoxShape3D_x2a2s")
+
+[node name="Platform3" type="StaticBody3D" parent="." unique_id=1364441222]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.290028, 8, 8.21587)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Platform3" unique_id=1956197970]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, 5)
+mesh = SubResource("BoxMesh_8il4v")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform3" unique_id=1239678929]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, 5)
+shape = SubResource("BoxShape3D_x2a2s")
+
+[node name="Spider" parent="." unique_id=2021904531 instance=ExtResource("1_dlmp8")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1815367469]
+transform = Transform3D(0.98840046, -2.713512e-09, -0.15187004, 0.13751267, -0.4244256, 0.8949598, -0.064457506, -0.9054628, -0.41950247, 0.9954262, 11.799032, -22.078243)
