@@ -5,12 +5,13 @@ extends CharacterBody3D
 @export var glide_fall_speed: float = -1.0
 @export var mouse_sensitivity: float = 0.002
 
+@export var chicken_mechanics: ChickenMechanics
 @onready var head_pivot: Node3D = $HeadPivot
 @onready var fallback_cam: Camera3D = $HeadPivot/FallbackCamera3D
 @onready var xr_origin: XROrigin3D = $XROrigin3D
 @onready var xr_camera: XRCamera3D = $XROrigin3D/XRCamera3D
 @onready var left_controller: XRController3D = $XROrigin3D/LeftController
-@export var chicken_mechanics: ChickenMechanics
+
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var is_xr_active: bool = false
