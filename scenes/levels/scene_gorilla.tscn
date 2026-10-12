@@ -33,7 +33,7 @@ refraction_enabled = true
 material = SubResource("StandardMaterial3D_v12n4")
 size = Vector3(10, 10, 1)
 
-[node name="SceneGorille" type="Node3D" unique_id=1843105508]
+[node name="SceneGorilla" type="Node3D" unique_id=1843105508]
 
 [node name="Ground" type="StaticBody3D" parent="." unique_id=1306634405]
 
@@ -56,7 +56,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.429718, 0.5125408, 14.719
 mesh = SubResource("BoxMesh_2tjjv")
 
 [node name="Platform2" type="StaticBody3D" parent="." unique_id=470683894]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0772943, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0653973, 2.0772943, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Platform2" unique_id=1090892915]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.74, 0.5, 14.702427)
@@ -77,7 +77,7 @@ shape = SubResource("BoxShape3D_2tjjv")
 mesh = SubResource("BoxMesh_bmmc0")
 
 [node name="Gorilla" parent="." unique_id=53839019 instance=ExtResource("1_7un6l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.845828, 2.2523327, 3.9286385)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.845828, 5.8195953, 12.841909)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1097065648]
 transform = Transform3D(1, 0, 0, 0, 0.4107186, 0.9117622, 0, -0.9117622, 0.4107186, 0, 14.22003, 0)

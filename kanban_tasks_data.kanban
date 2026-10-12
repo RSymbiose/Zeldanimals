@@ -14,7 +14,6 @@
 				"6e3f4946-844f-418d-a8b0-8e72a81aa387",
 				"da1d2a61-de1b-4499-be8c-6b5065709635",
 				"2c6d742b-5671-48d7-b7b5-269c3b3147cf",
-				"f4e0b9cd-232b-4f0b-b20e-3b8b5b8bf03b",
 				"5b5e7b42-797a-4a8d-a255-bb5ab69287f3",
 				"5fb1b8f5-fa03-49be-bc49-7227d9c21e8e",
 				"7158a0e7-4dd9-42a3-a9bf-f846664a3e36",
@@ -29,7 +28,8 @@
 			"tasks": [
 				"8c6083f2-f401-4917-91b6-4c4d1e6f4780",
 				"60fceda6-5523-46d1-9ca6-9add8ef25d5e",
-				"423eed39-f009-4749-98e5-5eb13123f781"
+				"423eed39-f009-4749-98e5-5eb13123f781",
+				"f4e0b9cd-232b-4f0b-b20e-3b8b5b8bf03b"
 			]
 		},
 		{
@@ -93,7 +93,24 @@
 			"title": "Créer une scéne de test minimale (Gorille)",
 			"description": "Pour le 8/10\nune pièce pour tester chaque fonction de l'animal (saut, escalade...)\n",
 			"category": "f2f695b0-f5d6-41c9-87df-94dbe47b78df",
-			"steps": []
+			"steps": [
+				{
+					"details": "mur a casser ",
+					"done": true
+				},
+				{
+					"details": "2 platforms pour sauter ",
+					"done": true
+				},
+				{
+					"details": "regler la distance du saut ",
+					"done": false
+				},
+				{
+					"details": "ajouter les bruitages",
+					"done": false
+				}
+			]
 		},
 		{
 			"uuid": "6e3f4946-844f-418d-a8b0-8e72a81aa387",
@@ -114,7 +131,24 @@
 			"title": "Coder les fonctions de base du controller (Gorille)",
 			"description": "Pour le 8/10 (avoir un animal qui se déplace)\n",
 			"category": "f2f695b0-f5d6-41c9-87df-94dbe47b78df",
-			"steps": []
+			"steps": [
+				{
+					"details": "deplacement ",
+					"done": true
+				},
+				{
+					"details": "sauter ",
+					"done": true
+				},
+				{
+					"details": "casser un mur ",
+					"done": true
+				},
+				{
+					"details": "tremblement quand on retombe",
+					"done": false
+				}
+			]
 		},
 		{
 			"uuid": "8c6083f2-f401-4917-91b6-4c4d1e6f4780",

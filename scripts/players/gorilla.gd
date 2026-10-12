@@ -1,10 +1,12 @@
 extends CharacterBody3D
 
 @export var speed := 5.0
-@export var jump_velocity := 20.0       # le gorille saute haut
+@export var jump_velocity := 10.0       # le gorille saute haut
 @export var mouse_sensitivity := 0.002
 @export var smash_range := 2.5
 @export var smash_force := 15.0
+@export var gravity_multiplier := 2 
+@export var fall_multiplier := 1.6
 
 @onready var camera: Camera3D = $Head/Camera3D
 @onready var smash_ray: RayCast3D = $Head/Camera3D/SmashRay
@@ -27,9 +29,12 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
-func _physics_process(delta: float) -> void:
+func _physics_process(delta: float):
 	if not is_on_floor():
-		velocity.y -= gravity * delta
+		var g := gravity * gravity_multiplier
+		if velocity.y < 0.0:       
+			g *= fall_multiplier
+		velocity.y -= g * delta
 
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_velocity
