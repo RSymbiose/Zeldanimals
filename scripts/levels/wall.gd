@@ -1,13 +1,10 @@
-extends StaticBody3D
+extends CSGBox3D
 
 @export var health := 1
 @export var pieces := Vector3i(4, 4, 2)      # découpe en X, Y, Z
 @export var explosion_strength := 4.0
 @export var shard_mass := 0.5
 @export var shard_lifetime := 3.0            # secondes avant disparition
-
-@onready var mesh_instance: MeshInstance3D = $MeshInstance3D
-@onready var collision: CollisionShape3D = $CollisionShape3D
 
 func on_smashed(impulse: Vector3) -> void:
 	health -= 1
@@ -16,10 +13,11 @@ func on_smashed(impulse: Vector3) -> void:
 	_shatter(impulse)
 
 func _shatter(impulse: Vector3) -> void:
-	var size: Vector3 = (collision.shape as BoxShape3D).size
+	# On récupère la taille, le matériau et la transformation directement depuis le CSGBox3D
+	var size: Vector3 = self.size
 	var piece_size := Vector3(size.x / pieces.x, size.y / pieces.y, size.z / pieces.z)
-	var material := mesh_instance.get_active_material(0)
-	var origin_xform := collision.global_transform
+	var material := self.material
+	var origin_xform := self.global_transform
 	var parent := get_parent()
 
 	for x in pieces.x:

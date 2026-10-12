@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://c3uwjj4tldv77"]
+
+[ext_resource type="PackedScene" uid="uid://dfn7wk31fpmmx" path="res://scenes/players/gorilla.tscn" id="1_3cn8d"]
+[ext_resource type="Script" uid="uid://dgcn2h7yulih5" path="res://scripts/levels/wall.gd" id="2_cqu14"]
+
+[sub_resource type="Environment" id="Environment_y82et"]
+background_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cqu14"]
+albedo_color = Color(0.06666667, 0.40784314, 0.16078432, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2r1or"]
+albedo_color = Color(0.4627451, 0.30588236, 0.6666667, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_16ole"]
+albedo_color = Color(0.7294118, 0.24313726, 0.6862745, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_353ay"]
+albedo_color = Color(0.4509804, 0.6627451, 0.039215688, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y82et"]
+albedo_color = Color(0.8, 0.8, 0.91764706, 1)
+
+[node name="MonNiveau" type="Node3D" unique_id=76223977]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=103195376]
+environment = SubResource("Environment_y82et")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=860748677]
+transform = Transform3D(0.9819402, -0.07860867, -0.17208742, -4.2824806e-09, -0.9095942, 0.415498, -0.18919143, -0.40799418, -0.8931671, 0.2511809, 8.312151, -1.7070448)
+
+[node name="Gorilla" parent="." unique_id=53839019 instance=ExtResource("1_3cn8d")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.010741174, 3.3119898, 2.2320645)
+
+[node name="StartPlatform" type="CSGBox3D" parent="." unique_id=1335307673]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+use_collision = true
+size = Vector3(4, 0.5, 4)
+material = SubResource("StandardMaterial3D_cqu14")
+
+[node name="JumpPlatform1" type="CSGBox3D" parent="." unique_id=1009148620]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75, 4)
+use_collision = true
+size = Vector3(4, 0.5, 2)
+material = SubResource("StandardMaterial3D_2r1or")
+
+[node name="SpiderPlatform1" type="CSGBox3D" parent="." unique_id=763321552]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.940696, 14.20563)
+use_collision = true
+size = Vector3(4, 0.5, 2)
+material = SubResource("StandardMaterial3D_2r1or")
+
+[node name="SpiderPlatform2" type="CSGBox3D" parent="." unique_id=215584777]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75, 18.177929)
+use_collision = true
+size = Vector3(4, 0.5, 2)
+material = SubResource("StandardMaterial3D_2r1or")
+
+[node name="JumpPlatform2" type="CSGBox3D" parent="." unique_id=1352581107]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75, 10)
+use_collision = true
+size = Vector3(4, 0.5, 2)
+material = SubResource("StandardMaterial3D_16ole")
+
+[node name="Wall" type="CSGBox3D" parent="." unique_id=1448465079]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 11.5)
+use_collision = true
+size = Vector3(4, 3, 1)
+material = SubResource("StandardMaterial3D_353ay")
+script = ExtResource("2_cqu14")
+
+[node name="SpiderWall" type="CSGBox3D" parent="." unique_id=1156211627]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 2.5)
+use_collision = true
+size = Vector3(4, 3, 1)
+material = SubResource("StandardMaterial3D_y82et")
