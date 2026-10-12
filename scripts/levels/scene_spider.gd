@@ -40,7 +40,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		head.rotation.x = clamp(head.rotation.x, deg_to_rad(-80), deg_to_rad(80))
 
 	if event.is_action_pressed("ability_primary"):
-		_toggle_web()
+		_start_web()
+	elif event.is_action_released("ability_primary"):
+		_stop_web()
 
 
 func _physics_process(delta: float) -> void:
@@ -95,13 +97,14 @@ func _climb_movement(input_dir: Vector2) -> void:
 
 
 # ---------- Toile (grappin) ----------
-func _toggle_web() -> void:
-	if web_active:
-		web_active = false
-		return
+func _start_web() -> void:
 	if web_ray.is_colliding():
 		web_point = web_ray.get_collision_point()
 		web_active = true
+
+
+func _stop_web() -> void:
+	web_active = false
 
 
 func _apply_web(delta: float) -> void:
