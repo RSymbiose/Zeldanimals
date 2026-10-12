@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://v4u5fv77i0bj"]
+
+[ext_resource type="Script" uid="uid://chr7mic4ofc5f" path="res://scripts/players/player_xr.gd" id="1_p35tw"]
+[ext_resource type="Script" uid="uid://b18kkstg643yw" path="res://addons/godot-xr-tools/functions/function_pickup.gd" id="1_sih2n"]
+[ext_resource type="Script" uid="uid://dc4hg8kq5ia5y" path="res://addons/godot-xr-tools/functions/movement_direct.gd" id="2_p35tw"]
+[ext_resource type="Script" uid="uid://dtl3uo5dnibof" path="res://addons/godot-xr-tools/functions/movement_climb.gd" id="3_kfkw0"]
+[ext_resource type="Script" uid="uid://kuxqh057vr5y" path="res://addons/godot-xr-tools/functions/movement_turn.gd" id="4_2vh6j"]
+[ext_resource type="Script" uid="uid://dur4rs2uhr6cp" path="res://addons/godot-xr-tools/functions/movement_jump.gd" id="5_nygpt"]
+[ext_resource type="Script" uid="uid://5pticrbivdx6" path="res://addons/godot-xr-tools/functions/movement_glide.gd" id="6_nstc6"]
+[ext_resource type="Script" uid="uid://r8s1ep2dlajf" path="res://addons/godot-xr-tools/functions/movement_grapple.gd" id="7_s6qmc"]
+[ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="8_u7iuv"]
+[ext_resource type="Script" uid="uid://d2vu7a6fdnkr7" path="res://scripts/players/smash_vr.gd" id="9_p35tw"]
+
+[node name="PlayerXr" type="XROrigin3D" unique_id=148719387]
+script = ExtResource("1_p35tw")
+
+[node name="XRCamera3D" type="XRCamera3D" parent="." unique_id=1608419941]
+
+[node name="LeftHand" type="XRController3D" parent="." unique_id=1886787282]
+tracker = &"left_hand"
+
+[node name="XRToolsFunctionPickup" type="Node3D" parent="LeftHand" unique_id=1961878973]
+script = ExtResource("1_sih2n")
+metadata/_custom_type_script = "uid://b18kkstg643yw"
+
+[node name="XRToolsMovementDirect" type="Node3D" parent="LeftHand" unique_id=453091398 groups=["movement_providers"]]
+script = ExtResource("2_p35tw")
+metadata/_custom_type_script = "uid://dc4hg8kq5ia5y"
+
+[node name="XRToolsMovementClimb" type="Node3D" parent="LeftHand" unique_id=1736025205 groups=["movement_providers"]]
+script = ExtResource("3_kfkw0")
+metadata/_custom_type_script = "uid://dtl3uo5dnibof"
+
+[node name="RightHand" type="XRController3D" parent="." unique_id=1538999562]
+tracker = &"right_hand"
+
+[node name="XRToolsFunctionPickup" type="Node3D" parent="RightHand" unique_id=838621566]
+script = ExtResource("1_sih2n")
+metadata/_custom_type_script = "uid://b18kkstg643yw"
+
+[node name="XRToolsMovementTurn" type="Node3D" parent="RightHand" unique_id=1728741822 groups=["movement_providers"]]
+script = ExtResource("4_2vh6j")
+metadata/_custom_type_script = "uid://kuxqh057vr5y"
+
+[node name="XRToolsMovementJump" type="Node3D" parent="RightHand" unique_id=1080812926 groups=["movement_providers"]]
+script = ExtResource("5_nygpt")
+metadata/_custom_type_script = "uid://dur4rs2uhr6cp"
+
+[node name="XRToolsMovementGlide" type="Node3D" parent="RightHand" unique_id=1264380086 groups=["movement_providers"]]
+script = ExtResource("6_nstc6")
+metadata/_custom_type_script = "uid://5pticrbivdx6"
+
+[node name="XRToolsMovementClimb" type="Node3D" parent="RightHand" unique_id=1211068364 groups=["movement_providers"]]
+script = ExtResource("3_kfkw0")
+metadata/_custom_type_script = "uid://dtl3uo5dnibof"
+
+[node name="XRToolsMovementGrapple" type="Node3D" parent="RightHand" unique_id=721645269 groups=["movement_providers"]]
+script = ExtResource("7_s6qmc")
+metadata/_custom_type_script = "uid://r8s1ep2dlajf"
+
+[node name="SmashVR" type="Node" parent="RightHand" unique_id=1531216047]
+script = ExtResource("9_p35tw")
+
+[node name="SmashRay" type="RayCast3D" parent="RightHand/SmashVR" unique_id=1675463571]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="PlayerBody" parent="." unique_id=805444274 instance=ExtResource("8_u7iuv")]

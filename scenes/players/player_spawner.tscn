@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://b5mo40l0m2bwl"]
+
+[ext_resource type="Script" uid="uid://pitx8bfho0f1" path="res://scripts/players/player_spawner.gd" id="1_r0vga"]
+[ext_resource type="PackedScene" uid="uid://nmiu2uiglkkb" path="res://scenes/players/form_switcher.tscn" id="2_2qr0i"]
+[ext_resource type="PackedScene" uid="uid://v4u5fv77i0bj" path="res://scenes/players/player_xr.tscn" id="3_er0mw"]
+
+[node name="PlayerSpawner" type="Node3D" unique_id=1898386833]
+script = ExtResource("1_r0vga")
+pc_player = ExtResource("2_2qr0i")
+xr_player = ExtResource("3_er0mw")
