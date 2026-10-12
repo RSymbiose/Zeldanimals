@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://jx5fffaiqrwb"]
 
+[ext_resource type="Script" uid="uid://vitk0cls81xd" path="res://scripts/players/form_switcher.gd" id="1_cgeta"]
 [ext_resource type="PackedScene" uid="uid://bpo8apv7i1v7f" path="res://scenes/players/spider.tscn" id="1_dlmp8"]
+[ext_resource type="PackedScene" uid="uid://dfn7wk31fpmmx" path="res://scenes/players/gorilla.tscn" id="2_vsxbc"]
+[ext_resource type="PackedScene" uid="uid://b5vgm04yject1" path="res://scenes/players/chiken.tscn" id="3_4dwdh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_orhdx"]
 albedo_color = Color(0.39613184, 0.37280795, 0.13764325, 1)
@@ -83,7 +86,12 @@ mesh = SubResource("BoxMesh_8il4v")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, 5)
 shape = SubResource("BoxShape3D_x2a2s")
 
-[node name="Spider" parent="." unique_id=2021904531 instance=ExtResource("1_dlmp8")]
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1815367469]
 transform = Transform3D(0.98840046, -2.713512e-09, -0.15187004, 0.13751267, -0.4244256, 0.8949598, -0.064457506, -0.9054628, -0.41950247, 0.9954262, 11.799032, -22.078243)
+
+[node name="FormSwitcher" type="Node3D" parent="." unique_id=423746467]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 5)
+script = ExtResource("1_cgeta")
+gorilla_scene = ExtResource("2_vsxbc")
+chicken_scene = ExtResource("3_4dwdh")
+spider_scene = ExtResource("1_dlmp8")

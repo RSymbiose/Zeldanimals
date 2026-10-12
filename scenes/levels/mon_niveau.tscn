@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://c3uwjj4tldv77"]
 
 [ext_resource type="PackedScene" uid="uid://dfn7wk31fpmmx" path="res://scenes/players/gorilla.tscn" id="1_3cn8d"]
+[ext_resource type="Script" uid="uid://vitk0cls81xd" path="res://scripts/players/form_switcher.gd" id="2_2r1or"]
 [ext_resource type="Script" uid="uid://dgcn2h7yulih5" path="res://scripts/levels/wall.gd" id="2_cqu14"]
+[ext_resource type="PackedScene" uid="uid://b5vgm04yject1" path="res://scenes/players/chiken.tscn" id="4_353ay"]
+[ext_resource type="PackedScene" uid="uid://bpo8apv7i1v7f" path="res://scenes/players/spider.tscn" id="5_ymg0c"]
 
 [sub_resource type="Environment" id="Environment_y82et"]
 background_mode = 2
@@ -29,9 +32,6 @@ environment = SubResource("Environment_y82et")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=860748677]
 transform = Transform3D(0.9819402, -0.07860867, -0.17208742, -4.2824806e-09, -0.9095942, 0.415498, -0.18919143, -0.40799418, -0.8931671, 0.2511809, 8.312151, -1.7070448)
 
-[node name="Gorilla" parent="." unique_id=53839019 instance=ExtResource("1_3cn8d")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.010741174, 3.3119898, 2.2320645)
-
 [node name="StartPlatform" type="CSGBox3D" parent="." unique_id=1335307673]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
 use_collision = true
@@ -45,7 +45,7 @@ size = Vector3(4, 0.5, 2)
 material = SubResource("StandardMaterial3D_2r1or")
 
 [node name="SpiderPlatform1" type="CSGBox3D" parent="." unique_id=763321552]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.940696, 14.20563)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.882588, 14.20563)
 use_collision = true
 size = Vector3(4, 0.5, 2)
 material = SubResource("StandardMaterial3D_2r1or")
@@ -63,9 +63,9 @@ size = Vector3(4, 0.5, 2)
 material = SubResource("StandardMaterial3D_16ole")
 
 [node name="Wall" type="CSGBox3D" parent="." unique_id=1448465079]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 11.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.942627, 11.5)
 use_collision = true
-size = Vector3(4, 3, 1)
+size = Vector3(4, 7.885254, 1)
 material = SubResource("StandardMaterial3D_353ay")
 script = ExtResource("2_cqu14")
 
@@ -74,3 +74,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 2.5)
 use_collision = true
 size = Vector3(4, 3, 1)
 material = SubResource("StandardMaterial3D_y82et")
+
+[node name="FormSwitcher" type="Node3D" parent="." unique_id=12572651]
+script = ExtResource("2_2r1or")
+gorilla_scene = ExtResource("1_3cn8d")
+chicken_scene = ExtResource("4_353ay")
+spider_scene = ExtResource("5_ymg0c")
