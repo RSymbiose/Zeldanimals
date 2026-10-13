@@ -27,7 +27,10 @@ albedo_color = Color(0.8, 0.8, 0.91764706, 1)
 environment = SubResource("Environment_y82et")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=860748677]
-transform = Transform3D(0.9819402, -0.07860867, -0.17208742, -4.2824806e-09, -0.9095942, 0.415498, -0.18919143, -0.40799418, -0.8931671, 0.2511809, 8.312151, -1.7070448)
+transform = Transform3D(0.9819402, -0.07860867, -0.17208742, -4.2824806e-09, -0.9095942, 0.415498, -0.18919143, -0.40799418, -0.8931671, 0.2511809, 8.312151, 2.8638852)
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=890899535]
+transform = Transform3D(0.9819402, -0.07860868, -0.17208742, 0.1370532, 0.9225985, 0.36059475, 0.13042168, -0.37766764, 0.91671, 0.2511809, 8.312151, 2.8638852)
 
 [node name="StartPlatform" type="CSGBox3D" parent="." unique_id=1335307673]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
@@ -47,6 +50,12 @@ use_collision = true
 size = Vector3(4, 0.5, 2)
 material = SubResource("StandardMaterial3D_2r1or")
 
+[node name="SpiderPlatform3" type="CSGBox3D" parent="." unique_id=47919921]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.9607215, 4.7293196, 0)
+use_collision = true
+size = Vector3(4, 0.5, 2)
+material = SubResource("StandardMaterial3D_2r1or")
+
 [node name="SpiderPlatform2" type="CSGBox3D" parent="." unique_id=215584777]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75, 18.177929)
 use_collision = true
@@ -59,10 +68,29 @@ use_collision = true
 size = Vector3(4, 0.5, 2)
 material = SubResource("StandardMaterial3D_16ole")
 
+[node name="JumpPlatform3" type="CSGBox3D" parent="." unique_id=840864209]
+transform = Transform3D(-0.014172719, 0, -0.99989957, 0, 1, 0, 0.99989957, 0, -0.014172719, -3, -0.25, 0)
+use_collision = true
+size = Vector3(4, 0.5, 2)
+material = SubResource("StandardMaterial3D_2r1or")
+
+[node name="JumpPlatform4" type="CSGBox3D" parent="." unique_id=440513803]
+transform = Transform3D(-0.014172719, 0, -0.99989957, 0, 1, 0, 0.99989957, 0, -0.014172719, -8.92051, -0.25, 0)
+use_collision = true
+size = Vector3(4, 0.5, 2)
+material = SubResource("StandardMaterial3D_16ole")
+
 [node name="Wall" type="CSGBox3D" parent="." unique_id=1448465079]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.942627, 11.5)
 use_collision = true
 size = Vector3(4, 7.885254, 1)
+material = SubResource("StandardMaterial3D_353ay")
+script = ExtResource("2_cqu14")
+
+[node name="Wall2" type="CSGBox3D" parent="." unique_id=761837955]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -2.5)
+use_collision = true
+size = Vector3(4, 3, 1)
 material = SubResource("StandardMaterial3D_353ay")
 script = ExtResource("2_cqu14")
 
