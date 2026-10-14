@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://dfxeh0r5t2idl"]
 
 [ext_resource type="PackedScene" uid="uid://b5vgm04yject1" path="res://scenes/players/chiken.tscn" id="1_3w3o7"]
+[ext_resource type="PackedScene" uid="uid://bbx3j1kvmqt1n" path="res://scenes/elements/door.tscn" id="2_5jhah"]
+[ext_resource type="PackedScene" uid="uid://03cd0es2hhvr" path="res://scenes/elements/pressure_plate.tscn" id="2_u0h83"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bfjfj"]
 size = Vector3(0.26635742, 0.44, 0.4584961)
@@ -111,3 +113,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5196173, 5.4451933, 6.33858
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=746136333]
 transform = Transform3D(1, 0, 0, 0, 0.30523995, 0.95227545, 0, -0.95227545, 0.30523995, 0, 4.8671784, 0)
+
+[node name="Door" parent="." unique_id=1045257540 instance=ExtResource("2_5jhah")]
+transform = Transform3D(0.008287053, 0, -0.99996567, 0, 1, 0, 0.99996567, 0, 0.008287053, -3.5230756, 0, 5.3536825)
+
+[node name="PressurePlate" parent="." unique_id=226101524 instance=ExtResource("2_u0h83")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.30466115, 0.24719656, 4.827488)
+
+[connection signal="pressed" from="PressurePlate" to="Door" method="open"]
+[connection signal="released" from="PressurePlate" to="Door" method="close"]

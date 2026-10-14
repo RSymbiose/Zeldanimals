@@ -16,6 +16,7 @@ height = 0.55566406
 
 [node name="Chiken" type="CharacterBody3D" unique_id=394487220 node_paths=PackedStringArray("chicken_mechanics")]
 collision_layer = 2
+collision_mask = 17
 script = ExtResource("1_pda1v")
 chicken_mechanics = NodePath("XROrigin3D/Torso/ChickenMechanics")
 

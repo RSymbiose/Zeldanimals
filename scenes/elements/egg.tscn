@@ -18,6 +18,7 @@ roughness = 0.4
 
 [node name="Egg" type="RigidBody3D" unique_id=1677060446]
 collision_layer = 2
+collision_mask = 17
 mass = 0.1
 physics_material_override = SubResource("PhysicsMaterial_65oxy")
 script = ExtResource("1_65oxy")
