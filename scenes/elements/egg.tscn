@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://gria1pnmibe1"]
+
+[ext_resource type="Script" uid="uid://do2uelv6e85j7" path="res://scripts/elements/egg.gd" id="1_65oxy"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_65oxy"]
+bounce = 0.35
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_gowqe"]
+radius = 0.032046653
+
+[sub_resource type="SphereMesh" id="SphereMesh_sar7t"]
+radius = 0.022
+height = 0.062
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gb1te"]
+albedo_color = Color(0.9607843, 0.92156863, 0.9019608, 1)
+roughness = 0.4
+
+[node name="Egg" type="RigidBody3D" unique_id=1677060446]
+collision_layer = 2
+mass = 0.1
+physics_material_override = SubResource("PhysicsMaterial_65oxy")
+script = ExtResource("1_65oxy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1422086806]
+shape = SubResource("SphereShape3D_gowqe")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D" unique_id=975640981]
+mesh = SubResource("SphereMesh_sar7t")
+surface_material_override/0 = SubResource("StandardMaterial3D_gb1te")
