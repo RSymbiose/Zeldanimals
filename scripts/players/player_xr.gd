@@ -24,6 +24,8 @@ const FORM_DATA := {
 @onready var climb_left: Node = $LeftHand/XRToolsMovementClimb
 @onready var climb_right: Node = $RightHand/XRToolsMovementClimb
 
+@onready var landing: Node = $LandingEffect
+
 var current_form := ""
 
 
@@ -58,6 +60,7 @@ func switch_to(form: String) -> void:
 	_enable(grapple, form == "spider")
 	_enable(climb_left, form == "spider")
 	_enable(climb_right, form == "spider")
+	_enable(landing, form == "gorilla")
 
 	form_changed.emit(form)
 

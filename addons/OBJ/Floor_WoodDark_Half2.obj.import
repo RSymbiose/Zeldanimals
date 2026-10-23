@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cytsc65w1oj3t"
+path="res://.godot/imported/Floor_WoodDark_Half2.obj-553a0b5dfef6f92ebf2a90a9f19b40ed.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Floor_WoodDark_Half2.obj-553a0b5dfef6f92ebf2a90a9f19b40ed.mesh"]
+
+source_file="res://addons/OBJ/Floor_WoodDark_Half2.obj"
+dest_files=["res://.godot/imported/Floor_WoodDark_Half2.obj-553a0b5dfef6f92ebf2a90a9f19b40ed.mesh", "res://.godot/imported/Floor_WoodDark_Half2.obj-553a0b5dfef6f92ebf2a90a9f19b40ed.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

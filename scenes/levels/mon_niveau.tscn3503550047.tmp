@@ -1,0 +1,209 @@
+[gd_scene format=3 uid="uid://c3uwjj4tldv77"]
+
+[ext_resource type="Texture2D" uid="uid://csass27b7yrmo" path="res://addons/glTF/Leaf_Pine_C.png" id="1_8qxai"]
+[ext_resource type="PackedScene" uid="uid://b5mo40l0m2bwl" path="res://scenes/players/player_spawner.tscn" id="2_2r1or"]
+[ext_resource type="Script" uid="uid://dgcn2h7yulih5" path="res://scripts/levels/wall.gd" id="2_cqu14"]
+[ext_resource type="PackedScene" uid="uid://c8lwj3qmi2qsn" path="res://addons/glTF/Corner_ExteriorWide_Brick.gltf" id="4_e1wnc"]
+[ext_resource type="PackedScene" uid="uid://hepvwfui7r5e" path="res://addons/glTF/Corner_Exterior_Brick.gltf" id="5_omndo"]
+[ext_resource type="PackedScene" uid="uid://drgv7llwdi0on" path="res://addons/glTF/CommonTree_5.gltf" id="6_gjs5x"]
+[ext_resource type="PackedScene" uid="uid://crtaakcrd58gw" path="res://addons/glTF/DoorFrame_Flat_Brick.gltf" id="7_ypou5"]
+[ext_resource type="PackedScene" uid="uid://skeqad21w7nm" path="res://addons/glTF/DoorFrame_Round_Brick.gltf" id="8_1kfed"]
+[ext_resource type="PackedScene" uid="uid://bg5t1ggjji67q" path="res://addons/glTF/Door_1_Flat.gltf" id="9_hp81k"]
+[ext_resource type="PackedScene" uid="uid://clwvt6xq360bg" path="res://addons/glTF/Door_1_Round.gltf" id="10_iwt07"]
+[ext_resource type="PackedScene" uid="uid://k6cm8mrbr4nv" path="res://addons/glTF/Fern_1.gltf" id="11_j44ek"]
+[ext_resource type="PackedScene" uid="uid://k2ssas3pk525" path="res://addons/glTF/Floor_UnevenBrick.gltf" id="12_xyfdd"]
+[ext_resource type="PackedScene" uid="uid://cfwvkc2xjlv06" path="res://addons/glTF/Overhang_Plaster_Corner.gltf" id="13_i43py"]
+[ext_resource type="PackedScene" uid="uid://cxkc0nr1uqwhe" path="res://addons/glTF/Pine_3.gltf" id="14_d4nej"]
+[ext_resource type="PackedScene" uid="uid://dnwrxthbnru0s" path="res://addons/glTF/Pine_4.gltf" id="15_tmj2g"]
+[ext_resource type="PackedScene" uid="uid://berr8p45dpfvr" path="res://addons/glTF/Prop_Crate.gltf" id="16_fla8g"]
+[ext_resource type="PackedScene" uid="uid://c5rerprtlon5d" path="res://addons/glTF/Wall_UnevenBrick_Door_Flat.gltf" id="17_my74w"]
+[ext_resource type="PackedScene" uid="uid://dk7n3f1is5hsn" path="res://addons/glTF/Wall_UnevenBrick_Straight.gltf" id="18_h02re"]
+[ext_resource type="PackedScene" uid="uid://nd2wesl51bu3" path="res://addons/glTF/Wall_Plaster_Straight.gltf" id="19_77ymi"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uyvqc"]
+
+[sub_resource type="Sky" id="Sky_2tjjv"]
+sky_material = SubResource("ProceduralSkyMaterial_uyvqc")
+
+[sub_resource type="Environment" id="Environment_y82et"]
+background_mode = 2
+sky = SubResource("Sky_2tjjv")
+ambient_light_source = 3
+reflected_light_source = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fe51d"]
+albedo_texture = ExtResource("1_8qxai")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cqu14"]
+albedo_color = Color(0.06666667, 0.40784314, 0.16078432, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2r1or"]
+albedo_color = Color(0.4627451, 0.30588236, 0.6666667, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_16ole"]
+albedo_color = Color(0.7294118, 0.24313726, 0.6862745, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_353ay"]
+albedo_color = Color(0.4509804, 0.6627451, 0.039215688, 1)
+
+[node name="MonNiveau" type="Node3D" unique_id=76223977]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=103195376]
+environment = SubResource("Environment_y82et")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=860748677]
+transform = Transform3D(0.9819402, -0.07860867, -0.17208742, -4.2824806e-09, -0.9095942, 0.415498, -0.18919143, -0.40799418, -0.8931671, 0.2511809, 8.312151, 2.8638852)
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=890899535]
+transform = Transform3D(0.9819402, -0.07860868, -0.17208742, 0.1370532, 0.9225985, 0.36059475, 0.13042168, -0.37766764, 0.91671, 0.2511809, 8.312151, 2.8638852)
+
+[node name="StartPlatform" type="CSGBox3D" parent="." unique_id=1335307673]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+material_override = SubResource("StandardMaterial3D_fe51d")
+use_collision = true
+size = Vector3(50, 0.5, 50)
+material = SubResource("StandardMaterial3D_cqu14")
+
+[node name="JumpPlatform1" type="CSGBox3D" parent="." unique_id=1009148620]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75, 4)
+use_collision = true
+size = Vector3(4, 0.5, 2)
+material = SubResource("StandardMaterial3D_2r1or")
+
+[node name="SpiderPlatform1" type="CSGBox3D" parent="." unique_id=763321552]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.882588, 14.20563)
+use_collision = true
+size = Vector3(4, 0.5, 2)
+material = SubResource("StandardMaterial3D_2r1or")
+
+[node name="SpiderPlatform3" type="CSGBox3D" parent="." unique_id=47919921]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.9607215, 4.7293196, 0)
+use_collision = true
+size = Vector3(4, 0.5, 2)
+material = SubResource("StandardMaterial3D_2r1or")
+
+[node name="SpiderPlatform2" type="CSGBox3D" parent="." unique_id=215584777]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75, 18.177929)
+use_collision = true
+size = Vector3(4, 0.5, 2)
+material = SubResource("StandardMaterial3D_2r1or")
+
+[node name="JumpPlatform2" type="CSGBox3D" parent="." unique_id=1352581107]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75, 10)
+use_collision = true
+size = Vector3(4, 0.5, 2)
+material = SubResource("StandardMaterial3D_16ole")
+
+[node name="JumpPlatform3" type="CSGBox3D" parent="." unique_id=840864209]
+transform = Transform3D(-0.014172719, 0, -0.99989957, 0, 1, 0, 0.99989957, 0, -0.014172719, -3, -0.25, 0)
+use_collision = true
+size = Vector3(4, 0.5, 2)
+material = SubResource("StandardMaterial3D_2r1or")
+
+[node name="JumpPlatform4" type="CSGBox3D" parent="." unique_id=440513803]
+transform = Transform3D(-0.014172719, 0, -0.99989957, 0, 1, 0, 0.99989957, 0, -0.014172719, -8.92051, -0.25, 0)
+use_collision = true
+size = Vector3(4, 0.5, 2)
+material = SubResource("StandardMaterial3D_16ole")
+
+[node name="Wall" type="CSGBox3D" parent="." unique_id=1448465079]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.942627, 11.5)
+use_collision = true
+size = Vector3(4, 7.885254, 1)
+material = SubResource("StandardMaterial3D_353ay")
+script = ExtResource("2_cqu14")
+health = null
+pieces = null
+explosion_strength = null
+shard_mass = null
+shard_lifetime = null
+
+[node name="Wall2" type="CSGBox3D" parent="." unique_id=761837955]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -2.5)
+visible = false
+use_collision = true
+size = Vector3(4, 3, 1)
+material = SubResource("StandardMaterial3D_353ay")
+script = ExtResource("2_cqu14")
+health = null
+pieces = null
+explosion_strength = null
+shard_mass = null
+shard_lifetime = null
+
+[node name="PlayerSpawner" parent="." unique_id=1898386833 instance=ExtResource("2_2r1or")]
+
+[node name="Corner_ExteriorWide_Brick2" parent="." unique_id=1688016710 instance=ExtResource("4_e1wnc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5615425, 0.018514419, 2.2420998)
+
+[node name="Corner_Exterior_Brick2" parent="." unique_id=445020817 instance=ExtResource("5_omndo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.892373, 0.007090628, -0.98649216)
+
+[node name="CommonTree_52" parent="." unique_id=1802752550 instance=ExtResource("6_gjs5x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.973764, 0.24277154, -5.0165777)
+
+[node name="DoorFrame_Flat_Brick2" parent="." unique_id=2056894690 instance=ExtResource("7_ypou5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.932412, 0.001692519, 0.24982452)
+
+[node name="DoorFrame_Round_Brick2" parent="." unique_id=1197386551 instance=ExtResource("8_1kfed")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.740441, 0.0016920422, 3.6373544)
+
+[node name="Door_1_Flat2" parent="." unique_id=1193327532 instance=ExtResource("9_hp81k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.414423, -4.7683716e-07, 0.22417068)
+
+[node name="Door_1_Round2" parent="." unique_id=1033839748 instance=ExtResource("10_iwt07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.25613, -4.7683716e-07, 3.6710372)
+
+[node name="Fern_12" parent="." unique_id=1420529393 instance=ExtResource("11_j44ek")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9832573, 0.077334434, 5.3618274)
+
+[node name="Floor_UnevenBrick2" parent="." unique_id=1658965259 instance=ExtResource("12_xyfdd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0099597, 0.010000861, -0.96219695)
+
+[node name="Floor_UnevenBrick5" parent="." unique_id=2064118239 instance=ExtResource("12_xyfdd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0059309, 0.010000861, -0.96219695)
+
+[node name="Floor_UnevenBrick3" parent="." unique_id=344459890 instance=ExtResource("12_xyfdd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0099597, 0.010000861, 1.0342028)
+
+[node name="Floor_UnevenBrick6" parent="." unique_id=1352537116 instance=ExtResource("12_xyfdd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0059309, 0.010000861, 1.0342028)
+
+[node name="Overhang_Plaster_Corner2" parent="." unique_id=888501397 instance=ExtResource("13_i43py")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.112352, 0, -4.2883587)
+
+[node name="Pine_32" parent="." unique_id=1649606015 instance=ExtResource("14_d4nej")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.384733, 0.2350886, -10.877884)
+
+[node name="Pine_42" parent="." unique_id=134687624 instance=ExtResource("15_tmj2g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4120197, 0.23508862, 6.448182)
+
+[node name="Prop_Crate2" parent="." unique_id=1649569307 instance=ExtResource("16_fla8g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.84153, 0, 4.9572096)
+
+[node name="Wall_UnevenBrick_Door_Flat2" parent="." unique_id=1666695855 instance=ExtResource("17_my74w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.9528885, 0, 0.27691555)
+
+[node name="Wall_UnevenBrick_Straight2" parent="." unique_id=426405580 instance=ExtResource("18_h02re")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.0190123, -0.047, 1.9753828)
+
+[node name="Wall_UnevenBrick_Straight3" parent="." unique_id=1573332026 instance=ExtResource("18_h02re")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.9787905, -0.047, 1.9753828)
+
+[node name="Wall_Plaster_Straight2" parent="." unique_id=190023616 instance=ExtResource("19_77ymi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9866445, 0.0020961165, -2.0518534)
+script = ExtResource("2_cqu14")
+health = null
+pieces = null
+explosion_strength = null
+shard_mass = null
+shard_lifetime = null
+
+[node name="Wall_Plaster_Straight3" parent="." unique_id=696001845 instance=ExtResource("19_77ymi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0220253, 0.0020961165, -2.0518534)
+script = ExtResource("2_cqu14")
+health = null
+pieces = null
+explosion_strength = null
+shard_mass = null
+shard_lifetime = null

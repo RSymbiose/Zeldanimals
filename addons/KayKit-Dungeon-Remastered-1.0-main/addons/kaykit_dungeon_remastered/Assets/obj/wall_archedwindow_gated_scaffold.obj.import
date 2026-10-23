@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bbk6hq6v1g0fd"
+path="res://.godot/imported/wall_archedwindow_gated_scaffold.obj-a1fef91b66ed673bb90bf52bbb46de5e.mesh"
+
+[deps]
+
+files=["res://.godot/imported/wall_archedwindow_gated_scaffold.obj-a1fef91b66ed673bb90bf52bbb46de5e.mesh"]
+
+source_file="res://addons/KayKit-Dungeon-Remastered-1.0-main/addons/kaykit_dungeon_remastered/Assets/obj/wall_archedwindow_gated_scaffold.obj"
+dest_files=["res://.godot/imported/wall_archedwindow_gated_scaffold.obj-a1fef91b66ed673bb90bf52bbb46de5e.mesh", "res://.godot/imported/wall_archedwindow_gated_scaffold.obj-a1fef91b66ed673bb90bf52bbb46de5e.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

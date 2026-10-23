@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://r8s1ep2dlajf" path="res://addons/godot-xr-tools/functions/movement_grapple.gd" id="7_s6qmc"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="8_u7iuv"]
 [ext_resource type="Script" uid="uid://d2vu7a6fdnkr7" path="res://scripts/players/smash_vr.gd" id="9_p35tw"]
+[ext_resource type="Script" uid="uid://knqp7i4qkd1h" path="res://scripts/players/landing_effect.gd" id="11_kfkw0"]
 
 [node name="PlayerXr" type="XROrigin3D" unique_id=148719387]
 script = ExtResource("1_p35tw")
@@ -65,3 +66,6 @@ script = ExtResource("9_p35tw")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 
 [node name="PlayerBody" parent="." unique_id=805444274 instance=ExtResource("8_u7iuv")]
+
+[node name="LandingEffect" type="Node" parent="." unique_id=145392099]
+script = ExtResource("11_kfkw0")

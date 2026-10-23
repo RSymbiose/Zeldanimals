@@ -1,13 +1,22 @@
 [gd_scene format=3 uid="uid://c3uwjj4tldv77"]
 
 [ext_resource type="PackedScene" uid="uid://b5mo40l0m2bwl" path="res://scenes/players/player_spawner.tscn" id="2_2r1or"]
-[ext_resource type="Script" uid="uid://dgcn2h7yulih5" path="res://scripts/levels/wall.gd" id="2_cqu14"]
+[ext_resource type="Script" uid="uid://dgcn2h7yulih5" path="res://scripts/obstacles/wall.gd" id="2_cqu14"]
+[ext_resource type="PackedScene" uid="uid://cka2sh86yt7f6" path="res://scenes/obstacles/flat_wall.tscn" id="4_16ole"]
+[ext_resource type="PackedScene" uid="uid://di4165njqxn5q" path="res://scenes/obstacles/breakable_box.tscn" id="5_353ay"]
+[ext_resource type="Texture2D" uid="uid://dfnp36y6p146h" path="res://addons/glTF/T_Brick_BaseColor.png" id="5_ymg0c"]
+[ext_resource type="PackedScene" uid="uid://cjiivgerjafgn" path="res://scenes/obstacles/wall_corner.tscn" id="6_ymg0c"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uyvqc"]
+
+[sub_resource type="Sky" id="Sky_2tjjv"]
+sky_material = SubResource("ProceduralSkyMaterial_uyvqc")
 
 [sub_resource type="Environment" id="Environment_y82et"]
 background_mode = 2
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cqu14"]
-albedo_color = Color(0.06666667, 0.40784314, 0.16078432, 1)
+sky = SubResource("Sky_2tjjv")
+ambient_light_source = 3
+reflected_light_source = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2r1or"]
 albedo_color = Color(0.4627451, 0.30588236, 0.6666667, 1)
@@ -16,10 +25,12 @@ albedo_color = Color(0.4627451, 0.30588236, 0.6666667, 1)
 albedo_color = Color(0.7294118, 0.24313726, 0.6862745, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_353ay"]
-albedo_color = Color(0.4509804, 0.6627451, 0.039215688, 1)
+transparency = 1
+albedo_color = Color(0.54482955, 0.6923822, 0.76711994, 1)
+roughness = 0.3
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y82et"]
-albedo_color = Color(0.8, 0.8, 0.91764706, 1)
+albedo_texture = ExtResource("5_ymg0c")
 
 [node name="MonNiveau" type="Node3D" unique_id=76223977]
 
@@ -30,13 +41,7 @@ environment = SubResource("Environment_y82et")
 transform = Transform3D(0.9819402, -0.07860867, -0.17208742, -4.2824806e-09, -0.9095942, 0.415498, -0.18919143, -0.40799418, -0.8931671, 0.2511809, 8.312151, 2.8638852)
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=890899535]
-transform = Transform3D(0.9819402, -0.07860868, -0.17208742, 0.1370532, 0.9225985, 0.36059475, 0.13042168, -0.37766764, 0.91671, 0.2511809, 8.312151, 2.8638852)
-
-[node name="StartPlatform" type="CSGBox3D" parent="." unique_id=1335307673]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
-use_collision = true
-size = Vector3(4, 0.5, 4)
-material = SubResource("StandardMaterial3D_cqu14")
+transform = Transform3D(0.98194027, -0.07860869, -0.1720874, 0.13705322, 0.9225985, 0.36059475, 0.1304217, -0.37766764, 0.9167101, 0.2511809, 8.312151, 2.8528368)
 
 [node name="JumpPlatform1" type="CSGBox3D" parent="." unique_id=1009148620]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75, 4)
@@ -46,12 +51,6 @@ material = SubResource("StandardMaterial3D_2r1or")
 
 [node name="SpiderPlatform1" type="CSGBox3D" parent="." unique_id=763321552]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.882588, 14.20563)
-use_collision = true
-size = Vector3(4, 0.5, 2)
-material = SubResource("StandardMaterial3D_2r1or")
-
-[node name="SpiderPlatform3" type="CSGBox3D" parent="." unique_id=47919921]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.9607215, 4.7293196, 0)
 use_collision = true
 size = Vector3(4, 0.5, 2)
 material = SubResource("StandardMaterial3D_2r1or")
@@ -68,18 +67,6 @@ use_collision = true
 size = Vector3(4, 0.5, 2)
 material = SubResource("StandardMaterial3D_16ole")
 
-[node name="JumpPlatform3" type="CSGBox3D" parent="." unique_id=840864209]
-transform = Transform3D(-0.014172719, 0, -0.99989957, 0, 1, 0, 0.99989957, 0, -0.014172719, -3, -0.25, 0)
-use_collision = true
-size = Vector3(4, 0.5, 2)
-material = SubResource("StandardMaterial3D_2r1or")
-
-[node name="JumpPlatform4" type="CSGBox3D" parent="." unique_id=440513803]
-transform = Transform3D(-0.014172719, 0, -0.99989957, 0, 1, 0, 0.99989957, 0, -0.014172719, -8.92051, -0.25, 0)
-use_collision = true
-size = Vector3(4, 0.5, 2)
-material = SubResource("StandardMaterial3D_16ole")
-
 [node name="Wall" type="CSGBox3D" parent="." unique_id=1448465079]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.942627, 11.5)
 use_collision = true
@@ -87,17 +74,32 @@ size = Vector3(4, 7.885254, 1)
 material = SubResource("StandardMaterial3D_353ay")
 script = ExtResource("2_cqu14")
 
-[node name="Wall2" type="CSGBox3D" parent="." unique_id=761837955]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -2.5)
-use_collision = true
-size = Vector3(4, 3, 1)
-material = SubResource("StandardMaterial3D_353ay")
-script = ExtResource("2_cqu14")
-
-[node name="SpiderWall" type="CSGBox3D" parent="." unique_id=1156211627]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 2.5)
-use_collision = true
-size = Vector3(4, 3, 1)
-material = SubResource("StandardMaterial3D_y82et")
-
 [node name="PlayerSpawner" parent="." unique_id=1898386833 instance=ExtResource("2_2r1or")]
+
+[node name="wall_gltf" parent="." unique_id=1610531501 instance=ExtResource("4_16ole")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="wall_gltf2" parent="." unique_id=1102607916 instance=ExtResource("4_16ole")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.6957014, 0, 0.056910276)
+
+[node name="wall_gltf3" parent="." unique_id=1909770628 instance=ExtResource("4_16ole")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.9901314, 0, 0.020554543)
+
+[node name="box_stacked_gltf" parent="." unique_id=2075823275 instance=ExtResource("5_353ay")]
+transform = Transform3D(0.18050458, 0, -0.7793703, 0, 0.8, 0, 0.7793703, 0, 0.18050458, 1.0246277, 0, -1.2416108)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1838650945]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.679925, 0.9, -2.4083102)
+size = Vector3(0.5, 1.8, 0.3)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=790918483]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05366707, -0.25, 0.29382896)
+material_override = SubResource("StandardMaterial3D_y82et")
+use_collision = true
+size = Vector3(6.126953, 0.5, 5.991272)
+
+[node name="wall_corner_small_gltf" parent="." unique_id=1034182567 instance=ExtResource("6_ymg0c")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -2.7014418, 0, 3.0269058)
+
+[node name="wall_corner_small_gltf2" parent="." unique_id=657683473 instance=ExtResource("6_ymg0c")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.9893723, 0, 3.007213)

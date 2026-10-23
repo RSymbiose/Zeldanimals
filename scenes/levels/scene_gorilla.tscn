@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bo3cabjnfwbcj"]
 
 [ext_resource type="PackedScene" uid="uid://dfn7wk31fpmmx" path="res://scenes/players/gorilla.tscn" id="1_7un6l"]
-[ext_resource type="Script" uid="uid://dgcn2h7yulih5" path="res://scripts/levels/wall.gd" id="1_v12n4"]
+[ext_resource type="Script" uid="uid://dgcn2h7yulih5" path="res://scripts/obstacles/wall.gd" id="1_v12n4"]
 [ext_resource type="Script" uid="uid://vitk0cls81xd" path="res://scripts/players/form_switcher.gd" id="2_rtxq4"]
 [ext_resource type="PackedScene" uid="uid://b5vgm04yject1" path="res://scenes/players/chiken.tscn" id="4_exs3f"]
 [ext_resource type="PackedScene" uid="uid://bpo8apv7i1v7f" path="res://scenes/players/spider.tscn" id="5_5fa2l"]
