@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://dqr3dyxw3n7lu"]
+
+[ext_resource type="Script" uid="uid://dwau4igb7ragt" path="res://scripts/obstacles/breakable_platform.gd" id="1_c0q1k"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_trogy"]
+size = Vector3(2, 0.25, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3amka"]
+size = Vector3(1.9, 0.2, 1.9)
+
+[sub_resource type="BoxMesh" id="BoxMesh_trogy"]
+size = Vector3(2, 0.25, 2)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rtxq4"]
+particle_flag_rotate_y = true
+emission_shape_scale = Vector3(0.8, 0.1, 0.8)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(0, 1, 0)
+spread = 60.0
+initial_velocity_min = 2.5
+initial_velocity_max = 4.5
+angular_velocity_min = -90.000015
+angular_velocity_max = 89.999985
+
+[sub_resource type="BoxMesh" id="BoxMesh_rtxq4"]
+size = Vector3(0.2, 0.05, 1)
+
+[node name="BreakablePlatform" type="Node3D" unique_id=1020618081]
+script = ExtResource("1_c0q1k")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=248185997]
+collision_layer = 5
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1518014410]
+shape = SubResource("BoxShape3D_trogy")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1422686271]
+collision_layer = 0
+collision_mask = 8
+
+[node name="TriggerShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1719819469]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13427956, 0)
+shape = SubResource("BoxShape3D_3amka")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2102925972]
+mesh = SubResource("BoxMesh_trogy")
+
+[node name="DebrisParticles" type="GPUParticles3D" parent="." unique_id=964045087]
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_rtxq4")
+draw_pass_1 = SubResource("BoxMesh_rtxq4")
