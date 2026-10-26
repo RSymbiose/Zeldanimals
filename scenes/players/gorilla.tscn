@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dfn7wk31fpmmx"]
 
-[ext_resource type="PackedScene" uid="uid://bkmwmffxaq0om" path="res://assets/animals/gorilla (1).glb" id="1_383j2"]
+[ext_resource type="PackedScene" uid="uid://bkmwmffxaq0om" path="res://assets/animals/chicken/textures/gorilla (1).glb" id="1_383j2"]
 [ext_resource type="Script" uid="uid://ch3pb2dyqerai" path="res://scripts/players/gorilla.gd" id="1_w02uj"]
 [ext_resource type="Script" uid="uid://knqp7i4qkd1h" path="res://scripts/players/landing_effect.gd" id="3_sr1gc"]
 

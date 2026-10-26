@@ -1,25 +1,75 @@
 [gd_scene format=3 uid="uid://b5vgm04yject1"]
 
+[ext_resource type="Script" uid="uid://clhj77ym4sb2k" path="res://scripts/players/chiken.gd" id="1_pda1v"]
+[ext_resource type="Script" uid="uid://us0f3pfwu4f6" path="res://scenes/players/torso.gd" id="2_3ijgo"]
+[ext_resource type="PackedScene" uid="uid://dxld32ofm7vro" path="res://assets/animals/chicken/source/Ri.glb" id="2_7uw25"]
+[ext_resource type="Script" uid="uid://b7frlc6qit2su" path="res://scripts/players/ChickenMechanics.gd" id="2_nyl4t"]
+[ext_resource type="PackedScene" uid="uid://gria1pnmibe1" path="res://scenes/elements/egg.tscn" id="3_mavoh"]
+[ext_resource type="Script" uid="uid://cb3rjafuhkm7e" path="res://scenes/players/audio_manager.gd" id="4_7letv"]
+[ext_resource type="AudioStream" uid="uid://dm0721olto6ml" path="res://assets/sounds/chiken_panic.mp3" id="5_ub7vp"]
+[ext_resource type="AudioStream" uid="uid://q0jh8iiyvocq" path="res://assets/sounds/chiken_happy.mp3" id="6_7uw25"]
+[ext_resource type="AudioStream" uid="uid://cw6mah0qyahfy" path="res://assets/sounds/chiken_relax.mp3" id="7_3ijgo"]
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gb1te"]
-radius = 0.1
-height = 0.5
+radius = 0.27783203
+height = 0.55566406
 
-[node name="Chiken" type="CharacterBody3D" unique_id=394487220]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26047462, 0)
+[node name="Chiken" type="CharacterBody3D" unique_id=394487220 node_paths=PackedStringArray("chicken_mechanics")]
+collision_layer = 2
+collision_mask = 17
+script = ExtResource("1_pda1v")
+chicken_mechanics = NodePath("XROrigin3D/Torso/ChickenMechanics")
 
-[node name="Head" type="XROrigin3D" parent="." unique_id=2004741138]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.14574891, 0)
+[node name="XROrigin3D" type="XROrigin3D" parent="." unique_id=2004741138]
 
-[node name="XRCamera3D" type="XRCamera3D" parent="Head" unique_id=322724491]
+[node name="Torso" type="Node3D" parent="XROrigin3D" unique_id=1440383235]
+script = ExtResource("2_3ijgo")
+
+[node name="Body" parent="XROrigin3D/Torso" unique_id=1543783410 instance=ExtResource("2_7uw25")]
+transform = Transform3D(-0.24, 0, -2.0981465e-08, 0, 0.24, 0, 2.0981465e-08, 0, -0.24, 0, 0, 0)
+
+[node name="ChickenMechanics" type="Marker3D" parent="XROrigin3D/Torso" unique_id=1618063705]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11088431, 0.1285944)
+script = ExtResource("2_nyl4t")
+egg_scene = ExtResource("3_mavoh")
+
+[node name="Node3D" type="Node3D" parent="XROrigin3D/Torso" unique_id=1282675835]
+
+[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D" unique_id=322724491]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.188)
 fov = 50.293312
 
-[node name="Node3D" type="Node3D" parent="Head/XRCamera3D" unique_id=1581836494]
+[node name="LeftController" type="XRController3D" parent="XROrigin3D" unique_id=241306561]
+tracker = &"left_hand"
 
-[node name="Left_hend" type="OpenXRHand" parent="Head/XRCamera3D/Node3D" unique_id=119251702]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20871669, -0.12471545, -0.19454187)
+[node name="Left_wing" type="Node3D" parent="XROrigin3D/LeftController" unique_id=1351731179]
 
-[node name="Right_hend" type="OpenXRHand" parent="Head/XRCamera3D/Node3D" unique_id=1225209473]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20570695, -0.12471545, -0.19454187)
+[node name="RightController" type="XRController3D" parent="XROrigin3D" unique_id=703208093]
+tracker = &"right_hand"
+
+[node name="Right_wing" type="Node3D" parent="XROrigin3D/RightController" unique_id=503744818]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=862225554]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 shape = SubResource("CapsuleShape3D_gb1te")
+
+[node name="HeadPivot" type="Node3D" parent="." unique_id=376373385]
+
+[node name="FallbackCamera3D" type="Camera3D" parent="HeadPivot" unique_id=131189790]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, -0.18747959)
+fov = 50.0
+
+[node name="AudioManager" type="Node" parent="." unique_id=422441723]
+script = ExtResource("4_7letv")
+
+[node name="JumpGlidePlayer" type="AudioStreamPlayer" parent="AudioManager" unique_id=178486083]
+stream = ExtResource("5_ub7vp")
+
+[node name="LayEggPlayer" type="AudioStreamPlayer" parent="AudioManager" unique_id=862168816]
+stream = ExtResource("6_7uw25")
+
+[node name="IdlePlayer" type="AudioStreamPlayer" parent="AudioManager" unique_id=910189878]
+stream = ExtResource("7_3ijgo")
+
+[node name="IdleTimer" type="Timer" parent="AudioManager" unique_id=2080468777]
+one_shot = true
