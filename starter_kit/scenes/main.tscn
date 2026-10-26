@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://85ldumyetgou" path="res://starter_kit/objects/brick.tscn" id="12_jkv2x"]
 [ext_resource type="PackedScene" uid="uid://dy017k58p20sk" path="res://starter_kit/objects/cloud.tscn" id="13_drtpy"]
 [ext_resource type="Texture2D" uid="uid://cd7oyc56ehkx1" path="res://starter_kit/sprites/coin.png" id="13_jfda3"]
+[ext_resource type="MeshLibrary" uid="uid://bhrqp6q3saulm" path="res://scenes/obstacles/level_library.meshlib" id="16_0lcgo"]
 [ext_resource type="FontFile" uid="uid://d0cxd77jybrcn" path="res://starter_kit/fonts/lilita_one_regular.ttf" id="17_tk810"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_38ys3"]
@@ -211,5 +212,10 @@ offset_bottom = 123.0
 text = "0"
 label_settings = SubResource("LabelSettings_38ys3")
 metadata/_edit_use_anchors_ = true
+
+[node name="GridMap" type="GridMap" parent="." unique_id=615262303]
+mesh_library = ExtResource("16_0lcgo")
+cell_center_x = false
+cell_center_y = false
 
 [connection signal="coin_collected" from="Player" to="HUD" method="_on_coin_collected"]
