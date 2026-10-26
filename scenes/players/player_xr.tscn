@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://chr7mic4ofc5f" path="res://scripts/players/player_xr.gd" id="1_p35tw"]
 [ext_resource type="Script" uid="uid://b18kkstg643yw" path="res://addons/godot-xr-tools/functions/function_pickup.gd" id="1_sih2n"]
 [ext_resource type="Script" uid="uid://dc4hg8kq5ia5y" path="res://addons/godot-xr-tools/functions/movement_direct.gd" id="2_p35tw"]
+[ext_resource type="Script" path="res://scripts/players/spider_auto_wall_climb.gd" id="15_spider_climb"]
 [ext_resource type="Script" uid="uid://dtl3uo5dnibof" path="res://addons/godot-xr-tools/functions/movement_climb.gd" id="3_kfkw0"]
 [ext_resource type="Script" uid="uid://kuxqh057vr5y" path="res://addons/godot-xr-tools/functions/movement_turn.gd" id="4_2vh6j"]
 [ext_resource type="Script" uid="uid://dur4rs2uhr6cp" path="res://addons/godot-xr-tools/functions/movement_jump.gd" id="5_nygpt"]
@@ -36,6 +37,9 @@ metadata/_custom_type_script = "uid://dc4hg8kq5ia5y"
 [node name="XRToolsMovementClimb" type="Node3D" parent="LeftHand" unique_id=1736025205 groups=["movement_providers"]]
 script = ExtResource("3_kfkw0")
 metadata/_custom_type_script = "uid://dtl3uo5dnibof"
+
+[node name="SpiderAutoWallClimb" type="Node3D" parent="LeftHand" unique_id=1736025206 groups=["movement_providers"]]
+script = ExtResource("15_spider_climb")
 
 [node name="RightHand" type="XRController3D" parent="." unique_id=1538999562]
 tracker = &"right_hand"

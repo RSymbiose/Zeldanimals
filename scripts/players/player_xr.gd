@@ -17,6 +17,8 @@ const FORM_DATA := {
 # Distance (en mètres) dont le corps est reculé par rapport à la tête,
 # pour que la tête du modèle ne bouche pas la vue
 const BODY_BACK_OFFSET := 0.25
+const CLIMB_CAMERA_PITCH := PI * 0.5
+const CLIMB_CAMERA_TURN_SPEED := 5.0
 
 @onready var camera: XRCamera3D = $XRCamera3D
 @onready var left_hand: XRController3D = $LeftHand
@@ -25,6 +27,8 @@ const BODY_BACK_OFFSET := 0.25
 @onready var jump: Node = $RightHand/XRToolsMovementJump
 @onready var glide: Node = $RightHand/XRToolsMovementGlide
 @onready var grapple: Node = $RightHand/XRToolsMovementGrapple
+@onready var grapple_ray: RayCast3D = $RightHand/XRToolsMovementGrapple/Grapple_RayCast
+@onready var auto_wall_climb: Node = $LeftHand/SpiderAutoWallClimb
 @onready var smash: Node = $RightHand/SmashVR
 @onready var climb_left: Node = $LeftHand/XRToolsMovementClimb
 @onready var climb_right: Node = $RightHand/XRToolsMovementClimb
@@ -38,6 +42,9 @@ const BODY_BACK_OFFSET := 0.25
 @onready var chicken_mech: ChickenMechanics = get_node_or_null("BodyModels/chicken/ChickenMechanics") as ChickenMechanics
 
 var current_form := ""
+var _camera_pitch_initialized := false
+var _camera_base_pitch := 0.0
+var _camera_applied_pitch := 0.0
 
 
 func _ready() -> void:
@@ -50,6 +57,8 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
+	_update_grapple_aim()
+	_update_climb_view(_delta)
 	# Le corps de l'animal suit la tête (position et rotation horizontales)
 	if body_models == null:
 		return
@@ -57,6 +66,36 @@ func _process(_delta: float) -> void:
 	var back := Vector3(sin(yaw), 0.0, cos(yaw)) * BODY_BACK_OFFSET
 	body_models.position = Vector3(camera.position.x, 0.0, camera.position.z) + back
 	body_models.rotation.y = yaw
+
+
+func _update_grapple_aim() -> void:
+	if camera == null or grapple_ray == null:
+		return
+	var forward := -camera.global_transform.basis.z
+	grapple_ray.global_position = camera.global_position
+	grapple_ray.look_at(camera.global_position + forward, Vector3.UP)
+
+
+func _update_climb_view(delta: float) -> void:
+	if camera == null:
+		return
+	if not _camera_pitch_initialized:
+		_camera_base_pitch = camera.rotation.x
+		_camera_applied_pitch = camera.rotation.x
+		_camera_pitch_initialized = true
+	else:
+		# XR Simulator modifies the camera directly. Preserve that input as the
+		# player's pitch before applying the climbing-only offset.
+		_camera_base_pitch += camera.rotation.x - _camera_applied_pitch
+	var is_climbing := current_form == "spider" and (
+		bool(_get_prop(auto_wall_climb, "is_active"))
+		or bool(_get_prop(climb_left, "is_active"))
+		or bool(_get_prop(climb_right, "is_active")))
+	var target_offset := CLIMB_CAMERA_PITCH if is_climbing else 0.0
+	var current_offset := _camera_applied_pitch - _camera_base_pitch
+	var next_offset := move_toward(current_offset, target_offset, CLIMB_CAMERA_TURN_SPEED * delta)
+	_camera_applied_pitch = _camera_base_pitch + next_offset
+	camera.rotation.x = _camera_applied_pitch
 
 
 func _on_left_button(button: String) -> void:
@@ -86,6 +125,7 @@ func switch_to(form: String) -> void:
 	_enable(smash, form == "gorilla")
 	_enable(glide, form == "chicken")
 	_enable(grapple, form == "spider")
+	_enable(auto_wall_climb, form == "spider")
 	_enable(climb_left, form == "spider")
 	_enable(climb_right, form == "spider")
 	_enable(landing, form == "gorilla")
@@ -138,3 +178,9 @@ func _set_prop(node: Node, prop: String, value: Variant) -> void:
 	if node == null:
 		return
 	node.set(prop, value)
+
+
+func _get_prop(node: Node, prop: String) -> Variant:
+	if node == null:
+		return false
+	return node.get(prop)
