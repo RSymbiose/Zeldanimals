@@ -2,12 +2,14 @@ extends Node
 
 @export var enabled := false
 @export var smash_force := 15.0
+@export var smash_range := 2.5
 
 @onready var hand: XRController3D = get_parent()
 @onready var ray: RayCast3D = $SmashRay
 
 
 func _ready() -> void:
+	ray.target_position = Vector3(0.0, 0.0, -smash_range)
 	hand.button_pressed.connect(_on_button)
 
 

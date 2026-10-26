@@ -1,4 +1,4 @@
-extends CSGBox3D
+extends XRToolsClimbable
 
 @export var health := 1
 @export var pieces := Vector3i(4, 4, 2)      # découpe en X, Y, Z
@@ -14,9 +14,9 @@ func on_smashed(impulse: Vector3) -> void:
 
 func _shatter(impulse: Vector3) -> void:
 	# On récupère la taille, le matériau et la transformation directement depuis le CSGBox3D
-	var size: Vector3 = self.size
+	var size: Vector3 = get("size")
 	var piece_size := Vector3(size.x / pieces.x, size.y / pieces.y, size.z / pieces.z)
-	var material := self.material
+	var material: Material = get("material")
 	var origin_xform := self.global_transform
 	var parent := get_parent()
 

@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://di4165njqxn5q" path="res://scenes/obstacles/breakable_box.tscn" id="5_353ay"]
 [ext_resource type="Texture2D" uid="uid://dfnp36y6p146h" path="res://addons/glTF/T_Brick_BaseColor.png" id="5_ymg0c"]
 [ext_resource type="PackedScene" uid="uid://cjiivgerjafgn" path="res://scenes/obstacles/wall_corner.tscn" id="6_ymg0c"]
+[ext_resource type="Script" uid="uid://bqb3cy0ekk685" path="res://addons/godot-xr-tools/objects/climbable.gd" id="7_climbable"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uyvqc"]
 
@@ -45,30 +46,39 @@ transform = Transform3D(0.98194027, -0.07860869, -0.1720874, 0.13705322, 0.92259
 
 [node name="JumpPlatform1" type="CSGBox3D" parent="." unique_id=1009148620]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75, 4)
+collision_layer = 262145
 use_collision = true
 size = Vector3(4, 0.5, 2)
 material = SubResource("StandardMaterial3D_2r1or")
+script = ExtResource("7_climbable")
 
 [node name="SpiderPlatform1" type="CSGBox3D" parent="." unique_id=763321552]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.882588, 14.20563)
+collision_layer = 262145
 use_collision = true
 size = Vector3(4, 0.5, 2)
 material = SubResource("StandardMaterial3D_2r1or")
+script = ExtResource("7_climbable")
 
 [node name="SpiderPlatform2" type="CSGBox3D" parent="." unique_id=215584777]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75, 18.177929)
+collision_layer = 262145
 use_collision = true
 size = Vector3(4, 0.5, 2)
 material = SubResource("StandardMaterial3D_2r1or")
+script = ExtResource("7_climbable")
 
 [node name="JumpPlatform2" type="CSGBox3D" parent="." unique_id=1352581107]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75, 10)
+collision_layer = 262145
 use_collision = true
 size = Vector3(4, 0.5, 2)
 material = SubResource("StandardMaterial3D_16ole")
+script = ExtResource("7_climbable")
 
 [node name="Wall" type="CSGBox3D" parent="." unique_id=1448465079]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.942627, 11.5)
+collision_layer = 262145
 use_collision = true
 size = Vector3(4, 7.885254, 1)
 material = SubResource("StandardMaterial3D_353ay")

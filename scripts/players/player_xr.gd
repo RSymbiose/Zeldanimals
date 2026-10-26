@@ -14,6 +14,11 @@ const FORM_DATA := {
 	"spider":  {"scale": 0.5, "jump": 4.5},
 }
 
+# Distance (en mètres) dont le corps est reculé par rapport à la tête,
+# pour que la tête du modèle ne bouche pas la vue
+const BODY_BACK_OFFSET := 0.25
+
+@onready var camera: XRCamera3D = $XRCamera3D
 @onready var left_hand: XRController3D = $LeftHand
 @onready var right_hand: XRController3D = $RightHand
 
@@ -25,6 +30,12 @@ const FORM_DATA := {
 @onready var climb_right: Node = $RightHand/XRToolsMovementClimb
 
 @onready var landing: Node = $LandingEffect
+@onready var player_body: XRToolsPlayerBody = get_node_or_null("PlayerBody") as XRToolsPlayerBody
+
+# Modèles 3D : un Node3D par animal, nommé "gorilla", "chicken", "spider"
+@onready var body_models: Node3D = $BodyModels
+# Ponte d'œuf (enfant de BodyModels/chicken) ; reste null s'il n'existe pas encore
+@onready var chicken_mech: ChickenMechanics = get_node_or_null("BodyModels/chicken/ChickenMechanics") as ChickenMechanics
 
 var current_form := ""
 
@@ -38,21 +49,38 @@ func _ready() -> void:
 	switch_to(start_form)
 
 
+func _process(_delta: float) -> void:
+	# Le corps de l'animal suit la tête (position et rotation horizontales)
+	if body_models == null:
+		return
+	var yaw := camera.rotation.y
+	var back := Vector3(sin(yaw), 0.0, cos(yaw)) * BODY_BACK_OFFSET
+	body_models.position = Vector3(camera.position.x, 0.0, camera.position.z) + back
+	body_models.rotation.y = yaw
+
+
 func _on_left_button(button: String) -> void:
-	# Bouton Y (manette gauche) : forme suivante
-	if button == "by_button":
-		var next: int = (FORMS.find(current_form) + 1) % FORMS.size()
-		switch_to(FORMS[next])
+	match button:
+		# Bouton Y (manette gauche) : forme suivante
+		"by_button":
+			var next: int = (FORMS.find(current_form) + 1) % FORMS.size()
+			switch_to(FORMS[next])
+		# Gâchette gauche : la poule pond un œuf
+		"trigger_click":
+			if current_form == "chicken" and chicken_mech:
+				chicken_mech.lay_egg()
 
 
 func switch_to(form: String) -> void:
 	if form == current_form or not FORM_DATA.has(form):
 		return
+	var first_time := current_form == ""
 	current_form = form
 
 	var data: Dictionary = FORM_DATA[form]
-	world_scale = data["scale"]
-	_set_prop(jump, "jump_velocity", data["jump"])
+	_apply_scale(data["scale"], not first_time)
+	if player_body and player_body.default_physics:
+		player_body.default_physics.jump_velocity = data["jump"]
 
 	# On n'active que les capacités de l'animal courant
 	_enable(smash, form == "gorilla")
@@ -62,7 +90,44 @@ func switch_to(form: String) -> void:
 	_enable(climb_right, form == "spider")
 	_enable(landing, form == "gorilla")
 
+	# Retour visuel et tactile
+	_show_body_model(form)
+	if not first_time:
+		_haptic_feedback(form)
+
 	form_changed.emit(form)
+
+
+func _apply_scale(target: float, is_switch: bool) -> void:
+	# Changement instantané : animer world_scale fait changer la hauteur de
+	# la capsule de collision à chaque frame et peut faire traverser le sol.
+	world_scale = target
+	if not is_switch:
+		return
+
+	# On remonte légèrement le joueur et on annule sa vitesse
+	var xf := global_transform
+	xf.origin.y += 0.3
+	if player_body and player_body.has_method("teleport"):
+		player_body.teleport(xf)
+	else:
+		global_transform = xf
+	_set_prop(player_body, "velocity", Vector3.ZERO)
+
+
+func _show_body_model(form: String) -> void:
+	if body_models == null:
+		return
+	for m in body_models.get_children():
+		if m is Node3D:
+			m.visible = (m.name == form)
+
+
+func _haptic_feedback(form: String) -> void:
+	# Le gorille vibre plus fort que les autres
+	var amplitude := 1.0 if form == "gorilla" else 0.5
+	for hand in [left_hand, right_hand]:
+		hand.trigger_haptic_pulse("haptic", 0.0, amplitude, 0.3, 0.0)
 
 
 func _enable(node: Node, value: bool) -> void:

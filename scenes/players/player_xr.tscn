@@ -7,10 +7,14 @@
 [ext_resource type="Script" uid="uid://kuxqh057vr5y" path="res://addons/godot-xr-tools/functions/movement_turn.gd" id="4_2vh6j"]
 [ext_resource type="Script" uid="uid://dur4rs2uhr6cp" path="res://addons/godot-xr-tools/functions/movement_jump.gd" id="5_nygpt"]
 [ext_resource type="Script" uid="uid://5pticrbivdx6" path="res://addons/godot-xr-tools/functions/movement_glide.gd" id="6_nstc6"]
-[ext_resource type="Script" uid="uid://r8s1ep2dlajf" path="res://addons/godot-xr-tools/functions/movement_grapple.gd" id="7_s6qmc"]
+[ext_resource type="PackedScene" uid="uid://c78tjrtiyqna8" path="res://addons/godot-xr-tools/functions/movement_grapple.tscn" id="7_grapple"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="8_u7iuv"]
 [ext_resource type="Script" uid="uid://d2vu7a6fdnkr7" path="res://scripts/players/smash_vr.gd" id="9_p35tw"]
+[ext_resource type="PackedScene" uid="uid://bkmwmffxaq0om" path="res://assets/animals/gorilla (1).glb" id="11_2vh6j"]
 [ext_resource type="Script" uid="uid://knqp7i4qkd1h" path="res://scripts/players/landing_effect.gd" id="11_kfkw0"]
+[ext_resource type="PackedScene" uid="uid://dxld32ofm7vro" path="res://assets/animals/chicken/source/Ri.glb" id="12_nygpt"]
+[ext_resource type="Script" uid="uid://b7frlc6qit2su" path="res://scripts/players/ChickenMechanics.gd" id="13_chicken_mechanics"]
+[ext_resource type="PackedScene" uid="uid://gria1pnmibe1" path="res://scenes/elements/egg.tscn" id="14_egg"]
 
 [node name="PlayerXr" type="XROrigin3D" unique_id=148719387]
 script = ExtResource("1_p35tw")
@@ -26,6 +30,7 @@ metadata/_custom_type_script = "uid://b18kkstg643yw"
 
 [node name="XRToolsMovementDirect" type="Node3D" parent="LeftHand" unique_id=453091398 groups=["movement_providers"]]
 script = ExtResource("2_p35tw")
+strafe = true
 metadata/_custom_type_script = "uid://dc4hg8kq5ia5y"
 
 [node name="XRToolsMovementClimb" type="Node3D" parent="LeftHand" unique_id=1736025205 groups=["movement_providers"]]
@@ -45,6 +50,7 @@ metadata/_custom_type_script = "uid://kuxqh057vr5y"
 
 [node name="XRToolsMovementJump" type="Node3D" parent="RightHand" unique_id=1080812926 groups=["movement_providers"]]
 script = ExtResource("5_nygpt")
+jump_button_action = "ax_button"
 metadata/_custom_type_script = "uid://dur4rs2uhr6cp"
 
 [node name="XRToolsMovementGlide" type="Node3D" parent="RightHand" unique_id=1264380086 groups=["movement_providers"]]
@@ -55,9 +61,10 @@ metadata/_custom_type_script = "uid://5pticrbivdx6"
 script = ExtResource("3_kfkw0")
 metadata/_custom_type_script = "uid://dtl3uo5dnibof"
 
-[node name="XRToolsMovementGrapple" type="Node3D" parent="RightHand" unique_id=721645269 groups=["movement_providers"]]
-script = ExtResource("7_s6qmc")
-metadata/_custom_type_script = "uid://r8s1ep2dlajf"
+[node name="XRToolsMovementGrapple" parent="RightHand" unique_id=721645269 instance=ExtResource("7_grapple")]
+grapple_length = 20.0
+grapple_enable_mask = 1
+grapple_button_action = "trigger_click"
 
 [node name="SmashVR" type="Node" parent="RightHand" unique_id=1531216047]
 script = ExtResource("9_p35tw")
@@ -69,3 +76,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 
 [node name="LandingEffect" type="Node" parent="." unique_id=145392099]
 script = ExtResource("11_kfkw0")
+
+[node name="BodyModels" type="Node3D" parent="." unique_id=1516260111]
+
+[node name="gorilla" type="Node3D" parent="BodyModels" unique_id=2127374176]
+
+[node name="Sketchfab_Scene" parent="BodyModels/gorilla" unique_id=1401747148 instance=ExtResource("11_2vh6j")]
+transform = Transform3D(-90, 0, -7.86805e-06, 0, 90, 0, 7.86805e-06, 0, -90, 0, 0, 0)
+
+[node name="chicken" type="Node3D" parent="BodyModels" unique_id=763231211]
+
+[node name="Ri" parent="BodyModels/chicken" unique_id=1335502315 instance=ExtResource("12_nygpt")]
+transform = Transform3D(-0.24, 0, -2.0981465e-08, 0, 0.24, 0, 2.0981465e-08, 0, -0.24, 0, 0, 0)
+
+[node name="ChickenMechanics" type="Marker3D" parent="BodyModels/chicken" unique_id=1024613637]
+script = ExtResource("13_chicken_mechanics")
+egg_scene = ExtResource("14_egg")
+
+[node name="spider" type="Node3D" parent="BodyModels" unique_id=1356928781]
