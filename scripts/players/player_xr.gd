@@ -19,8 +19,8 @@ const FORM_DATA := {
 
 @onready var jump: Node = $RightHand/XRToolsMovementJump
 @onready var glide: Node = $RightHand/XRToolsMovementGlide
-@onready var grapple: Node = $RightHand/XRToolsMovementGrapple
 @onready var smash: Node = $RightHand/SmashVR
+@onready var web: Node = $RightHand/WebVR
 @onready var climb_left: Node = $LeftHand/XRToolsMovementClimb
 @onready var climb_right: Node = $RightHand/XRToolsMovementClimb
 
@@ -28,11 +28,14 @@ var current_form := ""
 
 
 func _ready() -> void:
-	# Sécurité : chaque main suit bien sa manette
 	left_hand.tracker = &"left_hand"
 	right_hand.tracker = &"right_hand"
 
 	left_hand.button_pressed.connect(_on_left_button)
+	# Diagnostic : à retirer quand les boutons sont validés
+	left_hand.button_pressed.connect(func(b: String) -> void: print("GAUCHE : ", b))
+	right_hand.button_pressed.connect(func(b: String) -> void: print("DROITE : ", b))
+
 	switch_to(start_form)
 
 
@@ -49,13 +52,13 @@ func switch_to(form: String) -> void:
 	current_form = form
 
 	var data: Dictionary = FORM_DATA[form]
-	world_scale = data["scale"]
+	# world_scale = data["scale"]
 	_set_prop(jump, "jump_velocity", data["jump"])
 
 	# On n'active que les capacités de l'animal courant
 	_enable(smash, form == "gorilla")
 	_enable(glide, form == "chicken")
-	_enable(grapple, form == "spider")
+	_enable(web, form == "spider")
 	_enable(climb_left, form == "spider")
 	_enable(climb_right, form == "spider")
 

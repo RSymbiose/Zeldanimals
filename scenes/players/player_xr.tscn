@@ -7,9 +7,9 @@
 [ext_resource type="Script" uid="uid://kuxqh057vr5y" path="res://addons/godot-xr-tools/functions/movement_turn.gd" id="4_2vh6j"]
 [ext_resource type="Script" uid="uid://dur4rs2uhr6cp" path="res://addons/godot-xr-tools/functions/movement_jump.gd" id="5_nygpt"]
 [ext_resource type="Script" uid="uid://5pticrbivdx6" path="res://addons/godot-xr-tools/functions/movement_glide.gd" id="6_nstc6"]
-[ext_resource type="Script" uid="uid://r8s1ep2dlajf" path="res://addons/godot-xr-tools/functions/movement_grapple.gd" id="7_s6qmc"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="8_u7iuv"]
 [ext_resource type="Script" uid="uid://d2vu7a6fdnkr7" path="res://scripts/players/smash_vr.gd" id="9_p35tw"]
+[ext_resource type="Script" uid="uid://lden8owviyl4" path="res://scripts/players/web_vr.gd" id="10_kfkw0"]
 
 [node name="PlayerXr" type="XROrigin3D" unique_id=148719387]
 script = ExtResource("1_p35tw")
@@ -54,14 +54,15 @@ metadata/_custom_type_script = "uid://5pticrbivdx6"
 script = ExtResource("3_kfkw0")
 metadata/_custom_type_script = "uid://dtl3uo5dnibof"
 
-[node name="XRToolsMovementGrapple" type="Node3D" parent="RightHand" unique_id=721645269 groups=["movement_providers"]]
-script = ExtResource("7_s6qmc")
-metadata/_custom_type_script = "uid://r8s1ep2dlajf"
-
-[node name="SmashVR" type="Node" parent="RightHand" unique_id=1531216047]
+[node name="SmashVR" type="Node3D" parent="RightHand" unique_id=852944759]
 script = ExtResource("9_p35tw")
 
 [node name="SmashRay" type="RayCast3D" parent="RightHand/SmashVR" unique_id=1675463571]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="WebVR" type="Node3D" parent="RightHand" unique_id=24724569]
+script = ExtResource("10_kfkw0")
+
+[node name="WebRay" type="RayCast3D" parent="RightHand/WebVR" unique_id=668580291]
 
 [node name="PlayerBody" parent="." unique_id=805444274 instance=ExtResource("8_u7iuv")]

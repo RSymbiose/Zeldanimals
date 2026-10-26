@@ -59,7 +59,7 @@ use_collision = true
 size = Vector3(4, 0.5, 2)
 material = SubResource("StandardMaterial3D_16ole")
 
-[node name="Wall" type="CSGBox3D" parent="." unique_id=1448465079]
+[node name="Wall" type="CSGBox3D" parent="." unique_id=1777218163]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.942627, 11.5)
 use_collision = true
 size = Vector3(4, 7.885254, 1)
@@ -73,3 +73,4 @@ size = Vector3(4, 3, 1)
 material = SubResource("StandardMaterial3D_y82et")
 
 [node name="PlayerSpawner" parent="." unique_id=1898386833 instance=ExtResource("2_2r1or")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

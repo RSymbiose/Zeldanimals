@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Zeldanimals"
-run/main_scene="uid://bo3cabjnfwbcj"
+run/main_scene="uid://c3uwjj4tldv77"
 config/features=PackedStringArray("4.7", "Mobile")
 config/icon="res://icon.svg"
 
@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 XRToolsUserSettings="*uid://bqgb8i74tm0t"
 XRToolsRumbleManager="*uid://by853dk86g1qw"
 PlatformManager="*uid://brf25xhxur8j3"
+XrSimulator="*uid://ctltchlf2j2r4"
 
 [display]
 

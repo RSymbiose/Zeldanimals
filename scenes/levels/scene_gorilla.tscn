@@ -22,20 +22,6 @@ size = Vector3(10, 0.6, 10)
 [sub_resource type="BoxMesh" id="BoxMesh_2tjjv"]
 size = Vector3(10, 0.6, 10)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_2tjjv"]
-size = Vector3(10, 10, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v12n4"]
-transparency = 1
-albedo_color = Color(0.49552402, 0.8340522, 0.9998151, 1)
-metallic_specular = 0.8
-roughness = 0.1
-refraction_enabled = true
-
-[sub_resource type="BoxMesh" id="BoxMesh_bmmc0"]
-material = SubResource("StandardMaterial3D_v12n4")
-size = Vector3(10, 10, 1)
-
 [node name="SceneGorilla" type="Node3D" unique_id=1843105508]
 
 [node name="Ground" type="StaticBody3D" parent="." unique_id=1306634405]
@@ -69,15 +55,9 @@ shape = SubResource("BoxShape3D_1alcl")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.7810593, 0.5125408, 14.719644)
 mesh = SubResource("BoxMesh_2tjjv")
 
-[node name="Wall" type="StaticBody3D" parent="." unique_id=539411904]
+[node name="Wall" type="CSGBox3D" parent="." unique_id=1005643628]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -15.096)
 script = ExtResource("1_v12n4")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall" unique_id=2141961615]
-shape = SubResource("BoxShape3D_2tjjv")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall" unique_id=1205467338]
-mesh = SubResource("BoxMesh_bmmc0")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1097065648]
 transform = Transform3D(1, 0, 0, 0, 0.4107186, 0.9117622, 0, -0.9117622, 0.4107186, 0, 14.22003, 0)
