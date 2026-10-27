@@ -17,6 +17,7 @@ const FORM_DATA := {
 # Distance (en mètres) dont le corps est reculé par rapport à la tête,
 # pour que la tête du modèle ne bouche pas la vue
 const BODY_BACK_OFFSET := 0.25
+const BODY_MODEL_HEIGHT_OFFSET := 0.8
 const CLIMB_CAMERA_PITCH := PI * 0.5
 const CLIMB_CAMERA_TURN_SPEED := 5.0
 
@@ -64,7 +65,10 @@ func _process(_delta: float) -> void:
 		return
 	var yaw := camera.rotation.y
 	var back := Vector3(sin(yaw), 0.0, cos(yaw)) * BODY_BACK_OFFSET
-	body_models.position = Vector3(camera.position.x, 0.0, camera.position.z) + back
+	body_models.position = Vector3(
+		camera.position.x,
+		camera.position.y - BODY_MODEL_HEIGHT_OFFSET,
+		camera.position.z) + back
 	body_models.rotation.y = yaw
 
 

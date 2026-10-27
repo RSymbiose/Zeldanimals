@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://dxld32ofm7vro" path="res://assets/animals/chicken/source/Ri.glb" id="12_nygpt"]
 [ext_resource type="Script" uid="uid://b7frlc6qit2su" path="res://scripts/players/ChickenMechanics.gd" id="13_chicken_mechanics"]
 [ext_resource type="PackedScene" uid="uid://gria1pnmibe1" path="res://scenes/elements/egg.tscn" id="14_egg"]
+[ext_resource type="PackedScene" path="res://assets/animals/spider/Spider-gltf/Spider.gltf" id="16_spider_model"]
 
 [node name="PlayerXr" type="XROrigin3D" unique_id=148719387]
 script = ExtResource("1_p35tw")
@@ -87,6 +88,7 @@ script = ExtResource("11_kfkw0")
 
 [node name="Sketchfab_Scene" parent="BodyModels/gorilla" unique_id=1401747148 instance=ExtResource("11_2vh6j")]
 transform = Transform3D(-90, 0, -7.86805e-06, 0, 90, 0, 7.86805e-06, 0, -90, 0, 0, 0)
+position = Vector3(0, -0.7, 0.2)
 
 [node name="chicken" type="Node3D" parent="BodyModels" unique_id=763231211]
 
@@ -98,3 +100,7 @@ script = ExtResource("13_chicken_mechanics")
 egg_scene = ExtResource("14_egg")
 
 [node name="spider" type="Node3D" parent="BodyModels" unique_id=1356928781]
+
+[node name="SpiderModel" parent="BodyModels/spider" instance=ExtResource("16_spider_model")]
+position = Vector3(0, -0.35, 0.2)
+scale = Vector3(3, 3, 3)
