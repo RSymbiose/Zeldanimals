@@ -2,11 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://b5mo40l0m2bwl" path="res://scenes/players/player_spawner.tscn" id="2_2r1or"]
 [ext_resource type="Script" uid="uid://dgcn2h7yulih5" path="res://scripts/obstacles/wall.gd" id="2_cqu14"]
-[ext_resource type="PackedScene" uid="uid://cka2sh86yt7f6" path="res://scenes/obstacles/flat_wall.tscn" id="4_16ole"]
 [ext_resource type="PackedScene" uid="uid://di4165njqxn5q" path="res://scenes/obstacles/breakable_box.tscn" id="5_353ay"]
+[ext_resource type="MeshLibrary" uid="uid://bhrqp6q3saulm" path="res://scenes/obstacles/level_library.meshlib" id="5_fchhq"]
 [ext_resource type="Texture2D" uid="uid://dfnp36y6p146h" path="res://addons/glTF/T_Brick_BaseColor.png" id="5_ymg0c"]
-[ext_resource type="PackedScene" uid="uid://cjiivgerjafgn" path="res://scenes/obstacles/wall_corner.tscn" id="6_ymg0c"]
-[ext_resource type="Script" uid="uid://bqb3cy0ekk685" path="res://addons/godot-xr-tools/objects/climbable.gd" id="7_climbable"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uyvqc"]
 
@@ -33,6 +31,8 @@ roughness = 0.3
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y82et"]
 albedo_texture = ExtResource("5_ymg0c")
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y82et"]
+
 [node name="MonNiveau" type="Node3D" unique_id=76223977]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=103195376]
@@ -46,39 +46,30 @@ transform = Transform3D(0.98194027, -0.07860869, -0.1720874, 0.13705322, 0.92259
 
 [node name="JumpPlatform1" type="CSGBox3D" parent="." unique_id=1009148620]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75, 4)
-collision_layer = 262145
 use_collision = true
 size = Vector3(4, 0.5, 2)
 material = SubResource("StandardMaterial3D_2r1or")
-script = ExtResource("7_climbable")
 
 [node name="SpiderPlatform1" type="CSGBox3D" parent="." unique_id=763321552]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.882588, 14.20563)
-collision_layer = 262145
 use_collision = true
 size = Vector3(4, 0.5, 2)
 material = SubResource("StandardMaterial3D_2r1or")
-script = ExtResource("7_climbable")
 
 [node name="SpiderPlatform2" type="CSGBox3D" parent="." unique_id=215584777]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75, 18.177929)
-collision_layer = 262145
 use_collision = true
 size = Vector3(4, 0.5, 2)
 material = SubResource("StandardMaterial3D_2r1or")
-script = ExtResource("7_climbable")
 
 [node name="JumpPlatform2" type="CSGBox3D" parent="." unique_id=1352581107]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75, 10)
-collision_layer = 262145
 use_collision = true
 size = Vector3(4, 0.5, 2)
 material = SubResource("StandardMaterial3D_16ole")
-script = ExtResource("7_climbable")
 
 [node name="Wall" type="CSGBox3D" parent="." unique_id=1448465079]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.942627, 11.5)
-collision_layer = 262145
 use_collision = true
 size = Vector3(4, 7.885254, 1)
 material = SubResource("StandardMaterial3D_353ay")
@@ -86,30 +77,38 @@ script = ExtResource("2_cqu14")
 
 [node name="PlayerSpawner" parent="." unique_id=1898386833 instance=ExtResource("2_2r1or")]
 
-[node name="wall_gltf" parent="." unique_id=1610531501 instance=ExtResource("4_16ole")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
-
-[node name="wall_gltf2" parent="." unique_id=1102607916 instance=ExtResource("4_16ole")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.6957014, 0, 0.056910276)
-
-[node name="wall_gltf3" parent="." unique_id=1909770628 instance=ExtResource("4_16ole")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.9901314, 0, 0.020554543)
-
 [node name="box_stacked_gltf" parent="." unique_id=2075823275 instance=ExtResource("5_353ay")]
-transform = Transform3D(0.18050458, 0, -0.7793703, 0, 0.8, 0, 0.7793703, 0, 0.18050458, 1.0246277, 0, -1.2416108)
+transform = Transform3D(0.18050458, 0, -0.7793703, 0, 0.8, 0, 0.7793703, 0, 0.18050458, 0.99562097, 0, -3.5885181)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1838650945]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.679925, 0.9, -2.4083102)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.1416, 0.9, -2.4083102)
 size = Vector3(0.5, 1.8, 0.3)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=790918483]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05366707, -0.25, 0.29382896)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.236683, -0.25, -2.0246296)
 material_override = SubResource("StandardMaterial3D_y82et")
 use_collision = true
-size = Vector3(6.126953, 0.5, 5.991272)
+size = Vector3(7.9573975, 0.5, 10.628189)
 
-[node name="wall_corner_small_gltf" parent="." unique_id=1034182567 instance=ExtResource("6_ymg0c")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -2.7014418, 0, 3.0269058)
+[node name="Ground_grid_map" type="GridMap" parent="." unique_id=418432078]
+mesh_library = ExtResource("5_fchhq")
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(0, 0, 655360, 65535, 0, 655360, 65534, 0, 655360, 65533, 0, 655360, 65533, 65535, 655360, 65534, 65535, 655360, 65535, 65535, 655360, 0, 65535, 655360, 0, 65534, 655360, 65535, 65534, 655360, 65534, 65534, 655360, 65533, 65534, 655360, 65533, 65533, 655360, 65534, 65533, 655360, 65535, 65533, 655360, 0, 65533, 655360, 0, 65532, 655360, 65535, 65532, 655360, 65534, 65532, 655360, 65533, 65532, 655360)
+}
 
-[node name="wall_corner_small_gltf2" parent="." unique_id=657683473 instance=ExtResource("6_ymg0c")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.9893723, 0, 3.007213)
+[node name="Wall_grid_map" type="GridMap" parent="." unique_id=977492925]
+mesh_library = ExtResource("5_fchhq")
+cell_center_x = false
+cell_center_y = false
+cell_center_z = false
+data = {
+"cells": PackedInt32Array(1, 1, 1441794, 65533, 1, 655362, 0, 1, 655361, 65534, 1, 655361, 1, 0, 1048577, 1, 65535, 1048577, 65533, 0, 1048577, 65533, 65535, 1048577, 65533, 65533, 1048577, 1, 65533, 1048577, 65533, 65532, 1048578, 1, 65532, 2, 0, 65532, 1, 65534, 65532, 1)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1442423589]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1811919, 4.5694256, 0)
+amount = 50
+lifetime = 1.47
+process_material = SubResource("ParticleProcessMaterial_y82et")
