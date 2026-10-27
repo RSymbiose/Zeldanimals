@@ -1,23 +1,22 @@
 [gd_scene format=3 uid="uid://bpo8apv7i1v7f"]
 
 [ext_resource type="Script" uid="uid://cqowyxd7wmjh8" path="res://scripts/levels/scene_spider.gd" id="1_g4i1d"]
-[ext_resource type="PackedScene" path="res://assets/animals/spider/Spider-gltf/Spider.gltf" id="2_spider_model"]
+[ext_resource type="PackedScene" uid="uid://c4qkngorna1ch" path="res://assets/animals/spider/Spider-gltf/Spider.gltf" id="2_spider_model"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dlmp8"]
-radius = 0.17167969
-height = 0.34335938
+radius = 0.22167969
+height = 0.44335938
 
 [node name="Spider" type="CharacterBody3D" unique_id=2021904531]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_g4i1d")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=668210912]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.62832034, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5974121, 0)
 shape = SubResource("CapsuleShape3D_dlmp8")
 
-[node name="SpiderModel" parent="." instance=ExtResource("2_spider_model")]
-position = Vector3(0, -0.35, 0.2)
-scale = Vector3(3, 3, 3)
+[node name="SpiderModel" parent="." unique_id=1105876453 instance=ExtResource("2_spider_model")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0.26294065, 0.52442044)
 
 [node name="Head" type="Node3D" parent="." unique_id=1567859189]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)

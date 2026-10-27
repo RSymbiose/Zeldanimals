@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dk7gxqukmejxj" path="res://scripts/obstacles/breakable_box.gd" id="1_1xbkx"]
 [ext_resource type="Texture2D" uid="uid://dpgu3dkwa3vxv" path="res://addons/KayKit-Dungeon-Remastered-1.0-main/addons/kaykit_dungeon_remastered/Assets/gltf/wall_doorway_dungeon_texture.png" id="1_fp04d"]
+[ext_resource type="AudioStream" uid="uid://def3l0qhvs8tf" path="res://assets/sounds/gorilla_taper.wav" id="3_681ux"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dfe53"]
 resource_name = "texture"
@@ -51,8 +52,12 @@ points = PackedVector3Array(1.282141, 2.7718253, 0.11516703, -0.17282984, 0.0172
 [node name="door_wood" type="MeshInstance3D" parent="." unique_id=579098489]
 mesh = SubResource("ArrayMesh_04vkj")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="door_wood" unique_id=1108955142]
+[node name="StaticBody3D" type="StaticBody3D" parent="door_wood" unique_id=1108955142 node_paths=PackedStringArray("hit_sound_player")]
 script = ExtResource("1_1xbkx")
+hit_sound_player = NodePath("../../HitSoundPlayer")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="door_wood/StaticBody3D" unique_id=939519984]
 shape = SubResource("ConvexPolygonShape3D_7jip6")
+
+[node name="HitSoundPlayer" type="AudioStreamPlayer3D" parent="." unique_id=1198302641]
+stream = ExtResource("3_681ux")

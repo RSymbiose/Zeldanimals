@@ -2,15 +2,18 @@ extends StaticBody3D
 
 
 @export var health := 1
-@export var visual_root: Node3D          # nœud qui contient les MeshInstance3D (défaut : le parent)
+@export var visual_root: Node3D         # nœud qui contient les MeshInstance3D (défaut : le parent)
+
+# Ajout de la référence vers ton lecteur audio
+@export var hit_sound_player: AudioStreamPlayer3D 
 
 @export_group("Éclats")
-@export var shard_size := 0.1            # taille d'un éclat (m) : petit = plus de morceaux
-@export var max_shards := 40             # plafond TOTAL (garde-le bas pour le Quest : 25-40)
-@export var keep_ratio := 0.7            # part des cases qui deviennent un éclat (0..1)
+@export var shard_size := 0.1             # taille d'un éclat (m) : petit = plus de morceaux
+@export var max_shards := 40              # plafond TOTAL (garde-le bas pour le Quest : 25-40)
+@export var keep_ratio := 0.7             # part des cases qui deviennent un éclat (0..1)
 @export var shard_mass := 0.3
-@export var explosion_speed := 5.0       # vitesse d'éjection (m/s)
-@export var lifetime := 1.0              # secondes avant que les éclats rétrécissent
+@export var explosion_speed := 5.0        # vitesse d'éjection (m/s)
+@export var lifetime := 1.0               # secondes avant que les éclats rétrécissent
 @export var collide_between_shards := false   # false = beaucoup plus léger
 @export var debris_colors: Array[Color] = [
 	Color(0.55, 0.33, 0.2),    # bois
@@ -29,6 +32,9 @@ func on_smashed(impulse: Vector3) -> void:
 
 
 func _break(impulse: Vector3) -> void:
+	if hit_sound_player:
+		hit_sound_player.play()
+
 	var root: Node3D = visual_root if visual_root else get_parent() as Node3D
 	var parent: Node = root.get_parent()
 	if parent == null:
@@ -97,7 +103,7 @@ func _spawn_shard(parent: Node, xform: Transform3D, cell_size: Vector3, hit_dir:
 
 	var shard := RigidBody3D.new()
 	shard.mass = shard_mass
-	shard.collision_layer = 4                                  # le joueur ne les "voit" pas
+	shard.collision_layer = 4                     # le joueur ne les "voit" pas
 	shard.collision_mask = (1 | 4) if collide_between_shards else 1
 
 	var shape := CollisionShape3D.new()

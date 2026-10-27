@@ -3,8 +3,8 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d0wmus8nb6bu2"
-path.s3tc="res://.godot/imported/Mushrooms.png-b36302955b0d2d7922724484452abed3.s3tc.ctex"
-path.etc2="res://.godot/imported/Mushrooms.png-b36302955b0d2d7922724484452abed3.etc2.ctex"
+path.s3tc="res://.godot/imported/Mushrooms.png-f2b895bf10c6ebcebd7bfc8a5eefa9a7.s3tc.ctex"
+path.etc2="res://.godot/imported/Mushrooms.png-f2b895bf10c6ebcebd7bfc8a5eefa9a7.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://addons/textures/Mushrooms.png"
-dest_files=["res://.godot/imported/Mushrooms.png-b36302955b0d2d7922724484452abed3.s3tc.ctex", "res://.godot/imported/Mushrooms.png-b36302955b0d2d7922724484452abed3.etc2.ctex"]
+source_file="res://addons/Textures/Mushrooms.png"
+dest_files=["res://.godot/imported/Mushrooms.png-f2b895bf10c6ebcebd7bfc8a5eefa9a7.s3tc.ctex", "res://.godot/imported/Mushrooms.png-f2b895bf10c6ebcebd7bfc8a5eefa9a7.etc2.ctex"]
 
 [params]
 
