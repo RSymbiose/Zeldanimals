@@ -76,6 +76,7 @@ material = SubResource("StandardMaterial3D_353ay")
 script = ExtResource("2_cqu14")
 
 [node name="PlayerSpawner" parent="." unique_id=1898386833 instance=ExtResource("2_2r1or")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.202224, 1, 0)
 
 [node name="box_stacked_gltf" parent="." unique_id=2075823275 instance=ExtResource("5_353ay")]
 transform = Transform3D(0.18050458, 0, -0.7793703, 0, 0.8, 0, 0.7793703, 0, 0.18050458, 0.99562097, 0, -3.5885181)

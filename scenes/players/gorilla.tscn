@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dfn7wk31fpmmx"]
 
-[ext_resource type="PackedScene" uid="uid://bkmwmffxaq0om" path="res://assets/animals/chicken/textures/gorilla (1).glb" id="1_383j2"]
+[ext_resource type="PackedScene" uid="uid://bkmwmffxaq0om" path="res://assets/animals/gorilla (1).glb" id="1_383j2"]
 [ext_resource type="Script" uid="uid://ch3pb2dyqerai" path="res://scripts/players/gorilla.gd" id="1_w02uj"]
 [ext_resource type="Script" uid="uid://knqp7i4qkd1h" path="res://scripts/players/landing_effect.gd" id="3_sr1gc"]
 
@@ -10,6 +10,7 @@ radius = 0.66308594
 
 [node name="Gorilla" type="CharacterBody3D" unique_id=53839019]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+collision_layer = 9
 script = ExtResource("1_w02uj")
 
 [node name="Model" type="Node3D" parent="." unique_id=1716928279]

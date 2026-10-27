@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://bmhe3r73qspue"]
+
+[ext_resource type="Script" uid="uid://dr7jvt0lpi5ls" path="res://scripts/obstacles/PendulumBlade.gd" id="1_7o1ld"]
+[ext_resource type="Texture2D" uid="uid://dtggi0jkeg5p0" path="res://assets/objects/round_basket_3d_scan_0.jpg" id="1_8ag1q"]
+[ext_resource type="Texture2D" uid="uid://b6fb8u3aor4i0" path="res://addons/Textures/PathRocks_Diffuse.png" id="1_kmn8i"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aubmb"]
+resource_name = "PathRocks"
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_kmn8i")
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_lq68l"]
+material = SubResource("StandardMaterial3D_aubmb")
+height = 0.55
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lq68l"]
+albedo_texture = ExtResource("1_8ag1q")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_hqjvs"]
+material = SubResource("StandardMaterial3D_lq68l")
+top_radius = 0.2
+bottom_radius = 0.2
+height = 4.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_lq68l"]
+height = 4.0
+radius = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7uvag"]
+resource_name = "PathRocks"
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_kmn8i")
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_8ag1q"]
+material = SubResource("StandardMaterial3D_7uvag")
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_kmn8i"]
+
+[node name="PendulumTrap" type="Node3D" unique_id=1339853917]
+
+[node name="BladeHinge" type="AnimatableBody3D" parent="." unique_id=1168956605]
+script = ExtResource("1_7o1ld")
+
+[node name="Base" type="MeshInstance3D" parent="BladeHinge" unique_id=2058649322]
+transform = Transform3D(1.9106857e-15, 4.371139e-08, 1.0000001, 1.0000001, -4.371139e-08, 0, 4.3711392e-08, 1, -4.3711392e-08, 0, -0.0044527054, 0)
+mesh = SubResource("CylinderMesh_lq68l")
+
+[node name="RodMesh" type="MeshInstance3D" parent="BladeHinge" unique_id=290160686]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.134313, 0)
+mesh = SubResource("CylinderMesh_hqjvs")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="BladeHinge" unique_id=1362608950]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.134313, 0)
+shape = SubResource("CylinderShape3D_lq68l")
+
+[node name="BladeMesh" type="MeshInstance3D" parent="BladeHinge" unique_id=2006849908]
+transform = Transform3D(-4.3711385e-08, -0.99999994, 0, 0.99999994, -4.3711385e-08, 0, 0, 0, 1, 0, -4.602803, 0)
+mesh = SubResource("CylinderMesh_8ag1q")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BladeHinge" unique_id=1260509630]
+transform = Transform3D(-4.3711385e-08, -0.99999994, 0, 0.99999994, -4.3711385e-08, 0, 0, 0, 1, 0, -4.602803, 0)
+shape = SubResource("CylinderShape3D_kmn8i")
