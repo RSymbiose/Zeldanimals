@@ -3,8 +3,8 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cf7sjvmbq8eyy"
-path.s3tc="res://.godot/imported/Flowers.png-8e46a89a1a92b9cf7c62d460074f3818.s3tc.ctex"
-path.etc2="res://.godot/imported/Flowers.png-8e46a89a1a92b9cf7c62d460074f3818.etc2.ctex"
+path.s3tc="res://.godot/imported/Flowers.png-83ad0c67d59de2e6874183c1efe358da.s3tc.ctex"
+path.etc2="res://.godot/imported/Flowers.png-83ad0c67d59de2e6874183c1efe358da.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://addons/textures/Flowers.png"
-dest_files=["res://.godot/imported/Flowers.png-8e46a89a1a92b9cf7c62d460074f3818.s3tc.ctex", "res://.godot/imported/Flowers.png-8e46a89a1a92b9cf7c62d460074f3818.etc2.ctex"]
+source_file="res://addons/Textures/Flowers.png"
+dest_files=["res://.godot/imported/Flowers.png-83ad0c67d59de2e6874183c1efe358da.s3tc.ctex", "res://.godot/imported/Flowers.png-83ad0c67d59de2e6874183c1efe358da.etc2.ctex"]
 
 [params]
 

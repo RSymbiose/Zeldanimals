@@ -1,7 +1,10 @@
 [gd_scene format=4 uid="uid://uiaigvxvb23h"]
 
-[ext_resource type="Script" uid="uid://dk7gxqukmejxj" path="res://scripts/obstacles/breakable_box.gd" id="1_1xbkx"]
 [ext_resource type="Texture2D" uid="uid://dpgu3dkwa3vxv" path="res://addons/KayKit-Dungeon-Remastered-1.0-main/addons/kaykit_dungeon_remastered/Assets/gltf/wall_doorway_dungeon_texture.png" id="1_fp04d"]
+[ext_resource type="Script" uid="uid://cryprmdu5oqr" path="res://scripts/obstacles/breakable_by_gorilla.gd" id="2_fp04d"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7jip6"]
+points = PackedVector3Array(1.282141, 2.7718253, 0.11516703, -0.17282984, 0.017255992, -0.099999994, -0.070589244, 0.41488767, -0.23400085, 1.8201, 0.018701646, -0.099907815, 1.369498, 1.2442869, 0.42073965, -0.15774554, 2.3788657, 0.11516703, 1.4568552, 1.375, -0.40862536, -0.20152456, -0.021825314, 0.11516703, 0.19128132, 2.7280722, -0.10305274, 1.770096, 2.3418145, -0.0990543, 1.8496611, -0.021551847, 0.11516703, 1.8496611, 2.1603725, 0.11516703, 1.4568552, 2.7280722, -0.10305274, -0.1634095, 2.1733124, -0.098997794, 0.19128132, 2.7280722, 0.11516703, -0.06429955, 0.46591827, 0.1920009, 0.056126487, 1.7869456, -0.19999999, 1.7187257, 0.41488767, -0.23400085, 1.4568552, 1.3315201, 0.42073965, -0.022584783, 1.8475564, 0.1832696, 1.7187257, 2.5098522, 0.11516703, 1.3259199, 1.2442869, -0.40862536, 1.8119297, 2.1314788, -0.09903861, -0.20152456, 2.204126, 0.11516703, -0.027011096, 2.5970855, 0.11516703, 1.3259199, 1.3315201, -0.40862536, 0.3659956, 2.7718253, 0.11516703, 1.369498, 1.3315201, 0.42073965, 1.413277, 1.2005335, -0.40862536, -0.1267661, 2.3471904, -0.09960997, 1.5442123, 2.6840453, 0.11516703, 1.8060828, 2.3785923, 0.11516703)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dfe53"]
 resource_name = "texture"
@@ -43,16 +46,39 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_oa1xx")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7jip6"]
-points = PackedVector3Array(1.282141, 2.7718253, 0.11516703, -0.17282984, 0.017255992, -0.099999994, -0.070589244, 0.41488767, -0.23400085, 1.8201, 0.018701646, -0.099907815, 1.369498, 1.2442869, 0.42073965, -0.15774554, 2.3788657, 0.11516703, 1.4568552, 1.375, -0.40862536, -0.20152456, -0.021825314, 0.11516703, 0.19128132, 2.7280722, -0.10305274, 1.770096, 2.3418145, -0.0990543, 1.8496611, -0.021551847, 0.11516703, 1.8496611, 2.1603725, 0.11516703, 1.4568552, 2.7280722, -0.10305274, -0.1634095, 2.1733124, -0.098997794, 0.19128132, 2.7280722, 0.11516703, -0.06429955, 0.46591827, 0.1920009, 0.056126487, 1.7869456, -0.19999999, 1.7187257, 0.41488767, -0.23400085, 1.4568552, 1.3315201, 0.42073965, -0.022584783, 1.8475564, 0.1832696, 1.7187257, 2.5098522, 0.11516703, 1.3259199, 1.2442869, -0.40862536, 1.8119297, 2.1314788, -0.09903861, -0.20152456, 2.204126, 0.11516703, -0.027011096, 2.5970855, 0.11516703, 1.3259199, 1.3315201, -0.40862536, 0.3659956, 2.7718253, 0.11516703, 1.369498, 1.3315201, 0.42073965, 1.413277, 1.2005335, -0.40862536, -0.1267661, 2.3471904, -0.09960997, 1.5442123, 2.6840453, 0.11516703, 1.8060828, 2.3785923, 0.11516703)
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_04vkj"]
+particle_flag_rotate_y = true
+emission_shape_scale = Vector3(0.8, 0.1, 0.8)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(0, 1, 0)
+spread = 60.0
+initial_velocity_min = 2.5
+initial_velocity_max = 4.5
+angular_velocity_min = -90.000015
+angular_velocity_max = 89.999985
 
-[node name="Door" type="Node3D" unique_id=404852760]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ggy0t"]
+albedo_color = Color(0.49411765, 0.3137255, 0.2627451, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7jip6"]
+material = SubResource("StandardMaterial3D_ggy0t")
+size = Vector3(0.4, 1, 0.05)
+
+[node name="StaticBody3D" type="StaticBody3D" unique_id=1108955142 node_paths=PackedStringArray("particles")]
+script = ExtResource("2_fp04d")
+particles = NodePath("DebrisParticles")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=939519984]
+shape = SubResource("ConvexPolygonShape3D_7jip6")
 
 [node name="door_wood" type="MeshInstance3D" parent="." unique_id=579098489]
 mesh = SubResource("ArrayMesh_04vkj")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="door_wood" unique_id=1108955142]
-script = ExtResource("1_1xbkx")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="door_wood/StaticBody3D" unique_id=939519984]
-shape = SubResource("ConvexPolygonShape3D_7jip6")
+[node name="DebrisParticles" type="GPUParticles3D" parent="." unique_id=1865023907]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.84813786, 1.2503252, 0)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_04vkj")
+draw_pass_1 = SubResource("BoxMesh_7jip6")
