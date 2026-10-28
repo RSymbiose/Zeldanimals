@@ -1,7 +1,7 @@
-[gd_scene format=4 uid="uid://cl1hi1n6b4kfu"]
+[gd_scene format=4 uid="uid://bwfvblg0g17es"]
 
 [ext_resource type="Texture2D" uid="uid://cf58um00tthmf" path="res://addons/KayKit-Dungeon-Remastered-1.0-main/addons/kaykit_dungeon_remastered/Assets/gltf/floor_tile_big_spikes_dungeon_texture.png" id="1_gud1l"]
-[ext_resource type="Script" uid="uid://bj548b4l1qtta" path="res://scenes/obstacles/area_3d.gd" id="2_1gfgs"]
+[ext_resource type="Script" uid="uid://dlqwrunamq8gp" path="res://scripts/obstacles/spike.gd" id="2_1gfgs"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jjwxa"]
 resource_name = "texture"
