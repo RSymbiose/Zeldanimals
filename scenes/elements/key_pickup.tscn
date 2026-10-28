@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://13ngpmo6ds1x"]
 
-[ext_resource type="Script" uid="uid://7dyaffiyq6jl" path="res://scenes/elements/key_pickup.gd" id="1_kpoel"]
+[ext_resource type="Script" uid="uid://7dyaffiyq6jl" path="res://scripts/elements/key_pickup.gd" id="1_kpoel"]
 [ext_resource type="Texture2D" uid="uid://b08b037g6majl" path="res://addons/KayKit-Dungeon-Remastered-1.0-main/addons/kaykit_dungeon_remastered/Assets/gltf/keyring_dungeon_texture.png" id="2_eyop6"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_y82et"]

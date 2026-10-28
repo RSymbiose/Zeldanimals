@@ -2,7 +2,7 @@ extends Node
 
 # true : on joue PlayerXR avec le simulateur (sans casque)
 # false : PC normal, ou vrai casque si détecté
-const SIMULATE_VR := false 
+const SIMULATE_VR := false
 
 var is_vr := false
 
