@@ -12,7 +12,7 @@ func go_to(path: String) -> void:
 	if _busy:
 		return
 	if not ResourceLoader.exists(path):
-		push_warning("SceneManager : scène introuvable : " + path)
+		_report("Scène introuvable :\n" + path)
 		return
 	_busy = true
 
@@ -23,7 +23,11 @@ func go_to(path: String) -> void:
 		tween_out.tween_method(_set_fade.bind(quad), 0.0, 1.0, FADE_TIME)
 		await tween_out.finished
 
-	get_tree().change_scene_to_file(path)
+	var err := get_tree().change_scene_to_file(path)
+	if err != OK:
+		_report("Changement de scène échoué (erreur %d) :\n%s" % [err, path])
+		_busy = false
+		return
 
 	# On attend que le nouveau joueur et sa caméra existent
 	for i in 30:
@@ -72,3 +76,20 @@ func _set_fade(alpha: float, quad: MeshInstance3D) -> void:
 		return
 	var mat := (quad.mesh as QuadMesh).material as StandardMaterial3D
 	mat.albedo_color = Color(0, 0, 0, alpha)
+
+# Affiche un message d'erreur devant le joueur (visible dans le casque) et le logue
+func _report(text: String) -> void:
+	push_warning(text)
+	print(text)
+	var cam := get_viewport().get_camera_3d()
+	if cam == null:
+		return
+	var label := Label3D.new()
+	label.text = text
+	label.font_size = 32
+	label.pixel_size = 0.002
+	label.no_depth_test = true
+	label.modulate = Color(1.0, 0.45, 0.45)
+	label.position = Vector3(0, -0.2, -1.5)
+	cam.add_child(label)
+	get_tree().create_timer(8.0).timeout.connect(label.queue_free)
