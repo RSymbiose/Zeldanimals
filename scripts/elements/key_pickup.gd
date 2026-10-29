@@ -12,15 +12,16 @@ extends Area3D
 
 signal collected
 
-@export var message := "Vous avez fini le niveau,\nbravo !"
-@export var show_time := true        # affiche le chrono sous le message
-@export var time_label := "Temps"    # texte devant le chrono
+@export_multiline var message := "Bien joué !\nVous avez terminé le niveau\nen {temps}"
+@export var loading_text := "Chargement du niveau suivant..."   # affiché seulement si next_scene est renseigné
 @export var reload_after := 0.0      # secondes avant de relancer le niveau (0 = jamais)
 @export var spin_speed := 1.5        # rotation de la clé (rad/s)
 @export var bob_height := 0.1        # amplitude du va-et-vient vertical (m)
 
 @onready var model: Node3D = $Model
 @onready var shape: CollisionShape3D = $CollisionShape3D
+@export_file("*.tscn") var next_scene: String        # niveau à charger après la clé
+@export var next_scene_delay := 4.0                  # secondes avant la téléportation (laisse lire le chrono)
 
 var elapsed_time := 0.0              # temps final en secondes (lisible par d'autres scripts)
 
@@ -65,15 +66,20 @@ func _on_body_entered(body: Node3D) -> void:
 	tween.chain().tween_callback(queue_free)
 
 	_show_end_screen(_build_end_text())
-	if reload_after > 0.0:
+
+	if next_scene != "":
+		get_tree().create_timer(next_scene_delay).timeout.connect(
+			SceneManager.go_to.bind(next_scene))
+	elif reload_after > 0.0:
 		get_tree().create_timer(reload_after).timeout.connect(get_tree().reload_current_scene)
 
 
 # Message + chrono, par exemple "Vous avez fini le niveau, bravo !" puis "Temps : 01:23.45"
 func _build_end_text() -> String:
-	if not show_time:
-		return message
-	return "%s\n\n%s : %s" % [message, time_label, _format_time(elapsed_time)]
+	var text := message.replace("{temps}", _format_time(elapsed_time))
+	if next_scene != "":
+		text += "\n\n" + loading_text
+	return text
 
 
 func _format_time(seconds: float) -> String:

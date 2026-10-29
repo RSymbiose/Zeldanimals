@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b5mo40l0m2bwl" path="res://scenes/players/player_spawner.tscn" id="2_spawner"]
 [ext_resource type="Environment" uid="uid://bqnqgflivjvue" path="res://starter_kit/scenes/main-environment.tres" id="3_environment"]
 [ext_resource type="PackedScene" uid="uid://di4165njqxn5q" path="res://scenes/obstacles/breakable_box.tscn" id="4_lcu7q"]
+[ext_resource type="Script" uid="uid://cxtfp6bn403ff" path="res://scripts/elements/level_intro.gd" id="5_ibokx"]
 
 [node name="Niveau2" type="Node3D" unique_id=1752848372]
 
@@ -91,3 +92,6 @@ transform = Transform3D(0.067018636, 0, 0.39434573, 0, 0.4, 0, -0.39434573, 0, 0
 
 [node name="box_stacked_gltf15" parent="." unique_id=1776402237 instance=ExtResource("4_lcu7q")]
 transform = Transform3D(0.067018636, 0, 0.39434573, 0, 0.4, 0, -0.39434573, 0, 0.067018636, 3.3645964, 16.205698, 46.060455)
+
+[node name="LevelIntro" type="Node3D" parent="." unique_id=1383277127]
+script = ExtResource("5_ibokx")

@@ -59,7 +59,8 @@ func _ready() -> void:
 	# Sécurité : chaque main suit bien sa manette
 	left_hand.tracker = &"left_hand"
 	right_hand.tracker = &"right_hand"
-
+	if SceneManager.current_form != "":
+		start_form = SceneManager.current_form
 	left_hand.button_pressed.connect(_on_left_button)
 	switch_to(start_form)
 
@@ -151,6 +152,7 @@ func switch_to(form: String) -> void:
 	var previous_form = current_form
 	var first_time: bool = (previous_form == "")
 	current_form = form
+	SceneManager.current_form = form
 
 	var data: Dictionary = FORM_DATA[form]
 	

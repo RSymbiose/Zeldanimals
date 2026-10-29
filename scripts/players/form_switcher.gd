@@ -11,6 +11,15 @@ extends Node3D
 # Vide = toutes (comportement d'origine). Le PlayerSpawner peut la remplir pour un niveau.
 var unlocked_forms: Array[String] = []
 
+# Décalage vertical (en m) appliqué au changement de forme, pour ne pas finir dans le sol.
+# À ajuster selon la hauteur de la capsule de chaque animal.
+const FORM_OFFSETS := {
+	"human": 0.1,
+	"gorilla": 0.5,
+	"chicken": 0.1,
+	"spider": 0.1,
+}
+
 var current: CharacterBody3D
 var current_form := ""
 
@@ -24,62 +33,70 @@ var current_form := ""
 
 func _ready() -> void:
 	add_to_group("player_forms")   # permet aux potions de retrouver le joueur
+	if SceneManager.current_form != "":
+		start_form = SceneManager.current_form
 	switch_to(start_form)
 
 
 func _unhandled_input(event: InputEvent) -> void:
-    if event.is_action_pressed("form_gorilla"):
-        switch_to("gorilla")
-    elif event.is_action_pressed("form_chicken"):
-        switch_to("chicken")
-    elif event.is_action_pressed("form_spider"):
-        switch_to("spider")
+	if event.is_action_pressed("form_gorilla"):
+		_try_switch("gorilla")
+	elif event.is_action_pressed("form_chicken"):
+		_try_switch("chicken")
+	elif event.is_action_pressed("form_spider"):
+		_try_switch("spider")
+
 
 func is_unlocked(form: String) -> bool:
 	return unlocked_forms.is_empty() or (form in unlocked_forms)
-	
+
+
 # Débloque une forme (potion, bonus...) et, par défaut, s'y transforme tout de suite
 func unlock_form(form: String, switch_now := true) -> void:
 	if not unlocked_forms.is_empty() and not (form in unlocked_forms):
 		unlocked_forms.append(form)
 	if switch_now:
 		switch_to(form)
-		
+
+
 func _try_switch(form: String) -> void:
 	if is_unlocked(form):
 		switch_to(form)
 
+
 func switch_to(form: String) -> void:
-    if form == current_form:
-        return
-    var packed: PackedScene = scenes.get(form)
-    if packed == null:
-        push_warning("Aucune scène assignée pour : " + form)
-        return
+	if form == current_form:
+		return
+	var packed: PackedScene = scenes.get(form)
+	if packed == null:
+		push_warning("Aucune scène assignée pour : " + form)
+		return
 
-    # On mémorise l'état de l'animal actuel
-    var xf := global_transform
-    var vel := Vector3.ZERO
-    if current:
-        xf = current.global_transform
-        vel = current.velocity
-        
-        # Ajustement intelligent de la hauteur en fonction du nouvel animal
-        var offset = FORM_OFFSETS.get(form, 0.1)
-        xf.origin.y += offset
-        
-        remove_child(current)
-        current.queue_free()
+	# La forme n'est mémorisée qu'une fois qu'on sait qu'elle existe
+	SceneManager.current_form = form
 
-    # On crée le nouveau
-    var body := packed.instantiate() as CharacterBody3D
-    add_child(body)
-    body.global_transform = xf
-    body.velocity = vel
+	# On mémorise l'état de l'animal actuel
+	var xf := global_transform
+	var vel := Vector3.ZERO
+	if current:
+		xf = current.global_transform
+		vel = current.velocity
 
-    var cam := body.find_child("Camera3D", true, false) as Camera3D
-    if cam:
-        cam.make_current()
+		# Ajustement de la hauteur en fonction du nouvel animal
+		xf.origin.y += FORM_OFFSETS.get(form, 0.1)
+
+		remove_child(current)    # retiré tout de suite (une seule caméra active)
+		current.queue_free()
+
+	# On crée le nouveau
+	var body := packed.instantiate() as CharacterBody3D
+	add_child(body)
+	body.global_transform = xf
+	body.velocity = vel
+
+	var cam := body.find_child("Camera3D", true, false) as Camera3D
+	if cam:
+		cam.make_current()
 
 	current = body
 	current_form = form

@@ -11,7 +11,11 @@
 [ext_resource type="PackedScene" uid="uid://bbx3j1kvmqt1n" path="res://scenes/elements/door.tscn" id="9_a2kni"]
 [ext_resource type="PackedScene" uid="uid://03cd0es2hhvr" path="res://scenes/elements/pressure_plate.tscn" id="10_jgfry"]
 [ext_resource type="PackedScene" uid="uid://13ngpmo6ds1x" path="res://scenes/elements/key_pickup.tscn" id="11_jgfry"]
-[ext_resource type="PackedScene" uid="uid://bwfvblg0g17es" path="res://scenes/obstacles/Spike.tscn" id="12_binth"]
+[ext_resource type="PackedScene" uid="uid://cl1hi1n6b4kfu" path="res://scenes/obstacles/Spike.tscn" id="12_binth"]
+[ext_resource type="PackedScene" uid="uid://bakvxnwo7ru1h" path="res://scenes/elements/magic_potion_gorilla.tscn" id="13_db12b"]
+[ext_resource type="PackedScene" uid="uid://cigk6vhnw11f0" path="res://scenes/elements/magic_potion_spider.tscn" id="14_cs1f6"]
+[ext_resource type="PackedScene" uid="uid://cs1a1g1831ngl" path="res://scenes/elements/magic_potion_chicken.tscn" id="15_c8o32"]
+[ext_resource type="AudioStream" uid="uid://vonyswkaug3g" path="res://assets/sounds/Kahoot In Game Music (10 Second Count Down) 22.mp3" id="16_c8o32"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2j2o3"]
 albedo_texture = ExtResource("5_jcafc")
@@ -85,7 +89,8 @@ data = {
 metadata/_editor_floor_ = Vector3(0, -2, 0)
 
 [node name="PlayerSpawner" parent="." unique_id=1898386833 instance=ExtResource("2_jctsv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.028799, 2.0674229, 16.384827)
+forced_start_form = "human"
+allowed_forms = Array[String](["human"])
 
 [node name="Environment" type="WorldEnvironment" parent="." unique_id=1648354633]
 environment = ExtResource("3_2nfo2")
@@ -136,6 +141,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55181646, -3.9558868, 37.18
 
 [node name="KeyPickup" parent="." unique_id=657834593 instance=ExtResource("11_jgfry")]
 transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, -26.105082, 5.466298, 42.201443)
+next_scene = "uid://b3ct0ddjfao2s"
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1583247686]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4811943, 1.57412, -3.15698)
