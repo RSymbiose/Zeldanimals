@@ -117,4 +117,4 @@ libraries/ = SubResource("AnimationLibrary_tkgit")
 
 [node name="AudioGrincement" type="AudioStreamPlayer3D" parent="." unique_id=611232095]
 stream = ExtResource("3_r8hfh")
-volume_db = 20.0
+volume_db = 40.132

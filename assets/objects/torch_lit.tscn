@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dbrdj2ilnidmt"]
+
+[ext_resource type="ArrayMesh" uid="uid://b0d84bqbyvvmd" path="res://addons/KayKit-Dungeon-Remastered-1.0-main/addons/kaykit_dungeon_remastered/Assets/obj/torch_lit.obj" id="1_bq40o"]
+
+[node name="TorchLit" type="Node3D" unique_id=1591998347]
+
+[node name="TorchLit" type="MeshInstance3D" parent="." unique_id=455745534]
+transform = Transform3D(0.9741767, 0.2257865, 0, -0.2257865, 0.9741767, 0, 0, 0, 1, 0, 0.3723632, 0)
+mesh = ExtResource("1_bq40o")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1364534963]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.113777876, 0.80145466, 0)
+light_color = Color(0.95686275, 0.3372549, 0, 1)
+omni_range = 7.5159693

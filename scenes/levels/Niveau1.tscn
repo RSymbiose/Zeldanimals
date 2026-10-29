@@ -110,9 +110,6 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 2, 0)
 
-[node name="Breakable_door" parent="." unique_id=404852760 instance=ExtResource("4_q6p0d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8201928, 0, 4.0007906)
-
 [node name="panneau_gorille_porte" type="CSGBox3D" parent="." unique_id=45565155]
 transform = Transform3D(-1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0, 1, 1.6581326, 1.668894, 3.7644153)
 material_override = SubResource("StandardMaterial3D_2j2o3")
@@ -169,9 +166,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6709698, 17.245188)
 
 [node name="MusiqueFond" type="AudioStreamPlayer" parent="." unique_id=1022233870]
 stream = ExtResource("16_c8o32")
-volume_db = -20.583
-autoplay = true
+volume_db = -80.0
 parameters/looping = true
+
+[node name="Door_gorille" parent="." unique_id=1108955142 instance=ExtResource("4_q6p0d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 0, 4)
 
 [connection signal="pressed" from="PressurePlate" to="Door2" method="open"]
 [connection signal="released" from="PressurePlate" to="Door2" method="close"]

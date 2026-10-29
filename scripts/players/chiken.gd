@@ -20,103 +20,103 @@ var is_xr_active: bool = false
 var is_gliding: bool = false
 
 func _ready() -> void:
-    var xr_interface = XRServer.find_interface("OpenXR")
-    
-    # Liaison du signal de ponte au lecteur audio
-    if chicken_mechanics and chicken_audio:
-        chicken_mechanics.egg_laid.connect(chicken_audio.play_lay_egg_sound)
-        
-    if xr_interface and xr_interface.is_initialized():
-        DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
-        get_viewport().use_xr = true
-        is_xr_active = true
-        fallback_cam.current = false
-        xr_camera.current = true
-        left_controller.button_pressed.connect(_on_xr_button_pressed)
-    else:
-        get_viewport().use_xr = false
-        is_xr_active = false
-        xr_camera.current = false
-        fallback_cam.current = true
-        Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	var xr_interface = XRServer.find_interface("OpenXR")
+	
+	# Liaison du signal de ponte au lecteur audio
+	if chicken_mechanics and chicken_audio:
+		chicken_mechanics.egg_laid.connect(chicken_audio.play_lay_egg_sound)
+		
+	if xr_interface and xr_interface.is_initialized():
+		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
+		get_viewport().use_xr = true
+		is_xr_active = true
+		fallback_cam.current = false
+		xr_camera.current = true
+		left_controller.button_pressed.connect(_on_xr_button_pressed)
+	else:
+		get_viewport().use_xr = false
+		is_xr_active = false
+		xr_camera.current = false
+		fallback_cam.current = true
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _unhandled_input(event: InputEvent) -> void:
-    if is_xr_active:
-        return
+	if is_xr_active:
+		return
 
-    if event is InputEventMouseMotion:
-        # Rotation horizontale (lacet) appliquée au corps complet
-        rotate_y(-event.relative.x * mouse_sensitivity)
-        # Rotation verticale (tangage) appliquée uniquement au pivot de la caméra
-        head_pivot.rotate_x(-event.relative.y * mouse_sensitivity)
-        head_pivot.rotation.x = clamp(head_pivot.rotation.x, deg_to_rad(-70), deg_to_rad(70))
+	if event is InputEventMouseMotion:
+		# Rotation horizontale (lacet) appliquée au corps complet
+		rotate_y(-event.relative.x * mouse_sensitivity)
+		# Rotation verticale (tangage) appliquée uniquement au pivot de la caméra
+		head_pivot.rotate_x(-event.relative.y * mouse_sensitivity)
+		head_pivot.rotation.x = clamp(head_pivot.rotation.x, deg_to_rad(-70), deg_to_rad(70))
 
 func _physics_process(delta: float) -> void:
-    # 1. GESTION DES COMMANDES (PC vs VR)
-    if not is_xr_active:
-        # Commandes Clavier / Souris (PC)
-        if Input.is_action_just_pressed("lay_egg"):
-            chicken_mechanics.lay_egg()
+	# 1. GESTION DES COMMANDES (PC vs VR)
+	if not is_xr_active:
+		# Commandes Clavier / Souris (PC)
+		if Input.is_action_just_pressed("lay_egg"):
+			chicken_mechanics.lay_egg()
 
-        is_gliding = Input.is_action_pressed("jump") and not is_on_floor() and velocity.y < 0.0
+		is_gliding = Input.is_action_pressed("jump") and not is_on_floor() and velocity.y < 0.0
 
-        if is_on_floor() and Input.is_action_just_pressed("jump"):
-            velocity.y = jump_velocity
+		if is_on_floor() and Input.is_action_just_pressed("jump"):
+			velocity.y = jump_velocity
 
-        var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
-        var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
+		var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 
-        if direction:
-            velocity.x = direction.x * speed
-            velocity.z = direction.z * speed
-        else:
-            velocity.x = move_toward(velocity.x, 0, speed)
-            velocity.z = move_toward(velocity.z, 0, speed)
-            
-    else:
-        # Commandes VR (Casque et Mouvement orienté par le regard / joystick)
-        
-        # La poule plane automatiquement dès qu'elle est en l'air et descendante en VR
-        is_gliding = not is_on_floor() and velocity.y < 0.0
+		if direction:
+			velocity.x = direction.x * speed
+			velocity.z = direction.z * speed
+		else:
+			velocity.x = move_toward(velocity.x, 0, speed)
+			velocity.z = move_toward(velocity.z, 0, speed)
+			
+	else:
+		# Commandes VR (Casque et Mouvement orienté par le regard / joystick)
+		
+		# La poule plane automatiquement dès qu'elle est en l'air et descendante en VR
+		is_gliding = not is_on_floor() and velocity.y < 0.0
 
-        # On récupère les entrées du joystick de déplacement (ajustez les noms d'actions si nécessaire)
-        var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
-        
-        # On extrait la direction où regarde la tête sur le plan horizontal (axe Y ignoré)
-        var cam_transform = xr_camera.global_transform
-        var forward = -cam_transform.basis.z
-        forward.y = 0.0
-        forward = forward.normalized()
-        
-        var right = cam_transform.basis.x
-        right.y = 0.0
-        right = right.normalized()
+		# On récupère les entrées du joystick de déplacement (ajustez les noms d'actions si nécessaire)
+		var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
+		
+		# On extrait la direction où regarde la tête sur le plan horizontal (axe Y ignoré)
+		var cam_transform = xr_camera.global_transform
+		var forward = -cam_transform.basis.z
+		forward.y = 0.0
+		forward = forward.normalized()
+		
+		var right = cam_transform.basis.x
+		right.y = 0.0
+		right = right.normalized()
 
-        # Calcul de la direction du mouvement en fonction du regard du casque et du joystick
-        var direction = (forward * -input_dir.y + right * input_dir.x).normalized()
+		# Calcul de la direction du mouvement en fonction du regard du casque et du joystick
+		var direction = (forward * -input_dir.y + right * input_dir.x).normalized()
 
-        if direction:
-            velocity.x = direction.x * speed
-            velocity.z = direction.z * speed
-            # Optionnel : fait pivoter le corps de la poule dans la direction du regard en VR
-            rotation.y = atan2(-forward.x, -forward.z)
-        else:
-            velocity.x = move_toward(velocity.x, 0, speed)
-            velocity.z = move_toward(velocity.z, 0, speed)
+		if direction:
+			velocity.x = direction.x * speed
+			velocity.z = direction.z * speed
+			# Optionnel : fait pivoter le corps de la poule dans la direction du regard en VR
+			rotation.y = atan2(-forward.x, -forward.z)
+		else:
+			velocity.x = move_toward(velocity.x, 0, speed)
+			velocity.z = move_toward(velocity.z, 0, speed)
 
-    # 2. PHYSIQUE UNIVERSELLE (Gravité et planage communs PC / VR)
-    if not is_on_floor():
-        if is_gliding:
-            velocity.y = max(velocity.y - (gravity * 0.15 * delta), glide_fall_speed)
-        else:
-            velocity.y -= gravity * delta
+	# 2. PHYSIQUE UNIVERSELLE (Gravité et planage communs PC / VR)
+	if not is_on_floor():
+		if is_gliding:
+			velocity.y = max(velocity.y - (gravity * 0.15 * delta), glide_fall_speed)
+		else:
+			velocity.y -= gravity * delta
 
-    # 3. APPLICATION DU VECTEUR DE VÉLOCITÉ
-    move_and_slide()
+	# 3. APPLICATION DU VECTEUR DE VÉLOCITÉ
+	move_and_slide()
 
-    # Active le son en boucle tant que la poule est en l'air (ou en planage)
-    chicken_audio.update_airborne_sound(not is_on_floor())
+	# Active le son en boucle tant que la poule est en l'air (ou en planage)
+	chicken_audio.update_airborne_sound(not is_on_floor())
 
 func _on_xr_button_pressed(button_name: String) -> void:
-    if button_name == "trigger_click":
-        chicken_mechanics.lay_egg()
+	if button_name == "trigger_click":
+		chicken_mechanics.lay_egg()

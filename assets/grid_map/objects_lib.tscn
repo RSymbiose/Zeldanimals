@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bj0i6au88m72m"]
+
+[ext_resource type="PackedScene" uid="uid://dbrdj2ilnidmt" path="res://assets/objects/torch_lit.tscn" id="1_y71pd"]
+
+[node name="objects_lib" type="Node3D" unique_id=2018389773]
+
+[node name="TorchLit" parent="." unique_id=1591998347 instance=ExtResource("1_y71pd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1329031, 0, 0.039081812)

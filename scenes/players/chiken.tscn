@@ -4,18 +4,47 @@
 [ext_resource type="Script" uid="uid://us0f3pfwu4f6" path="res://scenes/players/torso.gd" id="2_3ijgo"]
 [ext_resource type="PackedScene" uid="uid://dxld32ofm7vro" path="res://assets/animals/chicken/source/Ri.glb" id="2_7uw25"]
 [ext_resource type="Script" uid="uid://b7frlc6qit2su" path="res://scripts/players/ChickenMechanics.gd" id="2_nyl4t"]
-[ext_resource type="PackedScene" uid="uid://gria1pnmibe1" path="res://scenes/elements/egg.tscn" id="3_mavoh"]
 [ext_resource type="Script" uid="uid://cb3rjafuhkm7e" path="res://scenes/players/audio_manager.gd" id="4_7letv"]
+[ext_resource type="Script" uid="uid://do2uelv6e85j7" path="res://scripts/elements/egg.gd" id="5_3ijgo"]
 [ext_resource type="AudioStream" uid="uid://dm0721olto6ml" path="res://assets/sounds/chiken_panic.mp3" id="5_ub7vp"]
 [ext_resource type="AudioStream" uid="uid://q0jh8iiyvocq" path="res://assets/sounds/chiken_happy.mp3" id="6_7uw25"]
 [ext_resource type="AudioStream" uid="uid://cw6mah0qyahfy" path="res://assets/sounds/chiken_relax.mp3" id="7_3ijgo"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_65oxy"]
+bounce = 0.35
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_gowqe"]
+radius = 0.032046653
+
+[sub_resource type="SphereMesh" id="SphereMesh_sar7t"]
+radius = 0.022
+height = 0.062
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gb1te"]
+albedo_color = Color(0.9607843, 0.92156863, 0.9019608, 1)
+roughness = 0.4
+
+[sub_resource type="PackedScene" id="PackedScene_i664c"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [PackedInt32Array(), PackedInt32Array()],
+"names": PackedStringArray("Egg", "RigidBody3D", "collision_layer", "collision_mask", "mass", "physics_material_override", "script", "CollisionShape3D", "CollisionShape3D", "shape", "MeshInstance3D", "MeshInstance3D", "mesh", "surface_material_override/0"),
+"node_count": 3,
+"node_ids": PackedInt32Array(1677060446, 1422086806, 975640981),
+"node_paths": [NodePath("."), NodePath("./CollisionShape3D")],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 5, 2, 0, 3, 1, 4, 2, 5, 3, 6, 4, 0, 1073741824, 0, 8, 7, -1, 1, 9, 5, 0, 1073741825, 0, 11, 10, -1, 2, 12, 6, 13, 7, 0),
+"variants": [2, 17, 0.1, SubResource("PhysicsMaterial_65oxy"), ExtResource("5_3ijgo"), SubResource("SphereShape3D_gowqe"), SubResource("SphereMesh_sar7t"), SubResource("StandardMaterial3D_gb1te")],
+"version": 3
+}
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gb1te"]
 radius = 0.27783203
 height = 0.55566406
 
 [node name="Chiken" type="CharacterBody3D" unique_id=394487220 node_paths=PackedStringArray("chicken_mechanics")]
-collision_layer = 2
+collision_layer = 3
 collision_mask = 17
 script = ExtResource("1_pda1v")
 chicken_mechanics = NodePath("XROrigin3D/Torso/ChickenMechanics")
@@ -31,7 +60,7 @@ transform = Transform3D(-0.24, 0, -2.0981465e-08, 0, 0.24, 0, 2.0981465e-08, 0, 
 [node name="ChickenMechanics" type="Marker3D" parent="XROrigin3D/Torso" unique_id=1618063705]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11088431, 0.1285944)
 script = ExtResource("2_nyl4t")
-egg_scene = ExtResource("3_mavoh")
+egg_scene = SubResource("PackedScene_i664c")
 
 [node name="Node3D" type="Node3D" parent="XROrigin3D/Torso" unique_id=1282675835]
 
@@ -64,15 +93,15 @@ script = ExtResource("4_7letv")
 
 [node name="JumpGlidePlayer" type="AudioStreamPlayer" parent="AudioManager" unique_id=178486083]
 stream = ExtResource("5_ub7vp")
-volume_db = -10.0
+volume_db = 24.0
 
 [node name="LayEggPlayer" type="AudioStreamPlayer" parent="AudioManager" unique_id=862168816]
 stream = ExtResource("6_7uw25")
-volume_db = -10.0
+volume_db = 24.0
 
 [node name="IdlePlayer" type="AudioStreamPlayer" parent="AudioManager" unique_id=910189878]
 stream = ExtResource("7_3ijgo")
-volume_db = -10.0
+volume_db = 24.0
 
 [node name="IdleTimer" type="Timer" parent="AudioManager" unique_id=2080468777]
 one_shot = true
