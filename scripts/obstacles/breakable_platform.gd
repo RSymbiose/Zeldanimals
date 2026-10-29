@@ -9,6 +9,7 @@ extends Node3D
 @onready var mesh: MeshInstance3D = $MeshInstance3D
 @onready var particles: GPUParticles3D = $DebrisParticles
 @onready var area: Area3D = $Area3D
+@onready var break_sound: AudioStreamPlayer3D = get_node_or_null("AudioStreamPlayer3D")
 
 var is_broken: bool = false
 
@@ -35,6 +36,9 @@ func trigger_break() -> void:
 	area_col.set_deferred("disabled", true)
 	mesh.visible = false
 
+	if break_sound:
+		break_sound.play()
+		
 	if particles:
 		particles.restart()
 
