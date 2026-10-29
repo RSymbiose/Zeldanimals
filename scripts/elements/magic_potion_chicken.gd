@@ -221,10 +221,12 @@ func _drink() -> void:
 	_prompt.visible = false
 
 	var player := get_tree().get_first_node_in_group("player_forms")
+	var checkpoint := _player_transform(player)   # position AVANT la transformation
 	if player and player.has_method("unlock_form"):
 		player.unlock_form(form_to_unlock, true)
 	else:
 		push_warning("MagicPotion : aucun joueur trouvé (groupe 'player_forms').")
+	_save_checkpoint(checkpoint)
 
 	drunk.emit()
 	_play_effect()
@@ -275,6 +277,33 @@ func _debug_print(delta: float) -> void:
 	else:
 		info += " | peut boire=%s" % _can_interact
 	print(info)
+
+
+# Où se trouve le joueur (au sol, orienté comme sa tête) : ce sera son point de réapparition
+func _player_transform(player: Node) -> Transform3D:
+	if player == null:
+		return global_transform
+	# PC : le corps actif du FormSwitcher
+	var current = player.get("current")
+	if current is Node3D:
+		return (current as Node3D).global_transform
+	# VR : au sol, sous la tête
+	if player is Node3D:
+		var rig := player as Node3D
+		var cam := get_viewport().get_camera_3d()
+		if cam:
+			var feet := Vector3(cam.global_position.x, rig.global_position.y, cam.global_position.z)
+			return Transform3D(Basis.from_euler(Vector3(0.0, cam.global_rotation.y, 0.0)), feet)
+		return rig.global_transform
+	return global_transform
+
+
+func _save_checkpoint(xf: Transform3D) -> void:
+	var spawner := get_tree().get_first_node_in_group("player_spawner")
+	if spawner and spawner.has_method("set_checkpoint"):
+		spawner.set_checkpoint(xf)
+	else:
+		push_warning("MagicPotion : aucun PlayerSpawner trouvé (groupe 'player_spawner'), pas de point de réapparition.")
 
 
 func _is_vr() -> bool:

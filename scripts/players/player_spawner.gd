@@ -18,9 +18,14 @@ signal player_respawned
 @export var void_death_enabled := true
 @export var kill_y := -15.0          # hauteur MONDE sous laquelle le joueur "meurt"
 
+@export_group("Points de contrôle")
+@export var use_potion_checkpoints := true   # boire une potion enregistre le point de réapparition
+
 var _player: Node3D
 var _respawning := false
 var _fade_rect: ColorRect
+var _checkpoint := Transform3D.IDENTITY
+var _has_checkpoint := false
 
 
 func _ready() -> void:
@@ -33,18 +38,33 @@ func _ready() -> void:
 		return
 
 	var player := scene.instantiate() as Node3D
-	
+
 	# Réglages de formes propres à ce niveau (vide = comportement par défaut du joueur)
 	if forced_start_form != "":
 		player.set("start_form", forced_start_form)
 	if not allowed_forms.is_empty():
 		player.set("unlocked_forms", allowed_forms.duplicate())
-	
+
 	get_parent().add_child.call_deferred(player)
 	await player.ready
 	player.global_transform = global_transform
 	_player = player
 	print("PlayerSpawner: joueur créé en ", global_position)
+
+# Enregistre le point où le joueur réapparaîtra après une mort (appelé par les potions)
+func set_checkpoint(xf: Transform3D) -> void:
+	if not use_potion_checkpoints:
+		return
+	xf.origin.y += 0.1          # évite de réapparaître dans le sol
+	_checkpoint = xf
+	_has_checkpoint = true
+	print("PlayerSpawner: point de réapparition enregistré en ", xf.origin)
+
+
+# Revient au point de départ du niveau
+func clear_checkpoint() -> void:
+	_has_checkpoint = false
+
 
 func force_respawn() -> void:
 	if _respawning:
@@ -63,7 +83,7 @@ func _physics_process(_delta: float) -> void:
 
 func _die_and_respawn() -> void:
 	_respawning = true
-	print("PlayerSpawner: chute dans le vide -> retour au départ")
+	print("PlayerSpawner: le joueur est mort -> retour %s" % ("à la dernière potion" if _has_checkpoint else "au départ"))
 	player_died.emit()
 
 	# Fondu au noir rapide sur PC (un écran 2D n'est pas visible dans un casque)
@@ -78,7 +98,7 @@ func _die_and_respawn() -> void:
 
 
 func _teleport_player() -> void:
-	var spawn := Transform3D(global_transform.basis.orthonormalized(), global_position)
+	var spawn := _checkpoint if _has_checkpoint else Transform3D(global_transform.basis.orthonormalized(), global_position)
 
 	# VR : on passe par le PlayerBody de XR Tools, qui déplace tout le rig
 	if _player is XROrigin3D:

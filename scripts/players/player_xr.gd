@@ -10,7 +10,7 @@ const FORMS := ["human", "gorilla", "chicken", "spider"]
 # Réglages par animal : taille (world_scale) et vitesse de saut
 const FORM_DATA := {
 	"human":   {"scale": 1.0, "jump": 4.5},
-	"gorilla": {"scale": 1.3, "jump": 10.0},
+	"gorilla": {"scale": 1.1, "jump": 10.0},
 	"chicken": {"scale": 0.8, "jump": 5.0},
 	"spider":  {"scale": 0.5, "jump": 4.5},
 }
@@ -55,6 +55,9 @@ var _camera_applied_pitch := 0.0
 
 func _ready() -> void:
 	add_to_group("player_forms")   # permet aux potions de retrouver le joueur
+
+	# Affiche les mains (ou des manettes simplifiées) sur les deux manettes
+	add_child(HandVisuals.new())
 
 	# Sécurité : chaque main suit bien sa manette
 	left_hand.tracker = &"left_hand"
