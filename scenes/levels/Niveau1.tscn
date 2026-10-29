@@ -12,6 +12,10 @@
 [ext_resource type="PackedScene" uid="uid://03cd0es2hhvr" path="res://scenes/elements/pressure_plate.tscn" id="10_jgfry"]
 [ext_resource type="PackedScene" uid="uid://13ngpmo6ds1x" path="res://scenes/elements/key_pickup.tscn" id="11_jgfry"]
 [ext_resource type="PackedScene" uid="uid://bwfvblg0g17es" path="res://scenes/obstacles/Spike.tscn" id="12_binth"]
+[ext_resource type="PackedScene" uid="uid://bakvxnwo7ru1h" path="res://scenes/elements/magic_potion_gorilla.tscn" id="13_db12b"]
+[ext_resource type="PackedScene" uid="uid://cigk6vhnw11f0" path="res://scenes/elements/magic_potion_spider.tscn" id="14_cs1f6"]
+[ext_resource type="PackedScene" uid="uid://cs1a1g1831ngl" path="res://scenes/elements/magic_potion_chicken.tscn" id="15_c8o32"]
+[ext_resource type="AudioStream" uid="uid://vonyswkaug3g" path="res://assets/sounds/Kahoot In Game Music (10 Second Count Down) 22.mp3" id="16_c8o32"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2j2o3"]
 albedo_texture = ExtResource("5_jcafc")
@@ -80,12 +84,13 @@ cell_center_x = false
 cell_center_y = false
 cell_center_z = false
 data = {
-"cells": PackedInt32Array(0, 65534, 1, 65534, 2, 20, 65534, 65534, 1441812, 2, 65534, 655380, 2, 2, 1048596, 65534, 1, 1441812, 1, 2, 20, 65534, 0, 1441813, 0, 2, 655382, 2, 65535, 1048596, 2, 0, 1441818, 2, 8, 1048577, 65534, 8, 1048602, 65534, 7, 20, 1, 7, 20, 0, 7, 22, 0, 9, 22, 65534, 9, 20, 1, 9, 20, -131072, 9, 655361, -131071, 10, 1441813, 65535, 6, 1441812, 1, 6, 1441812, 65535, 10, 1441793, 1, 10, 1441793, 0, 11, 655381, -65537, 10, 1048597, -65537, 19, 1048591, -131072, 20, 21, -131071, 19, 1441793, -131071, 17, 1441812, -131071, 12, 1048596, 65535, 65534, 655380, 0, 65535, 25, -65538, 18, 21, -65538, 20, 1441812, -65537, 20, 655380, -65539, 21, 655386, -65540, 18, 655361, -65540, 21, 655380, 65527, 18, 21, 65526, 22, 21, 65527, 22, 20, 65524, 22, 20, 65525, 18, 26, 196599, 18, 1, 196597, 18, 1, 196599, 22, 1, 196597, 22, 1, 65524, 19, 1441793, 65524, 21, 1441813, 196596, 19, 1441793, 196596, 21, 1441811, 65528, 18, 1441812, 65528, 21, 1441812, 196600, 19, 1441793, 196600, 21, 1441813, -65541, 19, 1048596, -65541, 20, 1048598, -65537, 17, 1441812, -131072, 17, 22, 65528, 20, 1441814, -65537, 12, 1048596, 196595, 20, 1, 196595, 22, 1, 196594, 21, 1048577)
+"cells": PackedInt32Array(0, 65534, 1, 65534, 2, 20, 65534, 65534, 1441812, 2, 65534, 655380, 2, 2, 1048596, 65534, 1, 1441812, 1, 2, 20, 65534, 0, 1441813, 0, 2, 655382, 2, 65535, 1048596, 2, 0, 1441818, 2, 8, 1048577, 65534, 8, 1048602, 65534, 7, 20, 1, 7, 20, 0, 7, 22, 0, 9, 22, 65534, 9, 20, 1, 9, 20, -131072, 9, 655361, -131071, 10, 1441813, 65535, 6, 1441812, 1, 6, 1441812, 65535, 10, 1441793, 1, 10, 1441793, 0, 11, 655381, -65537, 10, 1048597, -131072, 20, 21, -131071, 19, 1441793, -131071, 17, 1441812, -131071, 12, 1048596, 65535, 65534, 655380, 0, 65535, 25, -65538, 18, 21, -65538, 20, 1441812, -65537, 20, 655380, -65539, 21, 655386, -65540, 18, 655361, -65540, 21, 655380, 65527, 18, 21, 65526, 22, 21, 65527, 22, 20, 65524, 22, 20, 65525, 18, 26, 196599, 18, 1, 196597, 18, 1, 196599, 22, 1, 196597, 22, 1, 65524, 19, 1441793, 65524, 21, 1441813, 196596, 19, 1441793, 196596, 21, 1441811, 65528, 18, 1441812, 65528, 21, 1441812, 196600, 19, 1441793, 196600, 21, 1441813, -65541, 19, 1048596, -65541, 20, 1048598, -131072, 17, 22, 65528, 20, 1441814, -65537, 12, 1048596, 196595, 20, 1, 196595, 22, 1, 196594, 21, 1048577, -65537, 17, 1441812, -65537, 19, 1441814)
 }
-metadata/_editor_floor_ = Vector3(0, -1, 0)
+metadata/_editor_floor_ = Vector3(0, -2, 0)
 
 [node name="PlayerSpawner" parent="." unique_id=1898386833 instance=ExtResource("2_jctsv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.028799, 2.0674229, 16.384827)
+forced_start_form = "human"
+allowed_forms = Array[String](["human"])
 
 [node name="Environment" type="WorldEnvironment" parent="." unique_id=1648354633]
 environment = ExtResource("3_2nfo2")
@@ -129,7 +134,7 @@ material_override = SubResource("StandardMaterial3D_a2kni")
 size = Vector3(1, 0.8, 0.06)
 
 [node name="Door2" parent="." unique_id=1045257540 instance=ExtResource("9_a2kni")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.0855656, -3.9833167, 38.988503)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.115474, -3.9833167, 38.988503)
 
 [node name="PressurePlate" parent="." unique_id=226101524 instance=ExtResource("10_jgfry")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55181646, -3.9558868, 37.181744)
@@ -151,6 +156,21 @@ omni_range = 1.7959244
 
 [node name="Spike" parent="." unique_id=1256215882 instance=ExtResource("12_binth")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.9633844, 19.908003)
+
+[node name="MagicPotionGorille" parent="." unique_id=424295415 instance=ExtResource("13_db12b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 2.9257526)
+
+[node name="MagicPotionSpider" parent="." unique_id=1789356169 instance=ExtResource("14_cs1f6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.7887917, -2.9838316, 38.24957)
+
+[node name="MagicPotionChicken" parent="." unique_id=1634295851 instance=ExtResource("15_c8o32")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6709698, 17.245188)
+
+[node name="MusiqueFond" type="AudioStreamPlayer" parent="." unique_id=1022233870]
+stream = ExtResource("16_c8o32")
+volume_db = -20.583
+autoplay = true
+parameters/looping = true
 
 [connection signal="pressed" from="PressurePlate" to="Door2" method="open"]
 [connection signal="released" from="PressurePlate" to="Door2" method="close"]

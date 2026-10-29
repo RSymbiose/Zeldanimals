@@ -3,12 +3,13 @@ extends XROrigin3D
 
 signal form_changed(form: String)
 
-@export_enum("gorilla", "chicken", "spider") var start_form := "spider"
+@export_enum("human", "gorilla", "chicken", "spider") var start_form := "spider"
 
-const FORMS := ["gorilla", "chicken", "spider"]
+const FORMS := ["human", "gorilla", "chicken", "spider"]
 
 # Réglages par animal : taille (world_scale) et vitesse de saut
 const FORM_DATA := {
+	"human":   {"scale": 1.0, "jump": 4.5},
 	"gorilla": {"scale": 1.3, "jump": 10.0},
 	"chicken": {"scale": 0.8, "jump": 5.0},
 	"spider":  {"scale": 0.5, "jump": 4.5},
@@ -42,6 +43,10 @@ const CLIMB_CAMERA_TURN_SPEED := 5.0
 # Ponte d'œuf (enfant de BodyModels/chicken) ; reste null s'il n'existe pas encore
 @onready var chicken_mech: ChickenMechanics = get_node_or_null("BodyModels/chicken/ChickenMechanics") as ChickenMechanics
 
+# Formes que le joueur a le droit de prendre.
+# Vide = toutes sauf "human" (comportement d'origine). Le PlayerSpawner peut la remplir.
+var unlocked_forms: Array[String] = []
+
 var current_form := ""
 var _camera_pitch_initialized := false
 var _camera_base_pitch := 0.0
@@ -49,6 +54,8 @@ var _camera_applied_pitch := 0.0
 
 
 func _ready() -> void:
+	add_to_group("player_forms")   # permet aux potions de retrouver le joueur
+
 	# Sécurité : chaque main suit bien sa manette
 	left_hand.tracker = &"left_hand"
 	right_hand.tracker = &"right_hand"
@@ -106,12 +113,34 @@ func _on_left_button(button: String) -> void:
 	match button:
 		# Bouton Y (manette gauche) : forme suivante
 		"by_button":
-			var next: int = (FORMS.find(current_form) + 1) % FORMS.size()
-			switch_to(FORMS[next])
+			var available := _available_forms()
+			if available.size() > 1:
+				var next: int = (available.find(current_form) + 1) % available.size()
+				switch_to(available[next])
 		# Gâchette gauche : la poule pond un œuf
 		"trigger_click":
 			if current_form == "chicken" and chicken_mech:
 				chicken_mech.lay_egg()
+
+
+# Formes accessibles avec le bouton Y
+func _available_forms() -> Array:
+	var out := []
+	for f in FORMS:
+		if unlocked_forms.is_empty():
+			if f != "human":
+				out.append(f)
+		elif f in unlocked_forms:
+			out.append(f)
+	return out
+
+
+# Débloque une forme (potion, bonus...) et, par défaut, s'y transforme tout de suite
+func unlock_form(form: String, switch_now := true) -> void:
+	if not unlocked_forms.is_empty() and not (form in unlocked_forms):
+		unlocked_forms.append(form)
+	if switch_now:
+		switch_to(form)
 
 
 func switch_to(form: String) -> void:

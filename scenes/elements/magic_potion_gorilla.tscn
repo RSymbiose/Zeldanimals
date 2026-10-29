@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bakvxnwo7ru1h"]
+
+[ext_resource type="PackedScene" uid="uid://bjoqa8qahqjom" path="res://addons/KayKit-Dungeon-Remastered-1.0-main/addons/kaykit_dungeon_remastered/Assets/gltf/bottle_A_green.gltf.glb" id="1_oi3h1"]
+[ext_resource type="Script" uid="uid://lsvmpo20osr7" path="res://scripts/elements/magic_potion_gorilla.gd" id="2_bfej7"]
+
+[node name="MagicPotionGorilla" unique_id=424295415 instance=ExtResource("1_oi3h1")]
+script = ExtResource("2_bfej7")

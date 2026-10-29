@@ -2,9 +2,9 @@ extends Node
 
 # true : on joue PlayerXR avec le simulateur (sans casque)
 # false : PC normal, ou vrai casque si détecté
-const SIMULATE_VR := true
+const SIMULATE_VR := false
 
-var is_vr := true
+var is_vr := false
 
 func _ready() -> void:
 	var xr := XRServer.find_interface("OpenXR")

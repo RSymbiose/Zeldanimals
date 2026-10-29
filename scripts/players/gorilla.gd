@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 @export var speed := 5.0
-@export var jump_velocity := 7.0       # le gorille saute haut
+@export var jump_velocity := 15.0       # le gorille saute haut
 @export var mouse_sensitivity := 0.002
 @export var smash_range := 2.5
 @export var smash_force := 15.0

@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cigk6vhnw11f0"]
+
+[ext_resource type="PackedScene" uid="uid://bjoqa8qahqjom" path="res://addons/KayKit-Dungeon-Remastered-1.0-main/addons/kaykit_dungeon_remastered/Assets/gltf/bottle_A_green.gltf.glb" id="1_obsib"]
+[ext_resource type="Script" uid="uid://c84x1oprkhsfh" path="res://scripts/elements/magic_potion_spider.gd" id="2_obsib"]
+
+[node name="MagicPotionSpider" unique_id=424295415 instance=ExtResource("1_obsib")]
+script = ExtResource("2_obsib")
