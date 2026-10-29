@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://chr7mic4ofc5f" path="res://scripts/players/player_xr.gd" id="1_p35tw"]
 [ext_resource type="Script" uid="uid://b18kkstg643yw" path="res://addons/godot-xr-tools/functions/function_pickup.gd" id="1_sih2n"]
 [ext_resource type="Script" uid="uid://dc4hg8kq5ia5y" path="res://addons/godot-xr-tools/functions/movement_direct.gd" id="2_p35tw"]
-[ext_resource type="Script" path="res://scripts/players/spider_auto_wall_climb.gd" id="15_spider_climb"]
+[ext_resource type="Script" uid="uid://bc8n7j3gli2lq" path="res://scripts/players/spider_auto_wall_climb.gd" id="15_spider_climb"]
 [ext_resource type="Script" uid="uid://dtl3uo5dnibof" path="res://addons/godot-xr-tools/functions/movement_climb.gd" id="3_kfkw0"]
 [ext_resource type="Script" uid="uid://kuxqh057vr5y" path="res://addons/godot-xr-tools/functions/movement_turn.gd" id="4_2vh6j"]
 [ext_resource type="Script" uid="uid://dur4rs2uhr6cp" path="res://addons/godot-xr-tools/functions/movement_jump.gd" id="5_nygpt"]
@@ -15,8 +15,8 @@
 [ext_resource type="Script" uid="uid://knqp7i4qkd1h" path="res://scripts/players/landing_effect.gd" id="11_kfkw0"]
 [ext_resource type="PackedScene" uid="uid://dxld32ofm7vro" path="res://assets/animals/chicken/source/Ri.glb" id="12_nygpt"]
 [ext_resource type="Script" uid="uid://b7frlc6qit2su" path="res://scripts/players/ChickenMechanics.gd" id="13_chicken_mechanics"]
-[ext_resource type="PackedScene" uid="uid://gria1pnmibe1" path="res://scenes/elements/egg.tscn" id="14_egg"]
-[ext_resource type="PackedScene" path="res://assets/animals/spider/Spider-gltf/Spider.gltf" id="16_spider_model"]
+[ext_resource type="PackedScene" uid="uid://gria1pnmibe1" path="res://scenes/obstacles/chiken_assets/egg.tscn" id="14_egg"]
+[ext_resource type="PackedScene" uid="uid://c4qkngorna1ch" path="res://assets/animals/spider/Spider-gltf/Spider.gltf" id="16_spider_model"]
 
 [node name="PlayerXr" type="XROrigin3D" unique_id=148719387]
 script = ExtResource("1_p35tw")

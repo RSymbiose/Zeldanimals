@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Zeldanimals"
-run/main_scene="uid://c3uwjj4tldv77"
+run/main_scene="uid://c4c1ui57ywagj"
 config/features=PackedStringArray("4.7", "Mobile")
 config/icon="res://icon.svg"
 

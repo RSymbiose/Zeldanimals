@@ -39,8 +39,11 @@ emission_energy_multiplier = 0.0
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_8ag1q"]
 material = SubResource("StandardMaterial3D_7uvag")
+top_radius = 1.0
+bottom_radius = 1.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_kmn8i"]
+radius = 1.0112305
 
 [node name="PendulumTrap" type="Node3D" unique_id=1339853917]
 

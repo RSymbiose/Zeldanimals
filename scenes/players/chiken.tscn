@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://us0f3pfwu4f6" path="res://scenes/players/torso.gd" id="2_3ijgo"]
 [ext_resource type="PackedScene" uid="uid://dxld32ofm7vro" path="res://assets/animals/chicken/source/Ri.glb" id="2_7uw25"]
 [ext_resource type="Script" uid="uid://b7frlc6qit2su" path="res://scripts/players/ChickenMechanics.gd" id="2_nyl4t"]
-[ext_resource type="PackedScene" uid="uid://gria1pnmibe1" path="res://scenes/elements/egg.tscn" id="3_mavoh"]
+[ext_resource type="PackedScene" uid="uid://gria1pnmibe1" path="res://scenes/obstacles/chiken_assets/egg.tscn" id="3_mavoh"]
 [ext_resource type="Script" uid="uid://cb3rjafuhkm7e" path="res://scenes/players/audio_manager.gd" id="4_7letv"]
 [ext_resource type="AudioStream" uid="uid://dm0721olto6ml" path="res://assets/sounds/chiken_panic.mp3" id="5_ub7vp"]
 [ext_resource type="AudioStream" uid="uid://q0jh8iiyvocq" path="res://assets/sounds/chiken_happy.mp3" id="6_7uw25"]
@@ -15,7 +15,7 @@ radius = 0.27783203
 height = 0.55566406
 
 [node name="Chiken" type="CharacterBody3D" unique_id=394487220 node_paths=PackedStringArray("chicken_mechanics")]
-collision_layer = 2
+collision_layer = 3
 collision_mask = 17
 script = ExtResource("1_pda1v")
 chicken_mechanics = NodePath("XROrigin3D/Torso/ChickenMechanics")

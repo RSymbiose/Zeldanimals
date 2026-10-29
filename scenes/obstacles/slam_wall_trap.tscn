@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://c6ewufqw1mu82"]
+
+[ext_resource type="Texture2D" uid="uid://w8ceaqmb2n8t" path="res://addons/Textures/T_RockTrim_BaseColor.png" id="1_2nc5x"]
+[ext_resource type="Script" uid="uid://bb6do3nh7r2l4" path="res://scripts/obstacles/SlamWallTrap.gd" id="1_irsm4"]
+[ext_resource type="PackedScene" uid="uid://c2nscy1xo1iwd" path="res://addons/glTF/RockPath_Round_Small_3.gltf" id="1_uj8yi"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_irsm4"]
+albedo_texture = ExtResource("1_2nc5x")
+
+[sub_resource type="BoxMesh" id="BoxMesh_trogy"]
+material = SubResource("StandardMaterial3D_irsm4")
+size = Vector3(2, 2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uj8yi"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2nc5x"]
+size = Vector3(0.35339355, 2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_voq3u"]
+size = Vector3(2, 2, 2)
+
+[node name="SlamWallTrap" type="Node3D" unique_id=815322924]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0084105, 0)
+script = ExtResource("1_irsm4")
+slam_distance = 2.0
+
+[node name="SlamBlock" type="AnimatableBody3D" parent="." unique_id=1133420381]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SlamBlock" unique_id=1268708699]
+mesh = SubResource("BoxMesh_trogy")
+
+[node name="RockPath_Round_Small_32" parent="SlamBlock" unique_id=513484766 instance=ExtResource("1_uj8yi")]
+transform = Transform3D(-3.059797e-08, 0.7, 0, -0.7, -3.059797e-08, 0, 0, 0, 0.7, 1.0062444, 0.525668, -0.48088625)
+
+[node name="RockPath_Round_Small_34" parent="SlamBlock" unique_id=935014356 instance=ExtResource("1_uj8yi")]
+transform = Transform3D(-3.059797e-08, 0.7, 0, 0.6733675, 2.9433828e-08, -0.19124901, -0.19124901, -8.35976e-09, -0.6733675, 1.0062444, -0.3544092, -0.4762009)
+
+[node name="RockPath_Round_Small_35" parent="SlamBlock" unique_id=1459421532 instance=ExtResource("1_uj8yi")]
+transform = Transform3D(-3.059797e-08, 0.7, 0, 0.69922763, 3.056421e-08, 0.0328739, 0.0328739, 1.4369637e-09, -0.69922763, 1.0062444, -0.4174094, 0.49093542)
+
+[node name="RockPath_Round_Small_33" parent="SlamBlock" unique_id=1569910364 instance=ExtResource("1_uj8yi")]
+transform = Transform3D(-3.059797e-08, 0.7, 0, -0.69752306, -3.04897e-08, 0.058835197, 0.058835197, 2.5717681e-09, 0.69752306, 1.0062444, 0.46707594, 0.4308507)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SlamBlock" unique_id=494833246]
+shape = SubResource("BoxShape3D_uj8yi")
+
+[node name="HitArea" type="Area3D" parent="SlamBlock" unique_id=128720577]
+
+[node name="HitShape3D" type="CollisionShape3D" parent="SlamBlock/HitArea" unique_id=1083411927]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.91423154, 0, 0)
+shape = SubResource("BoxShape3D_2nc5x")
+
+[node name="TriggerArea" type="Area3D" parent="." unique_id=822240112]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TriggerArea" unique_id=319623786]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9868338, 0, 0)
+shape = SubResource("BoxShape3D_voq3u")

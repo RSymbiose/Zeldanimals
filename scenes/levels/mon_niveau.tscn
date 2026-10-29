@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://di4165njqxn5q" path="res://scenes/obstacles/breakable_box.tscn" id="5_353ay"]
 [ext_resource type="MeshLibrary" uid="uid://bhrqp6q3saulm" path="res://scenes/obstacles/level_library.meshlib" id="5_fchhq"]
 [ext_resource type="Texture2D" uid="uid://dfnp36y6p146h" path="res://addons/glTF/T_Brick_BaseColor.png" id="5_ymg0c"]
+[ext_resource type="PackedScene" uid="uid://bmhe3r73qspue" path="res://scenes/obstacles/pendulum_trap.tscn" id="6_ymg0c"]
+[ext_resource type="PackedScene" uid="uid://c6ewufqw1mu82" path="res://scenes/obstacles/slam_wall_trap.tscn" id="7_fchhq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uyvqc"]
 
@@ -113,3 +115,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1811919, 4.5694256, 0)
 amount = 50
 lifetime = 1.47
 process_material = SubResource("ParticleProcessMaterial_y82et")
+
+[node name="PendulumTrap" parent="." unique_id=1339853917 instance=ExtResource("6_ymg0c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.905413, 5.4526663, -0.5634327)
+
+[node name="BladeHinge" parent="PendulumTrap" index="0" unique_id=1168956605]
+initial_phase = 1.0
+
+[node name="PendulumTrap2" parent="." unique_id=1767653830 instance=ExtResource("6_ymg0c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.893286, 5.841203, 1.8105145)
+
+[node name="SlamWallTrap" parent="." unique_id=815322924 instance=ExtResource("7_fchhq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.874711, 1.0384383, -6.6738186)
+
+[editable path="PendulumTrap"]
