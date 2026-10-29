@@ -1,7 +1,7 @@
 class_name KeyPickup
 extends Area3D
 # Clé de fin de niveau : quand le joueur la touche, elle disparaît
-# et un écran "Vous avez fini le niveau, bravo !" s'affiche.
+# et un écran de fin s'affiche avec le temps mis pour finir le niveau.
 #  - PC  : écran sombre plein cadre avec le message (CanvasLayer)
 #  - VR  : panneau flottant devant le joueur (un écran 2D n'est pas visible dans un casque)
 #
@@ -13,6 +13,8 @@ extends Area3D
 signal collected
 
 @export var message := "Vous avez fini le niveau,\nbravo !"
+@export var show_time := true        # affiche le chrono sous le message
+@export var time_label := "Temps"    # texte devant le chrono
 @export var reload_after := 0.0      # secondes avant de relancer le niveau (0 = jamais)
 @export var spin_speed := 1.5        # rotation de la clé (rad/s)
 @export var bob_height := 0.1        # amplitude du va-et-vient vertical (m)
@@ -20,12 +22,18 @@ signal collected
 @onready var model: Node3D = $Model
 @onready var shape: CollisionShape3D = $CollisionShape3D
 
+var elapsed_time := 0.0              # temps final en secondes (lisible par d'autres scripts)
+
 var _collected := false
 var _time := 0.0
 var _model_rest_y := 0.0
+var _start_ms := 0
 
 
 func _ready() -> void:
+	# Le chrono démarre au chargement du niveau
+	_start_ms = Time.get_ticks_msec()
+
 	# On détecte toutes les couches (le PlayerBody VR n'est pas forcément sur la couche 1)
 	# et on filtre par type de corps dans _on_body_entered.
 	collision_mask = 0xFFFFF
@@ -45,6 +53,7 @@ func _on_body_entered(body: Node3D) -> void:
 	if _collected or not (body is CharacterBody3D):
 		return
 	_collected = true
+	elapsed_time = (Time.get_ticks_msec() - _start_ms) / 1000.0
 	collected.emit()
 	shape.set_deferred("disabled", true)
 
@@ -55,21 +64,34 @@ func _on_body_entered(body: Node3D) -> void:
 	tween.tween_property(model, "position:y", model.position.y + 0.5, 0.3)
 	tween.chain().tween_callback(queue_free)
 
-	_show_end_screen()
+	_show_end_screen(_build_end_text())
 	if reload_after > 0.0:
 		get_tree().create_timer(reload_after).timeout.connect(get_tree().reload_current_scene)
 
 
-func _show_end_screen() -> void:
+# Message + chrono, par exemple "Vous avez fini le niveau, bravo !" puis "Temps : 01:23.45"
+func _build_end_text() -> String:
+	if not show_time:
+		return message
+	return "%s\n\n%s : %s" % [message, time_label, _format_time(elapsed_time)]
+
+
+func _format_time(seconds: float) -> String:
+	var minutes := int(seconds / 60.0)
+	var secs := fmod(seconds, 60.0)
+	return "%02d:%05.2f" % [minutes, secs]
+
+
+func _show_end_screen(text: String) -> void:
 	var manager := get_node_or_null("/root/PlatformManager")
 	var in_vr: bool = manager != null and manager.is_vr
 	if in_vr:
-		_show_screen_3d()
+		_show_screen_3d(text)
 	else:
-		_show_screen_2d()
+		_show_screen_2d(text)
 
 
-func _show_screen_2d() -> void:
+func _show_screen_2d(text: String) -> void:
 	var layer := CanvasLayer.new()
 	layer.layer = 100
 
@@ -79,7 +101,7 @@ func _show_screen_2d() -> void:
 	layer.add_child(background)
 
 	var label := Label.new()
-	label.text = message
+	label.text = text
 	label.add_theme_font_size_override("font_size", 56)
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
@@ -90,7 +112,7 @@ func _show_screen_2d() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE   # libère la souris (le gorille la capture)
 
 
-func _show_screen_3d() -> void:
+func _show_screen_3d(text: String) -> void:
 	var cam := get_viewport().get_camera_3d()
 	if cam == null:
 		return
@@ -108,7 +130,7 @@ func _show_screen_3d() -> void:
 
 	var quad := MeshInstance3D.new()
 	var quad_mesh := QuadMesh.new()
-	quad_mesh.size = Vector2(2.8, 1.2)
+	quad_mesh.size = Vector2(2.8, 1.6)    # plus haut : le texte fait maintenant 4 lignes
 	var material := StandardMaterial3D.new()
 	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
@@ -119,7 +141,7 @@ func _show_screen_3d() -> void:
 	panel.add_child(quad)
 
 	var label := Label3D.new()
-	label.text = message
+	label.text = text
 	label.font_size = 56
 	label.pixel_size = 0.003
 	label.outline_size = 8

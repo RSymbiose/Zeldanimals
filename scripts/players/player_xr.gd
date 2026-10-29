@@ -9,9 +9,9 @@ const FORMS := ["gorilla", "chicken", "spider"]
 
 # Réglages par animal : taille (world_scale) et vitesse de saut
 const FORM_DATA := {
-	"gorilla": {"scale": 1.3, "jump": 10.0},
-	"chicken": {"scale": 0.8, "jump": 5.0},
-	"spider":  {"scale": 0.5, "jump": 4.5},
+	"gorilla": {"scale": 1.3, "jump": 10.0, "height_offset": 0.6},
+	"chicken": {"scale": 0.5, "jump": 5.0, "height_offset": 0.25},
+	"spider":  {"scale": 0.2, "jump": 4.5, "height_offset": 0.1},
 }
 
 # Distance (en mètres) dont le corps est reculé par rapport à la tête,
@@ -32,7 +32,7 @@ const CLIMB_CAMERA_TURN_SPEED := 5.0
 @onready var auto_wall_climb: Node = $LeftHand/SpiderAutoWallClimb
 @onready var smash: Node = $RightHand/SmashVR
 @onready var climb_left: Node = $LeftHand/XRToolsMovementClimb
-@onready var climb_right: Node = $RightHand/XRToolsMovementClimb
+@onready var climb_right: Node = $LeftHand/XRToolsMovementClimb
 
 @onready var landing: Node = $LandingEffect
 @onready var player_body: XRToolsPlayerBody = get_node_or_null("PlayerBody") as XRToolsPlayerBody
@@ -73,11 +73,12 @@ func _process(_delta: float) -> void:
 
 
 func _update_grapple_aim() -> void:
-	if camera == null or grapple_ray == null:
+	if right_hand == null or grapple_ray == null:
 		return
-	var forward := -camera.global_transform.basis.z
-	grapple_ray.global_position = camera.global_position
-	grapple_ray.look_at(camera.global_position + forward, Vector3.UP)
+	# Le rayon part de la manette droite et pointe dans la direction où pointe la manette
+	grapple_ray.global_position = right_hand.global_position
+	var forward := -right_hand.global_transform.basis.z
+	grapple_ray.look_at(right_hand.global_position + forward, Vector3.UP)
 
 
 func _update_climb_view(delta: float) -> void:
@@ -117,11 +118,26 @@ func _on_left_button(button: String) -> void:
 func switch_to(form: String) -> void:
 	if form == current_form or not FORM_DATA.has(form):
 		return
-	var first_time := current_form == ""
+	
+	var previous_form = current_form
+	var first_time: bool = (previous_form == "")
 	current_form = form
 
 	var data: Dictionary = FORM_DATA[form]
-	_apply_scale(data["scale"], not first_time)
+	
+	# Calcul d'un décalage vertical proportionnel pour éviter de passer à travers le sol ou de flotter
+	var height_adjustment := 0.0
+	if not first_time and FORM_DATA.has(previous_form):
+		# Si on passe à un gorille, on le surélève généreusement pour éviter qu'il traverse le sol
+		if form == "gorilla":
+			height_adjustment = 2.0
+		else:
+			var prev_scale = FORM_DATA[previous_form]["scale"]
+			var new_scale = data["scale"]
+			height_adjustment = (new_scale - prev_scale) * 0.35
+
+	_apply_scale(data["scale"], not first_time, height_adjustment)
+	
 	if player_body and player_body.default_physics:
 		player_body.default_physics.jump_velocity = data["jump"]
 
@@ -142,16 +158,14 @@ func switch_to(form: String) -> void:
 	form_changed.emit(form)
 
 
-func _apply_scale(target: float, is_switch: bool) -> void:
-	# Changement instantané : animer world_scale fait changer la hauteur de
-	# la capsule de collision à chaque frame et peut faire traverser le sol.
+func _apply_scale(target: float, is_switch: bool, height_offset: float = 0.3) -> void:
 	world_scale = target
 	if not is_switch:
 		return
 
-	# On remonte légèrement le joueur et on annule sa vitesse
+	# On ajuste la hauteur avec le décalage calculé pour ne pas s'enfoncer dans le sol
 	var xf := global_transform
-	xf.origin.y += 0.3
+	xf.origin.y += height_offset
 	if player_body and player_body.has_method("teleport"):
 		player_body.teleport(xf)
 	else:

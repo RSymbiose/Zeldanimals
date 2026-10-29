@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bbx3j1kvmqt1n" path="res://scenes/elements/door.tscn" id="9_a2kni"]
 [ext_resource type="PackedScene" uid="uid://03cd0es2hhvr" path="res://scenes/elements/pressure_plate.tscn" id="10_jgfry"]
 [ext_resource type="PackedScene" uid="uid://13ngpmo6ds1x" path="res://scenes/elements/key_pickup.tscn" id="11_jgfry"]
-[ext_resource type="PackedScene" uid="uid://bwfvblg0g17es" path="res://scenes/obstacles/Spike.tscn" id="12_binth"]
+[ext_resource type="PackedScene" uid="uid://cl1hi1n6b4kfu" path="res://scenes/obstacles/Spike.tscn" id="12_binth"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2j2o3"]
 albedo_texture = ExtResource("5_jcafc")
@@ -85,7 +85,7 @@ data = {
 metadata/_editor_floor_ = Vector3(0, -1, 0)
 
 [node name="PlayerSpawner" parent="." unique_id=1898386833 instance=ExtResource("2_jctsv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.028799, 2.0674229, 16.384827)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.282627, 4.88032, 42.26244)
 
 [node name="Environment" type="WorldEnvironment" parent="." unique_id=1648354633]
 environment = ExtResource("3_2nfo2")

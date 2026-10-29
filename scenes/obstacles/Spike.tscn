@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://bwfvblg0g17es"]
+[gd_scene format=4 uid="uid://cl1hi1n6b4kfu"]
 
 [ext_resource type="Texture2D" uid="uid://cf58um00tthmf" path="res://addons/KayKit-Dungeon-Remastered-1.0-main/addons/kaykit_dungeon_remastered/Assets/gltf/floor_tile_big_spikes_dungeon_texture.png" id="1_gud1l"]
 [ext_resource type="Script" uid="uid://dlqwrunamq8gp" path="res://scripts/obstacles/spike.gd" id="2_1gfgs"]
@@ -55,6 +55,7 @@ mesh = SubResource("ArrayMesh_1gfgs")
 [node name="StaticBody3D" type="StaticBody3D" parent="spike" unique_id=453594927]
 
 [node name="Area3D" type="Area3D" parent="spike/StaticBody3D" unique_id=2061996838]
+collision_mask = 524289
 script = ExtResource("2_1gfgs")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="spike/StaticBody3D/Area3D" unique_id=1341173106]
