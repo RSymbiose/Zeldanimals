@@ -10,6 +10,10 @@ signal player_respawned
 @export var pc_player: PackedScene   # form_switcher.tscn
 @export var xr_player: PackedScene   # player_xr.tscn
 
+@export_group("Formes du joueur")
+@export var forced_start_form := ""             # "human", "gorilla"... vide = celle du joueur
+@export var allowed_forms: Array[String] = []   # vide = toutes les formes autorisées
+
 @export_group("Chute dans le vide")
 @export var void_death_enabled := true
 @export var kill_y := -15.0          # hauteur MONDE sous laquelle le joueur "meurt"
@@ -29,6 +33,13 @@ func _ready() -> void:
 		return
 
 	var player := scene.instantiate() as Node3D
+	
+	# Réglages de formes propres à ce niveau (vide = comportement par défaut du joueur)
+	if forced_start_form != "":
+		player.set("start_form", forced_start_form)
+	if not allowed_forms.is_empty():
+		player.set("unlocked_forms", allowed_forms.duplicate())
+	
 	get_parent().add_child.call_deferred(player)
 	await player.ready
 	player.global_transform = global_transform

@@ -61,3 +61,4 @@ shape = SubResource("ConvexPolygonShape3D_7jip6")
 
 [node name="HitSoundPlayer" type="AudioStreamPlayer3D" parent="." unique_id=1198302641]
 stream = ExtResource("3_681ux")
+volume_db = 20.0
