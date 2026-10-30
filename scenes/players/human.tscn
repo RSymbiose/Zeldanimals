@@ -1,19 +1,35 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene format=3 uid="uid://c0xo1uavmu330"]
 
-[ext_resource type="Script" path="res://scripts/players/human.gd" id="1_human"]
+[ext_resource type="Script" uid="uid://cg7y51pl1h5vm" path="res://scripts/players/human.gd" id="1_human"]
+[ext_resource type="Texture2D" uid="uid://dm5xjoxfexs3i" path="res://assets/johnny_en_carton/silhouette_johnny_entier.png" id="2_johnny"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_human"]
 radius = 0.35
 height = 1.8
 
-[node name="Human" type="CharacterBody3D"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_johnny"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_texture = ExtResource("2_johnny")
+
+[sub_resource type="QuadMesh" id="QuadMesh_lutcv"]
+material = SubResource("StandardMaterial3D_johnny")
+size = Vector2(1.61, 2.01)
+
+[node name="Human" type="CharacterBody3D" unique_id=1263374023]
 script = ExtResource("1_human")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=36453648]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 shape = SubResource("CapsuleShape3D_human")
 
-[node name="Head" type="Node3D" parent="."]
+[node name="Head" type="Node3D" parent="." unique_id=1071575802]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 
-[node name="Camera3D" type="Camera3D" parent="Head"]
+[node name="Camera3D" type="Camera3D" parent="Head" unique_id=2067593661]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1526687762]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.005, 0)
+mesh = SubResource("QuadMesh_lutcv")

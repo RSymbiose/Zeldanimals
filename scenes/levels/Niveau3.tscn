@@ -185,7 +185,7 @@ Vous avez terminé le niveau
 en {temps}"
 
 [node name="Door" parent="." unique_id=1045257540 instance=ExtResource("12_hqf1u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0.057, -7)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10.238883, 0.21682234, -9.018705)
 
 [node name="PressurePlate" parent="." unique_id=226101524 instance=ExtResource("13_xk6v8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.938769, 0.09169963, 0.9000634)
