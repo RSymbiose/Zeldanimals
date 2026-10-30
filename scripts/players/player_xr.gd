@@ -11,8 +11,8 @@ const FORMS := ["human", "gorilla", "chicken", "spider"]
 const FORM_DATA := {
 	"human":   {"scale": 1.0, "jump": 4.5},
 	"gorilla": {"scale": 1.1, "jump": 10.0},
-	"chicken": {"scale": 0.8, "jump": 5.0},
-	"spider":  {"scale": 0.5, "jump": 4.5},
+	"chicken": {"scale": 0.5, "jump": 8.0},
+	"spider":  {"scale": 0.3, "jump": 4.5},
 }
 
 # Distance (en mètres) dont le corps est reculé par rapport à la tête,
@@ -42,7 +42,7 @@ const CLIMB_CAMERA_TURN_SPEED := 5.0
 @onready var body_models: Node3D = $BodyModels
 # Ponte d'œuf (enfant de BodyModels/chicken) ; reste null s'il n'existe pas encore
 @onready var chicken_mech: ChickenMechanics = get_node_or_null("BodyModels/chicken/ChickenMechanics") as ChickenMechanics
-
+@onready var chicken_audio: ChickenAudio = get_node_or_null("BodyModels/chicken/AudioManager") as ChickenAudio
 # Formes que le joueur a le droit de prendre.
 # Vide = toutes sauf "human" (comportement d'origine). Le PlayerSpawner peut la remplir.
 var unlocked_forms: Array[String] = []
@@ -65,6 +65,8 @@ func _ready() -> void:
 	if SceneManager.current_form != "":
 		start_form = SceneManager.current_form
 	left_hand.button_pressed.connect(_on_left_button)
+	if chicken_mech and chicken_audio:
+		chicken_mech.egg_laid.connect(chicken_audio.play_lay_egg_sound)
 	switch_to(start_form)
 
 
@@ -82,6 +84,11 @@ func _process(_delta: float) -> void:
 		camera.position.z) + back
 	body_models.rotation.y = yaw
 
+func _physics_process(_delta: float) -> void:
+	if chicken_audio == null:
+		return
+	var in_air := current_form == "chicken" and player_body != null and not player_body.on_ground
+	chicken_audio.update_airborne_sound(in_air)
 
 func _update_grapple_aim() -> void:
 	if right_hand == null or grapple_ray == null:
@@ -189,6 +196,9 @@ func switch_to(form: String) -> void:
 	if not first_time:
 		_haptic_feedback(form)
 
+	if chicken_audio:
+		chicken_audio.set_active(form == "chicken")
+		
 	form_changed.emit(form)
 
 

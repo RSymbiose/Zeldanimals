@@ -101,6 +101,21 @@ transform = Transform3D(-0.24, 0, -2.0981465e-08, 0, 0.24, 0, 2.0981465e-08, 0, 
 script = ExtResource("13_chicken_mechanics")
 egg_scene = ExtResource("14_egg")
 
+[node name="AudioManager" type="Node3D" parent="BodyModels/chicken" unique_id=1617483500]
+script = ExtResource("18_dpwsd")
+
+[node name="IdleTimer" type="Timer" parent="BodyModels/chicken/AudioManager" unique_id=353769356]
+one_shot = true
+
+[node name="JumpGlidePlayer" type="AudioStreamPlayer3D" parent="BodyModels/chicken/AudioManager" unique_id=1907011978]
+stream = ExtResource("19_4ncwa")
+
+[node name="LayEggPlayer" type="AudioStreamPlayer3D" parent="BodyModels/chicken/AudioManager" unique_id=879379961]
+stream = ExtResource("20_avh0v")
+
+[node name="IdlePlayer" type="AudioStreamPlayer3D" parent="BodyModels/chicken/AudioManager" unique_id=2129293695]
+stream = ExtResource("21_tdl5b")
+
 [node name="spider" type="Node3D" parent="BodyModels" unique_id=1356928781]
 
 [node name="SpiderModel" parent="BodyModels/spider" unique_id=2037124578 instance=ExtResource("16_spider_model")]
