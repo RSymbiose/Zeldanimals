@@ -4,10 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://dpgu3dkwa3vxv" path="res://addons/KayKit-Dungeon-Remastered-1.0-main/addons/kaykit_dungeon_remastered/Assets/gltf/wall_doorway_dungeon_texture.png" id="2_e708x"]
 [ext_resource type="AudioStream" uid="uid://b64gmjwrra7jy" path="res://assets/sounds/grincements.wav" id="3_r8hfh"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_g0q41"]
-margin = 0.0
-size = Vector3(2.027832, 2.726593, 0.17316894)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dfe53"]
 resource_name = "texture"
 albedo_texture = ExtResource("2_e708x")
@@ -48,12 +44,16 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_oa1xx")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_g0q41"]
+margin = 0.0
+size = Vector3(2.027832, 2.726593, 0.11734619)
+
 [sub_resource type="Animation" id="Animation_e708x"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
+tracks/0/path = NodePath("MeshInstance3D:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -68,29 +68,30 @@ resource_name = "fermeture_porte"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
+tracks/0/path = NodePath("MeshInstance3D:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, 3.1415927, 0), Vector3(0, 1.5707964, 0)]
+"values": [Vector3(0, 1.5707964, 0), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_02i0t"]
 resource_name = "ouverture_porte"
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
+tracks/0/path = NodePath("MeshInstance3D:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, 1.5707964, 0), Vector3(0, 3.1415927, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, 1.5707964, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tkgit"]
@@ -100,17 +101,18 @@ _data = {
 &"ouverture_porte": SubResource("Animation_02i0t")
 }
 
-[node name="Door" type="AnimatableBody3D" unique_id=1045257540]
-collision_mask = 0
+[node name="Door" type="AnimatableBody3D" unique_id=134744508]
 script = ExtResource("1_2xcpy")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=509227534]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0060889, 1.370049, 0.19322881)
-shape = SubResource("BoxShape3D_g0q41")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1625881257]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.842922, -1.376852, -0.036584467)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1625881257]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8490108, -0.16190743, -0.25772458)
 mesh = SubResource("ArrayMesh_r8hfh")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=554850005]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=509227534]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.842922, 1.376852, 0.03658448)
+shape = SubResource("BoxShape3D_g0q41")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=508002163]
 libraries/ = SubResource("AnimationLibrary_tkgit")
