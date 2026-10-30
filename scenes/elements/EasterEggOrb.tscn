@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://c7scjp67uxmkq"]
+
+[ext_resource type="Script" uid="uid://cw7obwspev4vv" path="res://scenes/elements/easter_egg_orb.gd" id="1_4cghg"]
+[ext_resource type="Texture2D" uid="uid://dm5xjoxfexs3i" path="res://assets/johnny_en_carton/silhouette_johnny_entier.png" id="2_johnny"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_johnny"]
+transparency = 2
+cull_mode = 2
+albedo_texture = ExtResource("2_johnny")
+
+[sub_resource type="QuadMesh" id="QuadMesh_johnny"]
+material = SubResource("StandardMaterial3D_johnny")
+size = Vector2(1.61, 2.01)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_johnny"]
+size = Vector3(1, 2, 1)
+
+[node name="EasterEggOrb" type="Area3D"]
+script = ExtResource("1_4cghg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.005, 0)
+mesh = SubResource("QuadMesh_johnny")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_johnny")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]

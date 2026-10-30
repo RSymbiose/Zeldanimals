@@ -14,9 +14,13 @@
 [ext_resource type="Script" uid="uid://knqp7i4qkd1h" path="res://scripts/players/landing_effect.gd" id="11_kfkw0"]
 [ext_resource type="PackedScene" uid="uid://dxld32ofm7vro" path="res://assets/animals/chicken/source/Ri.glb" id="12_nygpt"]
 [ext_resource type="Script" uid="uid://b7frlc6qit2su" path="res://scripts/players/ChickenMechanics.gd" id="13_chicken_mechanics"]
-[ext_resource type="PackedScene" uid="uid://gria1pnmibe1" path="res://scenes/obstacles/chiken_assets/egg.tscn" id="14_egg"]
+[ext_resource type="PackedScene" uid="uid://gria1pnmibe1" path="res://scenes/elements/egg.tscn" id="14_egg"]
 [ext_resource type="Script" uid="uid://bc8n7j3gli2lq" path="res://scripts/players/spider_auto_wall_climb.gd" id="15_spider_climb"]
 [ext_resource type="PackedScene" uid="uid://c4qkngorna1ch" path="res://assets/animals/spider/Spider-gltf/Spider.gltf" id="16_spider_model"]
+[ext_resource type="Script" uid="uid://cb3rjafuhkm7e" path="res://scenes/players/audio_manager.gd" id="18_dpwsd"]
+[ext_resource type="AudioStream" uid="uid://dm0721olto6ml" path="res://assets/sounds/chiken_panic.mp3" id="19_4ncwa"]
+[ext_resource type="AudioStream" uid="uid://q0jh8iiyvocq" path="res://assets/sounds/chiken_happy.mp3" id="20_avh0v"]
+[ext_resource type="AudioStream" uid="uid://cw6mah0qyahfy" path="res://assets/sounds/chiken_relax.mp3" id="21_tdl5b"]
 
 [node name="PlayerXr" type="XROrigin3D" unique_id=148719387]
 script = ExtResource("1_p35tw")
@@ -101,3 +105,18 @@ egg_scene = ExtResource("14_egg")
 
 [node name="SpiderModel" parent="BodyModels/spider" unique_id=2037124578 instance=ExtResource("16_spider_model")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, -0.35, 0.2)
+
+[node name="AudioManager" type="Node3D" parent="." unique_id=679853854]
+script = ExtResource("18_dpwsd")
+
+[node name="IdleTimer" type="Timer" parent="AudioManager" unique_id=798599760]
+one_shot = true
+
+[node name="JumpGlidePlayer" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=461301823]
+stream = ExtResource("19_4ncwa")
+
+[node name="LayEggPlayer" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=1656787737]
+stream = ExtResource("20_avh0v")
+
+[node name="IdlePlayer" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=1333013782]
+stream = ExtResource("21_tdl5b")

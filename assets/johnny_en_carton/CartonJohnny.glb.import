@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bae6aec04ilx"
-path="res://.godot/imported/round_basket_3d_scan.glb-f9f022f0da178e633327aa2ae85fc206.scn"
+uid="uid://b0qw1fpw471m1"
+path="res://.godot/imported/CartonJohnny.glb-238cfa8962eacc560db7e0d0167296da.scn"
 
 [deps]
 
-source_file="res://assets/objects/round_basket_3d_scan.glb"
-dest_files=["res://.godot/imported/round_basket_3d_scan.glb-f9f022f0da178e633327aa2ae85fc206.scn"]
+source_file="res://assets/johnny_en_carton/CartonJohnny.glb"
+dest_files=["res://.godot/imported/CartonJohnny.glb-238cfa8962eacc560db7e0d0167296da.scn"]
 
 [params]
 

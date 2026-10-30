@@ -2,21 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dtggi0jkeg5p0"
-path.s3tc="res://.godot/imported/round_basket_3d_scan_0.jpg-1bb386e8efce45a605c355d64033295b.s3tc.ctex"
-path.etc2="res://.godot/imported/round_basket_3d_scan_0.jpg-1bb386e8efce45a605c355d64033295b.etc2.ctex"
+uid="uid://bh3if3ifc7pet"
+path.s3tc="res://.godot/imported/round_basket_0.png-7a9e37e1baaf9c0a51e7da17aaa0710c.s3tc.ctex"
+path.etc2="res://.godot/imported/round_basket_0.png-7a9e37e1baaf9c0a51e7da17aaa0710c.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "4d23b98e7e72c2562727898303441c2a"
+"md5": "943ac643ac87d2f330e4524a00b199bb"
 }
 
 [deps]
 
-source_file="res://assets/objects/round_basket_3d_scan_0.jpg"
-dest_files=["res://.godot/imported/round_basket_3d_scan_0.jpg-1bb386e8efce45a605c355d64033295b.s3tc.ctex", "res://.godot/imported/round_basket_3d_scan_0.jpg-1bb386e8efce45a605c355d64033295b.etc2.ctex"]
+source_file="res://assets/objects/round_basket_0.png"
+dest_files=["res://.godot/imported/round_basket_0.png-7a9e37e1baaf9c0a51e7da17aaa0710c.s3tc.ctex", "res://.godot/imported/round_basket_0.png-7a9e37e1baaf9c0a51e7da17aaa0710c.etc2.ctex"]
 
 [params]
 

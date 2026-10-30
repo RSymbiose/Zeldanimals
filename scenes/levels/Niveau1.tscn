@@ -4,8 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://b5mo40l0m2bwl" path="res://scenes/players/player_spawner.tscn" id="2_jctsv"]
 [ext_resource type="Environment" uid="uid://bqnqgflivjvue" path="res://starter_kit/scenes/main-environment.tres" id="3_2nfo2"]
 [ext_resource type="PackedScene" uid="uid://uiaigvxvb23h" path="res://scenes/obstacles/breakable_door.tscn" id="4_q6p0d"]
+[ext_resource type="Texture2D" uid="uid://c34nsbqrtkimn" path="res://addons/panneau tuto/panneau_araignee_toile.jpg" id="5_1mbwp"]
 [ext_resource type="Texture2D" uid="uid://cbwfbnfnqoicb" path="res://addons/panneau tuto/panneau_gorille.jpg" id="5_jcafc"]
+[ext_resource type="Texture2D" uid="uid://crqp3cllykg3o" path="res://addons/panneau tuto/panneau_poule_oeuf.jpg" id="6_2umgm"]
 [ext_resource type="Texture2D" uid="uid://b6pjv02rs1xgt" path="res://addons/panneau tuto/panneau_spike.jpg" id="6_5ddhe"]
+[ext_resource type="Texture2D" uid="uid://3fcgvs1sbqiy" path="res://addons/panneau tuto/panneau_araignee_grimpe.jpg" id="7_5evrs"]
 [ext_resource type="Texture2D" uid="uid://dj6if71cwuxij" path="res://addons/panneau tuto/panneau_gorille_jump.jpg" id="7_jcafc"]
 [ext_resource type="Texture2D" uid="uid://3d0aolon2t3f" path="res://addons/panneau tuto/panneau_poule_jump.jpg" id="8_71qth"]
 [ext_resource type="PackedScene" uid="uid://bbx3j1kvmqt1n" path="res://scenes/elements/door.tscn" id="9_a2kni"]
@@ -18,6 +21,15 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2j2o3"]
 albedo_texture = ExtResource("5_jcafc")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2umgm"]
+albedo_texture = ExtResource("5_1mbwp")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5evrs"]
+albedo_texture = ExtResource("6_2umgm")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_boihy"]
+albedo_texture = ExtResource("7_5evrs")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jcafc"]
 albedo_texture = ExtResource("6_5ddhe")
@@ -110,9 +122,24 @@ data = {
 metadata/_editor_floor_ = Vector3(0, 2, 0)
 
 [node name="panneau_gorille_porte" type="CSGBox3D" parent="." unique_id=45565155]
-transform = Transform3D(-1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0, 1, 1.6581326, 1.668894, 3.7644153)
+transform = Transform3D(-1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0, 1, 1.6693687, 1.668894, 3.7644153)
 material_override = SubResource("StandardMaterial3D_2j2o3")
 size = Vector3(1, 0.8, 0.06)
+
+[node name="panneau_araignee_toile" type="CSGBox3D" parent="." unique_id=94424004]
+transform = Transform3D(-1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0, 1, -8.040905, -2.3135338, 41.666172)
+size = Vector3(1, 0.8, 0.06)
+material = SubResource("StandardMaterial3D_2umgm")
+
+[node name="panneau_poule_oeuf" type="CSGBox3D" parent="." unique_id=1879474158]
+transform = Transform3D(4.371139e-08, -3.821371e-15, 1, -8.742278e-08, -1, 0, 1, -8.742278e-08, -4.371139e-08, 1.7147913, -2.7895718, 36.073597)
+size = Vector3(1, 0.8, 0.06)
+material = SubResource("StandardMaterial3D_5evrs")
+
+[node name="panneau_araignee_grimpe" type="CSGBox3D" parent="." unique_id=1884212174]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -23.697514, 1.908464, 38.376446)
+size = Vector3(1, 0.8, 0.06)
+material = SubResource("StandardMaterial3D_boihy")
 
 [node name="panneau_spike" type="CSGBox3D" parent="." unique_id=1799444492]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.6809473, 1.6725497, 17.70627)
