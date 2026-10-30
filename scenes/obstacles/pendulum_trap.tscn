@@ -1,7 +1,6 @@
 [gd_scene format=4 uid="uid://bmhe3r73qspue"]
 
 [ext_resource type="Script" uid="uid://dr7jvt0lpi5ls" path="res://scripts/obstacles/PendulumBlade.gd" id="1_7o1ld"]
-[ext_resource type="Texture2D" uid="uid://dtggi0jkeg5p0" path="res://assets/objects/round_basket_3d_scan_0.jpg" id="1_8ag1q"]
 [ext_resource type="Texture2D" uid="uid://b6fb8u3aor4i0" path="res://addons/Textures/PathRocks_Diffuse.png" id="1_kmn8i"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aubmb"]
@@ -16,11 +15,7 @@ emission_energy_multiplier = 0.0
 material = SubResource("StandardMaterial3D_aubmb")
 height = 0.55
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lq68l"]
-albedo_texture = ExtResource("1_8ag1q")
-
 [sub_resource type="CylinderMesh" id="CylinderMesh_hqjvs"]
-material = SubResource("StandardMaterial3D_lq68l")
 top_radius = 0.2
 bottom_radius = 0.2
 height = 4.0
