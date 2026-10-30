@@ -55,6 +55,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.91423154, 0, 0)
 shape = SubResource("BoxShape3D_2nc5x")
 
 [node name="TriggerArea" type="Area3D" parent="." unique_id=822240112]
+collision_mask = 524289
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TriggerArea" unique_id=319623786]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9868338, 0, 0)

@@ -1,20 +1,28 @@
 # ChickenAudio.gd
 class_name ChickenAudio
-extends Node
-
+extends Node3D
 @export var min_idle_delay: float = 5.0
 @export var max_idle_delay: float = 14.0
 
-@onready var jump_glide_player: AudioStreamPlayer = $JumpGlidePlayer
-@onready var lay_egg_player: AudioStreamPlayer = $LayEggPlayer
-@onready var idle_player: AudioStreamPlayer = $IdlePlayer
+
+@onready var jump_glide_player: AudioStreamPlayer3D = $JumpGlidePlayer
+@onready var lay_egg_player: AudioStreamPlayer3D = $LayEggPlayer
+@onready var idle_player: AudioStreamPlayer3D = $IdlePlayer
 @onready var idle_timer: Timer = $IdleTimer
 
 func _ready() -> void:
 	idle_timer.timeout.connect(_on_idle_timer_timeout)
-	_arm_next_idle_sound()
+	idle_timer.stop()
 
-# --- SON 1 : BOUCLE DE SAUT / PLANAGE ---
+func set_active(value: bool) -> void:
+	if value:
+		_arm_next_idle_sound()
+	else:
+		idle_timer.stop()
+		jump_glide_player.stop()
+		idle_player.stop()
+
+# --- SON 1 : BOUCLE DE SAUT / PLANAGE ---	
 func update_airborne_sound(is_in_air: bool) -> void:
 	if is_in_air:
 		if not jump_glide_player.playing:

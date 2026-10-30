@@ -44,7 +44,7 @@ radius = 0.27783203
 height = 0.55566406
 
 [node name="Chiken" type="CharacterBody3D" unique_id=394487220 node_paths=PackedStringArray("chicken_mechanics")]
-collision_layer = 3
+collision_layer = 11
 collision_mask = 17
 script = ExtResource("1_pda1v")
 chicken_mechanics = NodePath("XROrigin3D/Torso/ChickenMechanics")
@@ -88,20 +88,17 @@ shape = SubResource("CapsuleShape3D_gb1te")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, -0.18747959)
 fov = 50.0
 
-[node name="AudioManager" type="Node" parent="." unique_id=422441723]
+[node name="AudioManager" type="Node3D" parent="." unique_id=192667641]
 script = ExtResource("4_7letv")
-
-[node name="JumpGlidePlayer" type="AudioStreamPlayer" parent="AudioManager" unique_id=178486083]
-stream = ExtResource("5_ub7vp")
-volume_db = 24.0
-
-[node name="LayEggPlayer" type="AudioStreamPlayer" parent="AudioManager" unique_id=862168816]
-stream = ExtResource("6_7uw25")
-volume_db = 24.0
-
-[node name="IdlePlayer" type="AudioStreamPlayer" parent="AudioManager" unique_id=910189878]
-stream = ExtResource("7_3ijgo")
-volume_db = 24.0
 
 [node name="IdleTimer" type="Timer" parent="AudioManager" unique_id=2080468777]
 one_shot = true
+
+[node name="JumpGlidePlayer" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=1921046134]
+stream = ExtResource("5_ub7vp")
+
+[node name="LayEggPlayer" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=453943430]
+stream = ExtResource("6_7uw25")
+
+[node name="IdlePlayer" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=822283497]
+stream = ExtResource("7_3ijgo")

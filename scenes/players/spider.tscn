@@ -9,6 +9,7 @@ height = 2.1621094
 
 [node name="Spider" type="CharacterBody3D" unique_id=2021904531]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 9
 script = ExtResource("1_g4i1d")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=668210912]
